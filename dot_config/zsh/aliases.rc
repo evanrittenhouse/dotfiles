@@ -1,0 +1,5 @@
+alias vim="nvim"
+alias ls='ls -laG'
+alias cat="bat"
+alias dev="cd ~/Desktop/projects/"
+
