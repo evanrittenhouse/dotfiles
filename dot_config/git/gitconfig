@@ -1,0 +1,9 @@
+[core]
+        editor = nvim    
+
+[user] 
+        email = evanrittenhouse@gmail.com
+        name = Evan Rittenhouse
+
+[init]
+        defaultBranch = main
