@@ -1,4 +1,41 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #! /bin/sh
+install_brew () {
+        echo "Homebrew not found, installing..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        {{ if eq .chezmoi.os "linux" -}}
+                sudo apt install build-essential curl git file procps  -y
+                export HOMEBREW_DIR="/home/linuxbrew/.linuxbrew/bin/brew"
+
+                # TODO - replace this with a dot_profile file
+                echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.profile
+                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        {{ else if eq .chezmoi.os "darwin" -}}
+                export HOMEBREW_DIR="/home/linuxbrew/.linuxbrew/bin/brew"
+        {{ end -}}
+
+        brew install gcc
+}
+
+# install packages
+command -v brew > /dev/null && continue || install_brew
+
 brew bundle --file=.config/brew/Brewfile
+
+# linux equivalent of homebrew casks
+{{ if eq .chezmoi.os "linux" -}}
+        if ! command -v snap &> /dev/null
+        then 
+                echo "Snap not found, installing..."
+                sudo apt install snapd
+        fi
+
+        sudo snap install 1password 
+        sudo snap install docker 
+        sudo snap install signal-desktop 
+        sudo snap install spotify
 {{ end -}}
+
+# set fish as default shell
+sudo echo $(which fish) >> /etc/shells
+chsh -s $(which fish) 

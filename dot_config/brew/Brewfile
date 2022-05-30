@@ -1,7 +1,6 @@
 tap 'homebrew/cask'
 tap 'homebrew/cask-versions'
 
-
 brew 'autojump'
 brew 'bat'
 brew 'curl'
@@ -12,7 +11,6 @@ brew 'poetry'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'python@3.9'
-brew 'romkatv/powerlevel10k/powerlevel10k'
 brew 'ripgrep'
 brew 'tig'
 brew 'tmux'

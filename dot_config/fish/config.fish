@@ -3,7 +3,7 @@ if status is-interactive
 end
 
 # autojump
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+# [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 
 # aliases
 alias vim="nvim"
@@ -15,4 +15,4 @@ alias dev="cd ~/Desktop/projects"
 fish_hybrid_key_bindings
 
 # source pyenv
-pyenv init - | source
+# pyenv init - | source
