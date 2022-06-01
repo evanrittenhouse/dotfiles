@@ -1,0 +1,38 @@
+# General
+set -g prefix `
+bind ` send-prefix
+set-environment -g PATH "/usr/local/bin:/bin:/usr/bin"
+
+set -g default-terminal "xterm-256color"
+
+{{ if eq .chezmoi.os "darwin" -}}
+set -g default-shell "/opt/homebrew/bin/fish"
+{{ else if eq .chezmoi.os "linux" -}}
+set -g default-shell "/home/linuxbrew/.linuxbrew/bin/fish"
+{{ end }}
+
+set -g base-index 1
+set -s escape-time 0
+set -g mouse on
+
+bind r source-file ~/.tmux.conf \; display "Tmux config reloaded"
+
+setw -g mode-keys vi
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+set-option -g status-position top
+set-option -g renumber-windows on
+
+set -g status-style bg='#1d2021',fg=default,dim
+set -g status-right "%d %b %Y %l:%M %p #[fg=green,bg=default,bright] #(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';') #[default]"
+
+
+## Plugins
+# set -g @plugin 'tmux-plugins/tpm'
+# set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+# run '~/.config/tmux/plugins/tpm/tpm'

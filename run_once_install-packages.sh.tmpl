@@ -7,8 +7,11 @@ install_brew () {
                 sudo apt install build-essential curl git file procps  -y
                 export HOMEBREW_DIR="/home/linuxbrew/.linuxbrew/bin/brew"
 
-                # TODO - replace this with a dot_profile file
+                # add to bash for initial install
                 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.profile
+
+                # add to fish config so it's on fish's path
+                # echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.config/fish/config.fish
                 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         {{ else if eq .chezmoi.os "darwin" -}}
                 export HOMEBREW_DIR="/home/linuxbrew/.linuxbrew/bin/brew"
@@ -24,11 +27,7 @@ brew bundle --file=.config/brew/Brewfile
 
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
-        if ! command -v snap &> /dev/null
-        then 
-                echo "Snap not found, installing..."
-                sudo apt install snapd
-        fi
+        command -v snap > /dev/null && continue || sudo apt install snapd
 
         sudo snap install 1password 
         sudo snap install docker 
@@ -37,5 +36,10 @@ brew bundle --file=.config/brew/Brewfile
 {{ end -}}
 
 # set fish as default shell
-sudo echo $(which fish) >> /etc/shells
+echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish) 
+
+# install fisher packages - reload shell to load fisher
+exec sudo --login --user {{ .chezmoi.username }}
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | /bin/bash -c 'source && fisher install jorgebucaran/fisher'
+fisher update
