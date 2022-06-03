@@ -1,4 +1,6 @@
 #! /bin/sh
+
+# TODO - implement auto-install with https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/#run-a-script-when-the-contents-of-another-file-changes
 install_brew () {
         echo "Homebrew not found, installing..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
