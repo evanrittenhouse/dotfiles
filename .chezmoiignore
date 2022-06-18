@@ -1,4 +1,4 @@
-!config.fish.tmpl
-!fish_plugins
-fish/**
-dot_config/brew/Brewfile.lock.json
+!.config/fish/config.fish.tmpl
+!.config/fish/fish_plugins
+.config/fish/**/*
+.config/brew/Brewfile.lock.json
