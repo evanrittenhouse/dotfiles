@@ -30,8 +30,8 @@ set -g status-style bg='#1d2021',fg=default,dim
 set -g status-right "%d %b %Y %l:%M %p #[fg=green,bg=default,bright] #(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';') #[default]"
 
 
-## Plugins
-# set -g @plugin 'tmux-plugins/tpm'
-# set -g @plugin 'tmux-plugins/tmux-resurrect'
+# Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
 
-# run '~/.config/tmux/plugins/tpm/tpm'
+# run '~/.tmux/plugins/tpm/tpm'

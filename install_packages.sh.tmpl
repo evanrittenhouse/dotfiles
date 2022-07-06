@@ -41,7 +41,7 @@ brew bundle --file=.config/brew/Brewfile
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish) 
 
-# install fisher packages - reload shell to load fisher
+# install fisher packages - reload shell to launch fish
 exec sudo --login --user {{ .chezmoi.username }}
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | /bin/bash -c 'source && fisher install jorgebucaran/fisher'
 fisher update
