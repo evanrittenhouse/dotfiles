@@ -5,7 +5,7 @@ M.setup = function(on_attach)
     null_ls.setup({
         debug = true,
         sources = {
-            -- null_ls.builtins.diagnostics.eslint,
+            null_ls.builtins.diagnostics.eslint,
             null_ls.builtins.formatting.prettier,
             null_ls.builtins.formatting.black.with({
                 extra_args = { "--fast" }
