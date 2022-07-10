@@ -1,18 +1,21 @@
-tap 'homebrew/cask'
-tap 'homebrew/cask-versions'
-
 brew 'autojump'
 brew 'bat'
 brew 'fish'
+brew 'lua-language-server'
 brew 'neovim'
 brew 'poetry'
+brew 'pyright'
 brew 'python'
 brew 'ripgrep'
+brew 'starship'
 brew 'tig'
 brew 'tmux'
 brew 'tree-sitter'
 
 {{ if eq .chezmoi.os "darwin" -}}
+        tap 'homebrew/cask'
+        tap 'homebrew/cask-versions'
+
         cask '1password'
         cask 'dash'
         cask 'docker'

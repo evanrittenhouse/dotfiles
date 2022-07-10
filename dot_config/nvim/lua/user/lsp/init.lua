@@ -14,7 +14,7 @@ vim.diagnostic.config({
 
 local opts = { silent = true, noremap = true }
 
-local on_attach = function(client, bufnr)
+local base_on_attach = function(client, bufnr)
     local function buf_set_keymap(key, cmd)
         vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, opts)
     end
@@ -41,43 +41,47 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-require("user.lsp.null-ls").setup(on_attach)
--- require("user.lsp.null-ls")
+local null_ls = require('null-ls')
+null_ls.setup {
+    sources = {
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.black.with({
+            extra_args = { "--fast" }
+        }),
+        null_ls.builtins.formatting.isort.with({
+            extra_args = { "black" }
+        }),
+        null_ls.builtins.formatting.dart_format,
+    },
+    on_attach = base_on_attach
+}
 
+-- LANGUAGE SERVER-SPECIFIC SETUP --
+local lspconfig = require('lspconfig')
 
-local lsp_installer = require("nvim-lsp-installer")
+lspconfig['pyright'].setup {
+    on_attach = base_on_attach,
+    flags = {}
+}
 
--- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
--- or if the server is already installed).
-lsp_installer.on_server_ready(function(server)
-    local opts = {
-        on_attach = on_attach,
-        capabilities = capabilities
-    }
-
-    -- (optional) Customize the options passed to the server
-    if server.name == "tsserver" then
-        local ts_utils = require("nvim-lsp-ts-utils")
-        local ts_utils_settings = {
-            -- debug = true,
-            import_all_scan_buffers = 100,
-            update_imports_on_move = true,
-            -- filter out dumb module warning
-            filter_out_diagnostics_by_code = { 80001 },
-            auto_inlay_hints = false,
+lspconfig['sumneko_lua'].setup {
+    on_attach = base_on_attach,
+    flags = {},
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" }
+            }
         }
+    }
+}
 
-        opts.on_attach = function(client, _)
-            ts_utils.setup(ts_utils_settings)
-            ts_utils.setup_client(client)
-
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
-        end
-    end
-
-    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-    -- before passing it onwards to lspconfig.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-end)
+lspconfig['tsserver'].setup {
+    on_attach = function(client, bufnr)
+        base_on_attach(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end,
+    flags = {},
+}
