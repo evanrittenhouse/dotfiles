@@ -1,0 +1,6 @@
+window:
+  startup_mode: Fullscreen
+
+font:
+  normal:
+    family: Hack Nerd
