@@ -1,5 +1,4 @@
 -- local colorscheme = 'gruvbox-material'
--- vim.api.nvim_set_var('gruvbox_material_background', 'hard')
 -- local colorscheme = 'kanagawa'
 
 -- local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
@@ -11,5 +10,6 @@
 require('kanagawa').setup({
   transparent = true,
 })
+vim.api.nvim_set_var('gruvbox_material_background', 'hard')
 
-vim.cmd [[colorscheme kanagawa]]
+vim.cmd('colorscheme gruvbox-material')

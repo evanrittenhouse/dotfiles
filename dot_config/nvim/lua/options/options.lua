@@ -9,3 +9,6 @@ vim.opt.expandtab = true
 vim.opt.showmode = false
 vim.opt.undofile = true
 vim.o.updatetime = 300
+
+vim.cmd('cabbrev h vert h')
+
