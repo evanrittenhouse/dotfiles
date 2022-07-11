@@ -1,0 +1,17 @@
+[package]
+disabled = true
+
+[python]
+symbol = "Python "
+
+[git_status]
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "diverged ⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "*${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "x${count}"
+format = '([\[ ($ahead_behind )($staged )($modified )($untracked )($stashed )($renamed )($deleted )\]]($style) )'
