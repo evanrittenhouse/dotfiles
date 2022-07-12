@@ -1,6 +1,14 @@
 window:
-  startup_mode: Fullscreen
+  startup_mode: Maximized
 
 font:
   normal:
-    family: Hack Nerd
+    family: Hack Nerd Font Mono
+
+  # Point size
+  size: 12.0
+
+  # offset - x is "line width", y is "line height"
+  offset:
+    x: 0
+    y: 1
