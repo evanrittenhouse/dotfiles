@@ -54,7 +54,6 @@ return packer.startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'tpope/vim-sleuth'
   use 'ggandor/lightspeed.nvim'
-  use 'kyazdani42/nvim-tree.lua'
   use 'windwp/nvim-autopairs' -- pair characters ( [], {}, etc)
   use 'leafOfTree/vim-matchtag' -- highlights matching character
   use 'windwp/nvim-ts-autotag' -- autoclose html tags
