@@ -2,3 +2,5 @@
 !.config/fish/fish_plugins
 .config/fish/**/*
 .config/brew/Brewfile.lock.json
+
+.config/nvim/plugin/packer_compiled.lua
