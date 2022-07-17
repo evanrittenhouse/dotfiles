@@ -12,7 +12,7 @@ vim.diagnostic.config({
     float = { focusable = false, style = "minimal", border = "rounded", source = "always", header = "", prefix = "" }
 })
 
-local opts = { silent = true, noremap = true }
+local opts = require('utils').keymap_opts
 
 local base_on_attach = function(client, bufnr)
     local function buf_set_keymap(key, cmd)
