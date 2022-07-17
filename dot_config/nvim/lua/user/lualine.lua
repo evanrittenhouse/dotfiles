@@ -33,10 +33,21 @@ if vim.g.kanagawa_lualine_bold then
   end
 end
 
+-- set lualine theme based on current colorscheme
+local lualineTheme = 'auto'
+local currentColorscheme = vim.cmd('colorscheme')
+
+if currentColorscheme == 'gruvbox-material' then
+  lualineTheme = 'gruvbox-material'
+elseif currentColorscheme == 'kanagawa' then
+  lualineTheme = 'kanagawa'
+end
+
+
 require 'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = 'kanagawa',
+    theme = lualineTheme,
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = { 'NvimTree' },
