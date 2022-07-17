@@ -1,5 +1,5 @@
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local keymap = require('utils').keymap
+local opts = require('utils').keymap_opts
 
 -- remap escaping in terminal mode to escape
 keymap('t', '<Esc>', '<C-\\><C-n>', opts)

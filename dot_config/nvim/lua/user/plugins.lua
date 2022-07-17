@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use 'goolord/alpha-nvim'
   use 'lewis6991/impatient.nvim'
   use 'kylechui/nvim-surround'
+  use 'nvim-telescope/telescope-file-browser.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

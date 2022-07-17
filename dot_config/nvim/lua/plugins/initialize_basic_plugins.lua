@@ -2,7 +2,6 @@ require('nvim-autopairs').setup {}
 require('gitsigns').setup {}
 require('nvim-ts-autotag').setup {}
 require('nvim-surround').setup {}
-require('lightspeed').setup {}
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "python", "javascript", "tsx", "typescript" },
@@ -15,3 +14,8 @@ require('nvim-treesitter.configs').setup {
     enable = false,
   }
 }
+
+local keymap = require('utils').keymap
+local opts = require('utils').keymap_opts
+require('lightspeed').setup {}
+keymap('n', 's', '<Plug>Lightspeed_omni_s', opts)
