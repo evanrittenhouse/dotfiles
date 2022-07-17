@@ -54,39 +54,9 @@ schemes:
       cyan: "#78DCE8"
       white: "#FCFCFA"
 
-  tomorrow_night: &tomorrow_night
-    primary:
-      background: "#1d1f21"
-      foreground: "#c5c8c6"
-
-    # Colors the cursor will use if `custom_cursor_colors` is true
-    cursor:
-      text: "#1d1f21"
-      cursor: "#ffffff"
-
-    normal:
-      black: "#1d1f21"
-      red: "#cc6666"
-      green: "#b5bd68"
-      yellow: "#e6c547"
-      blue: "#81a2be"
-      magenta: "#b294bb"
-      cyan: "#70c0ba"
-      white: "#373b41"
-
-    bright:
-      black: "#666666"
-      red: "#ff3334"
-      green: "#9ec400"
-      yellow: "#f0c674"
-      blue: "#81a2be"
-      magenta: "#b77ee0"
-      cyan: "#54ced6"
-      white: "#282a2e"
-
   oxide: &oxide
     primary:
-      background: "#212121"
+      background: "#1d1f21"
       foreground: "#c0c5ce"
       bright_foreground: "#f3f4f5"
 
@@ -114,4 +84,63 @@ schemes:
       cyan: "#5fb3b3"
       white: "#f3f4f5"
 
-colors: *monokai_pro
+  kanagawa: &kanagawa # Kanagawa Alacritty Colors
+    colors:
+      primary:
+        background: "#1d1f21"
+        foreground: "0xdcd7ba"
+
+      normal:
+        black: "0x090618"
+        red: "0xc34043"
+        green: "0x76946a"
+        yellow: "0xc0a36e"
+        blue: "0x7e9cd8"
+        magenta: "0x957fb8"
+        cyan: "0x6a9589"
+        white: "0xc8c093"
+
+      bright:
+        black: "0x727169"
+        red: "0xe82424"
+        green: "0x98bb6c"
+        yellow: "0xe6c384"
+        blue: "0x7fb4ca"
+        magenta: "0x938aa9"
+        cyan: "0x7aa89f"
+        white: "0xdcd7ba"
+
+      selection:
+        background: "0x2d4f67"
+        foreground: "0xc8c093"
+
+      indexed_colors:
+        - { index: 16, color: "0xffa066" }
+        - { index: 17, color: "0xff5d62" }
+
+  gruvbox: &gruvbox
+    primary:
+      background: "#1d1f21"
+      foreground: "0xdfbf8e"
+
+    normal:
+      black: "0x665c54"
+      red: "0xea6962"
+      green: "0xa9b665"
+      yellow: "0xe78a4e"
+      blue: "0x7daea3"
+      magenta: "0xd3869b"
+      cyan: "0x89b482"
+      white: "0xdfbf8e"
+
+    bright:
+      black: "0x928374"
+      red: "0xea6962"
+      green: "0xa9b665"
+      yellow: "0xe3a84e"
+      blue: "0x7daea3"
+      magenta: "0xd3869b"
+      cyan: "0x89b482"
+      white: "0xdfbf8e"
+
+colors: *gruvbox
