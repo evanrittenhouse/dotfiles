@@ -11,4 +11,3 @@ vim.opt.undofile = true
 vim.o.updatetime = 300
 
 vim.cmd('cabbrev h vert h')
-
