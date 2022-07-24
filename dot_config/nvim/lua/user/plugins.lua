@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use 'lewis6991/impatient.nvim'
   use 'kylechui/nvim-surround'
   use 'nvim-telescope/telescope-file-browser.nvim'
+  use "nvim-neorg/neorg"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
