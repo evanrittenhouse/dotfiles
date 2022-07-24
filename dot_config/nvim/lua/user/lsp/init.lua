@@ -56,7 +56,7 @@ null_ls.setup {
     },
     on_attach = base_on_attach,
     should_attach = function(bufnr)
-        return not vim.api.nvim_get_buf_name(bufnr):match('sequelize')
+        return not vim.api.nvim_buf_get_name(bufnr):match('sequelize')
     end
 }
 
