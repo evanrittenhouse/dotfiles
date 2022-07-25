@@ -62,6 +62,7 @@ return packer.startup(function(use)
   use 'kylechui/nvim-surround'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use "nvim-neorg/neorg"
+  use 'simrat39/symbols-outline.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
