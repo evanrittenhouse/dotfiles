@@ -1,6 +1,14 @@
 local telescope = require('telescope')
 
-telescope.setup {}
+telescope.setup {
+  extensions = {
+    file_browser = {
+      cwd_to_path = true,
+      grouped = true,
+      hijack_netrw = true
+    }
+  }
+}
 
 telescope.load_extension('file_browser')
 

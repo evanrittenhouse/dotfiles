@@ -1,6 +1,5 @@
 require('user.plugins')
 
-require("user.alpha")
 require('user.basic-plugins')
 require('colorscheme')
 require('options')

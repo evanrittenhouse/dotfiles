@@ -57,12 +57,10 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'goolord/alpha-nvim'
   use 'lewis6991/impatient.nvim'
   use 'kylechui/nvim-surround'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use "nvim-neorg/neorg"
-  use 'simrat39/symbols-outline.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
