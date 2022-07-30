@@ -7,16 +7,18 @@ install_brew () {
 
         {{ if eq .chezmoi.os "linux" -}}
                 sudo apt install build-essential curl git file procps  -y
-                export HOMEBREW_DIR="/home/linuxbrew/.linuxbrew/bin/brew"
 
                 # add to bash for initial install
                 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.profile
 
                 # add to fish config so it's on fish's path
-                # echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.config/fish/config.fish
                 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         {{ else if eq .chezmoi.os "darwin" -}}
-                export HOMEBREW_DIR="/home/linuxbrew/.linuxbrew/bin/brew"
+                # add to bash for initial install
+                echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.profile
+
+                # add to fish config so it's on fish's path
+                eval "$(/opt/homebrew/bin/brew shellenv)"
         {{ end -}}
 
         brew install gcc
@@ -32,7 +34,6 @@ brew bundle --file=.config/brew/Brewfile
         command -v snap > /dev/null && continue || sudo apt install snapd
 
         sudo snap install 1password 
-        sudo snap install docker 
         sudo snap install signal-desktop 
         sudo snap install spotify
 
@@ -44,7 +45,5 @@ brew bundle --file=.config/brew/Brewfile
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish) 
 
-# install fisher packages - reload shell to launch fish
+#  reload shell to launch fish
 exec sudo --login --user {{ .chezmoi.username }}
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | /bin/bash -c 'source && fisher install jorgebucaran/fisher'
-fisher update

@@ -52,7 +52,6 @@ null_ls.setup {
         null_ls.builtins.formatting.isort.with({
             extra_args = { "black" }
         }),
-        null_ls.builtins.formatting.dart_format,
     },
     on_attach = base_on_attach,
     should_attach = function(bufnr)
