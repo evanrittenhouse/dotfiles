@@ -87,3 +87,5 @@ lspconfig['tsserver'].setup {
     end,
     flags = {},
 }
+
+lspconfig['dartls'].setup {}
