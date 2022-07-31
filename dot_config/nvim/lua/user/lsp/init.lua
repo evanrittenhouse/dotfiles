@@ -30,9 +30,6 @@ local base_on_attach = function(client, bufnr)
     buf_set_keymap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     buf_set_keymap("<C-x><C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
     buf_set_keymap("gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
-    buf_set_keymap("gO", ":TSLspOrganize<CR>")
-    buf_set_keymap("gI", ":TSLspRenameFile<CR>")
-    buf_set_keymap("go", ":TSLspImportAll<CR>")
     if client.resolved_capabilities.document_formatting then
         vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
@@ -52,6 +49,7 @@ null_ls.setup {
         null_ls.builtins.formatting.isort.with({
             extra_args = { "black" }
         }),
+        null_ls.builtins.formatting.dart_format
     },
     on_attach = base_on_attach,
     should_attach = function(bufnr)
@@ -88,4 +86,15 @@ lspconfig['tsserver'].setup {
     flags = {},
 }
 
-lspconfig['dartls'].setup {}
+lspconfig['dartls'].setup {
+    on_attach = function(client, bufnr)
+        base_on_attach(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end,
+    settings = {
+        dart = {
+            lineLength = 132,
+        }
+    }
+}
