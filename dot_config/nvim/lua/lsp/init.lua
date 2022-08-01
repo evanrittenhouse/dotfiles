@@ -49,7 +49,6 @@ null_ls.setup {
         null_ls.builtins.formatting.isort.with({
             extra_args = { "black" }
         }),
-        null_ls.builtins.formatting.dart_format
     },
     on_attach = base_on_attach,
     should_attach = function(bufnr)
@@ -87,12 +86,11 @@ lspconfig['tsserver'].setup {
 }
 
 require('flutter-tools').setup {
-    flutter_path = "/snap/bin/flutter",
     lsp = {
         on_attach = base_on_attach,
         settings = {
             dart = {
-                lineLength = 132
+                lineLength = 132,
             }
         }
     }
