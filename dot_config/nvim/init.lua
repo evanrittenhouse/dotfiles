@@ -1,4 +1,5 @@
 require('colorscheme')
 require('options')
-require('plugins')
+require('plugin_configs')
 require("lsp")
+require("user.plugins")
