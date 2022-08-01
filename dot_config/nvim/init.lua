@@ -1,10 +1,4 @@
-require('user.plugins')
-
-require('user.basic-plugins')
 require('colorscheme')
 require('options')
 require('plugins')
-require("user.lsp")
-require('user.lualine')
-require('user.nvim-treesitter')
-require('user.vim-startify')
+require("lsp")

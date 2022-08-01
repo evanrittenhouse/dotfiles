@@ -86,15 +86,28 @@ lspconfig['tsserver'].setup {
     flags = {},
 }
 
-lspconfig['dartls'].setup {
-    on_attach = function(client, bufnr)
-        base_on_attach(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-    end,
-    settings = {
-        dart = {
-            lineLength = 132,
+require('flutter-tools').setup {
+    flutter_path = "/snap/bin/flutter",
+    lsp = {
+        on_attach = base_on_attach,
+        settings = {
+            dart = {
+                lineLength = 132
+            }
         }
     }
 }
+
+
+-- lspconfig['dartls'].setup {
+--     on_attach = function(client, bufnr)
+--         base_on_attach(client, bufnr)
+--         client.resolved_capabilities.document_formatting = false
+--         client.resolved_capabilities.document_range_formatting = false
+--     end,
+--     settings = {
+--         dart = {
+--             lineLength = 132,
+--         }
+--     }
+-- }
