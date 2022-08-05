@@ -1,7 +1,6 @@
 # Installation
 
 1. Run `sudo install_packages.sh`.
-2. If you want UI dependencies (fonts, etc.), run `sudo configure_system.sh`.
 
 # Installing LSPs
 
@@ -10,6 +9,6 @@
 
 # TODO
 
-1. Install tmux-resurrect with the custom file location.
-2. Polybar/exploring other window managers
-3. Add neovim DAP plugin
+1. Polybar/exploring other window managers
+2. Add neovim DAP plugin
+3. Add font install to `install_packages.sh`
