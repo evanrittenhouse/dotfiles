@@ -35,8 +35,6 @@ local base_on_attach = function(client, bufnr)
     end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local null_ls = require('null-ls')
 null_ls.setup {
@@ -55,10 +53,13 @@ null_ls.setup {
 }
 
 -- LANGUAGE SERVER-SPECIFIC SETUP --
-local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+local lspconfig = require('lspconfig')
 lspconfig['pyright'].setup {
     on_attach = base_on_attach,
+    capabilities = capabilities,
     flags = {}
 }
 
@@ -86,6 +87,7 @@ lspconfig['tsserver'].setup {
 require('flutter-tools').setup {
     lsp = {
         on_attach = base_on_attach,
+        capabilities = capabilities,
         settings = {
             dart = {
                 lineLength = 132,
