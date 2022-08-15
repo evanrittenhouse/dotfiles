@@ -9,13 +9,13 @@ install_brew () {
                 sudo apt install build-essential curl git file procps  -y
 
                 # add to bash for initial install
-                echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.profile
+                echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.config/fish/config.fish
 
                 # add to fish config so it's on fish's path
                 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
         {{ else if eq .chezmoi.os "darwin" -}}
                 # add to bash for initial install
-                echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.profile
+                echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.config/fish/config.fish
 
                 # add to fish config so it's on fish's path
                 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -27,7 +27,7 @@ install_brew () {
 # install packages
 command -v brew > /dev/null && continue || install_brew
 
-brew bundle --file=.config/brew/Brewfile
+brew bundle --file=~/.config/brew/Brewfile
 
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
