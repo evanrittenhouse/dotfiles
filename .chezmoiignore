@@ -4,3 +4,7 @@
 .config/brew/Brewfile.lock.json
 
 .config/nvim/plugin/packer_compiled.lua
+
+Dockerfile
+reset_chezmoi.sh
+README.md
