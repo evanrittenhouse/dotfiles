@@ -52,7 +52,6 @@ return packer.startup(function(use)
   use 'ggandor/lightspeed.nvim'
   use 'windwp/nvim-autopairs' -- pair characters ( [], {}, etc)
   use 'leafOfTree/vim-matchtag' -- highlights matching character
-  use 'windwp/nvim-ts-autotag' -- autoclose html tags
   use 'tpope/vim-commentary'
   use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
@@ -77,6 +76,7 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig"
   use "akinsho/flutter-tools.nvim"
+  use "mfussenegger/nvim-jdtls"
 
   -- Formatting
   use "jose-elias-alvarez/null-ls.nvim"
