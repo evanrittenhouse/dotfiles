@@ -85,6 +85,13 @@ lspconfig['tsserver'].setup {
     flags = {},
 }
 
+lspconfig['clangd'].setup {
+    on_attach = base_on_attach,
+    capabilities = capabilities,
+    flags = {}
+}
+
+
 require('flutter-tools').setup {
     lsp = {
         on_attach = base_on_attach,
