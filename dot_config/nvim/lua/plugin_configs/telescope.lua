@@ -5,7 +5,8 @@ telescope.setup {
     file_browser = {
       cwd_to_path = true,
       grouped = true,
-      hijack_netrw = true
+      hijack_netrw = true,
+      collapse_dirs = true
     }
   }
 }
