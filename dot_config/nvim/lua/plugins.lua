@@ -59,15 +59,6 @@ return packer.startup(function(use)
   use 'lewis6991/impatient.nvim'
   use 'kylechui/nvim-surround'
   use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'simrat39/symbols-outline.nvim'
-  use {
-    'nvim-neotest/neotest',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim'
-    }
-  }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

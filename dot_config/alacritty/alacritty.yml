@@ -15,7 +15,7 @@ font:
   normal:
     family: Hack Nerd Font Mono
 
-  size: 11.0
+  size: 10.0
 
   # offset - x is "line width", y is "line height"
   offset:
