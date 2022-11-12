@@ -34,7 +34,7 @@ local onAttach = function()
         local keymap = u.keymap
         local options = u.keymap_opts
 
-        require('lsp.init.global_on_attach')
+        require('lsp.init.base_on_attach')
 end
 
 local config = {
