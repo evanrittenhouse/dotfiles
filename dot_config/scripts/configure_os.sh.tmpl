@@ -1,5 +1,10 @@
 # TODO: MAC
 # iterm2 general preferences, native fullscreen
 # default scroll direction
+{{ if eq .chezmoi.os "darwin" -}}
+{{ end }}
 
-
+{{ if eq .chezmoi.os "linux" -}}
+        # set polybar launch script to be executable by window manager
+        chmod +x {{ .chezmoi.homeDir }}/.config/polybar/launch.sh
+{{ end }}

@@ -16,7 +16,7 @@ set -g base-index 1
 set -s escape-time 0
 set -g mouse on
 
-bind r source-file ~/.tmux.conf \; display "Tmux config reloaded"
+bind r source-file {{ .chezmoi.homeDir }}/.tmux.conf \; display "Tmux config reloaded"
 
 setw -g mode-keys vi
 
