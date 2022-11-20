@@ -5,6 +5,4 @@
 {{ end }}
 
 {{ if eq .chezmoi.os "linux" -}}
-        # set polybar launch script to be executable by window manager
-        chmod +x {{ .chezmoi.homeDir }}/.config/polybar/launch.sh
 {{ end }}

@@ -9,6 +9,6 @@
 
 # TODO
 
-1. Polybar/exploring other window managers
+1. Exploring other window managers
 2. Add neovim DAP plugin
-3. Add font install to `install_packages.sh`
+3. Set up an initial install script to get rid of .config/scripts  
