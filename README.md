@@ -12,3 +12,4 @@
 1. Exploring other window managers
 2. Add neovim DAP plugin
 3. Set up an initial install script to get rid of .config/scripts  
+4. Remove Homebrew on Linux and install dependencies through `sudo apt` instead
