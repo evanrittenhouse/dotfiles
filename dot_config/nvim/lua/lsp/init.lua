@@ -30,7 +30,7 @@ local base_on_attach = function(client, bufnr)
     buf_set_keymap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     buf_set_keymap("<C-x><C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
     buf_set_keymap("gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
         vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
 end
@@ -79,8 +79,8 @@ lspconfig['sumneko_lua'].setup {
 lspconfig['tsserver'].setup {
     on_attach = function(client, bufnr)
         base_on_attach(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
     end,
     flags = {},
 }
