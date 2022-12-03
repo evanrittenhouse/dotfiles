@@ -1,0 +1,3 @@
+edit: 
+  apply: true
+  command: nvim

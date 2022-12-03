@@ -9,7 +9,7 @@
 
 # TODO
 
-1. Get Polybar to set bars on the biggest monitor (currently hard-coded via `xrandr`)
+1. Get Polybar to set bars on the biggest monitor (currently hard-coded via `xrandr`, so single screen doesn't show Polybar)
 1. Find another wallpaper for the second monitor
 1. Create Polybar colorscheme for both wallpapers
 1. Get Polybar icons working
@@ -19,3 +19,4 @@
 1. Set up an initial install script to get rid of .config/scripts  
 1. Remove Homebrew on Linux and install dependencies through `sudo apt` instead
 1. Templatize `.config/git/config.tmpl` for Rushil
+1. Set up `.config/chezmoi/chezmoi.yaml` file
