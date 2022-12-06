@@ -1,3 +1,23 @@
+palette = "gruvbox"
+
+[palettes.gruvbox]
+black = "#665c54"
+red = "#ea6962"
+green = "#a9b665"
+yellow = "#e78a4e"
+blue = "#7daea3"
+magenta = "#d3869b"
+cyan = "#89b482"
+white = "#dfbf8e"
+bright-black = "#928374"
+bright-red = "#ea6962"
+bright-green = "#a9b665"
+bright-yellow = "#e3a84e"
+bright-blue = "#7daea3"
+bright-magenta = "#d3869b"
+bright-cyan = "#89b482"
+bright-white = "#dfbf8e"
+
 [package]
 disabled = true
 
