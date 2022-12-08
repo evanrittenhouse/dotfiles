@@ -20,4 +20,4 @@
 1. Remove Homebrew on Linux and install dependencies through `sudo apt` instead (get rid of `snap`s as well)
 1. Templatize `.config/git/config.tmpl` for Rushil
 1. Set up `.config/chezmoi/chezmoi.yaml` file
-1. Get rid of random fades in Picom
+1. Get rid of random transparencies in Picom 
