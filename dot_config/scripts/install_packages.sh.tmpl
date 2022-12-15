@@ -39,7 +39,10 @@ brew bundle --file=~/.config/brew/Brewfile
         sudo snap install spotify
 
         # dependencies for i3
-        sudo apt install i3 light rofi polybar picom
+        sudo apt install i3 light rofi polybar picom flatpak
+
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        flatpak install flathub md.obsidian.Obsidian
 {{ end -}}
 
 # set fish as default shell
