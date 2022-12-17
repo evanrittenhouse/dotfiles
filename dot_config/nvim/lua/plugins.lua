@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use 'kylechui/nvim-surround'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'folke/trouble.nvim'
+  use { 'shortcuts/no-neck-pain.nvim', tag = "*" }
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin

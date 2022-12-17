@@ -85,12 +85,11 @@ lspconfig['tsserver'].setup {
     flags = {},
 }
 
-lspconfig['clangd'].setup {
+lspconfig['rust_analyzer'].setup {
     on_attach = base_on_attach,
-    capabilities = capabilities,
-    flags = {}
+    capabilities = capabilities
+    -- cmd = "rustup run stable rust-analyzer"
 }
-
 
 require('flutter-tools').setup {
     lsp = {
