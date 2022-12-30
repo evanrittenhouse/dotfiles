@@ -1,5 +1,4 @@
 vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.showmode = false
 vim.opt.splitright = true
@@ -10,6 +9,7 @@ vim.opt.showmode = false
 vim.opt.undofile = true
 vim.o.updatetime = 300
 vim.opt.incsearch = true
+vim.g.mapleader = " " -- change leader key
 
 -- Make searches case-insensitive, unless you include a capital letter in the search pattern
 vim.opt.ignorecase = true

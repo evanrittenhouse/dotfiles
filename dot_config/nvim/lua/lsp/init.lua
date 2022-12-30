@@ -15,6 +15,9 @@ vim.diagnostic.config({
 local opts = require('utils').keymap_opts
 
 local base_on_attach = function(client, bufnr)
+    -- format on save
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+
     local function buf_set_keymap(key, cmd)
         vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, opts)
     end
@@ -30,9 +33,6 @@ local base_on_attach = function(client, bufnr)
     buf_set_keymap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     buf_set_keymap("<C-x><C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
     buf_set_keymap("gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
-    if client.server_capabilities.document_formatting then
-        vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-    end
 end
 
 
@@ -98,6 +98,7 @@ require('flutter-tools').setup {
         settings = {
             dart = {
                 lineLength = 132,
+                enableSdkFormatter = true,
             }
         }
     }
