@@ -45,11 +45,14 @@ null_ls.setup {
         null_ls.builtins.formatting.isort.with({
             extra_args = { "black" }
         }),
-        null_ls.builtins.formatting.prettierd
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.formatting.gofmt
     },
     on_attach = base_on_attach,
     should_attach = function(bufnr)
-        return not vim.api.nvim_buf_get_name(bufnr):match('sequelize')
+        return (
+            not vim.api.nvim_buf_get_name(bufnr):match('sequelize') and
+                not vim.api.nvim_buf_get_name(bufnr):match('RustPython'))
     end
 }
 
@@ -89,6 +92,11 @@ lspconfig['rust_analyzer'].setup {
     on_attach = base_on_attach,
     capabilities = capabilities
     -- cmd = "rustup run stable rust-analyzer"
+}
+
+lspconfig['gopls'].setup {
+    on_attach = base_on_attach,
+    capabilities = capabilities
 }
 
 require('flutter-tools').setup {
