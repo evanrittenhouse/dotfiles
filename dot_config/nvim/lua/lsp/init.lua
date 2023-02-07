@@ -94,11 +94,6 @@ lspconfig['rust_analyzer'].setup {
     -- cmd = "rustup run stable rust-analyzer"
 }
 
-lspconfig['gopls'].setup {
-    on_attach = base_on_attach,
-    capabilities = capabilities
-}
-
 require('flutter-tools').setup {
     lsp = {
         on_attach = base_on_attach,
