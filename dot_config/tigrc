@@ -53,3 +53,6 @@ bind generic oi :toggle id
 bind generic ot :toggle commit-title-overflow
 bind generic oF :toggle file-filter
 bind generic or :toggle commit-title-refs
+
+# add commit hashes to main view
+set main-view-id = yes
