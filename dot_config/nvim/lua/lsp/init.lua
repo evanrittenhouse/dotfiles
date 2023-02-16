@@ -67,7 +67,7 @@ lspconfig['pyright'].setup {
     flags = {}
 }
 
-lspconfig['sumneko_lua'].setup {
+lspconfig['lua_ls'].setup {
     on_attach = base_on_attach,
     flags = {},
     settings = {
