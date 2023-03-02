@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs' -- pair characters ( [], {}, etc)
   use 'leafOfTree/vim-matchtag' -- highlights matching character
   use 'tpope/vim-commentary'
+  -- TODO: remove lualine
   use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -60,7 +61,7 @@ return packer.startup(function(use)
   use 'kylechui/nvim-surround'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'folke/trouble.nvim'
-  use { 'shortcuts/no-neck-pain.nvim', tag = "*" }
+  use 'ThePrimeagen/harpoon'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -77,7 +78,6 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig"
   use "akinsho/flutter-tools.nvim"
-  use "mfussenegger/nvim-jdtls"
 
   -- Formatting
   use "jose-elias-alvarez/null-ls.nvim"

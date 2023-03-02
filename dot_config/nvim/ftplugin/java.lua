@@ -1,3 +1,7 @@
+-- NOTE --
+-- nvim-jdtls is not installed
+-- just keeping this here to avoid needing to do it again should java config become
+-- necessary
 local jdtls = require('jdtls')
 local home = os.getenv('HOME')
 local javaHome = os.getenv('JAVA_HOME')
