@@ -46,7 +46,7 @@ null_ls.setup {
             extra_args = { "black" }
         }),
         null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.formatting.gofmt
+        null_ls.builtins.formatting.gofmt,
     },
     on_attach = base_on_attach,
     should_attach = function(bufnr)
