@@ -49,7 +49,6 @@ return packer.startup(function(use)
   use 'tpope/vim-fugitive'
   use 'lewis6991/gitsigns.nvim'
   use 'tpope/vim-sleuth'
-  use 'ggandor/lightspeed.nvim'
   use 'windwp/nvim-autopairs' -- pair characters ( [], {}, etc)
   use 'leafOfTree/vim-matchtag' -- highlights matching character
   use 'tpope/vim-commentary'
@@ -62,6 +61,7 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'folke/trouble.nvim'
   use 'ThePrimeagen/harpoon'
+  use 'ggandor/leap.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
