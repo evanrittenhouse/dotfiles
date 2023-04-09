@@ -15,5 +15,7 @@ vim.g.mapleader = " " -- change leader key
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.cmd('cabbrev h vert h')
+-- vim.cmd('cabbrev h vert h')
+
+-- necessary for feline
 vim.cmd('set termguicolors')
