@@ -52,8 +52,6 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs'   -- pair characters ( [], {}, etc)
   use 'leafOfTree/vim-matchtag' -- highlights matching character
   use 'tpope/vim-commentary'
-  -- TODO: remove lualine
-  use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'lewis6991/impatient.nvim'

@@ -16,3 +16,4 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.cmd('cabbrev h vert h')
+vim.cmd('set termguicolors')
