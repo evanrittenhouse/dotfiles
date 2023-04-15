@@ -82,8 +82,9 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim"
 
   -- Colorschemes
-  use 'sainnhe/gruvbox-material'
   use 'rebelot/kanagawa.nvim'
+  -- use 'folke/tokyonight.nvim'
+  -- use 'sainnhe/gruvbox-material'
   -- use 'navarasu/onedark.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
