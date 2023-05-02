@@ -4,7 +4,7 @@ require('nvim-surround').setup {}
 require('leap').add_default_mappings()
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "python", "javascript", "tsx", "typescript" },
+  ensure_installed = { "python", "rust", "lua" },
   highlight = {
     enable = true,
     disable = {},
