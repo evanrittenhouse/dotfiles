@@ -8,3 +8,11 @@
 Dockerfile
 reset_chezmoi.sh
 README.md
+
+{{ if ne .chezmoi.os "linux" -}}
+.config/i3
+.config/picom
+.config/polybar
+.config/rofi
+.config/wallpapers
+{{ end -}}
