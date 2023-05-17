@@ -3,6 +3,9 @@
 {{ if eq .chezmoi.os "darwin" -}}
 # disable natural scroll direction 
 defaults write -g com.apple.swipescrolldirection -bool false
+
+# autohide dock
+defaults write -g com.apple.dock -bool true
 {{ end }}
 
 {{ if eq .chezmoi.os "linux" -}}
