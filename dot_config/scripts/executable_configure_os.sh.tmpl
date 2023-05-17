@@ -1,7 +1,8 @@
 # TODO: MAC
 # iterm2 general preferences, native fullscreen
-# default scroll direction
 {{ if eq .chezmoi.os "darwin" -}}
+# disable natural scroll direction 
+defaults write -g com.apple.swipescrolldirection -bool false
 {{ end }}
 
 {{ if eq .chezmoi.os "linux" -}}
