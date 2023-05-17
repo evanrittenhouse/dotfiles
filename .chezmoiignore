@@ -16,3 +16,7 @@ README.md
 .config/rofi
 .config/wallpapers
 {{ end -}}
+
+{{ if ne .chezmoi.username "evan" -}}
+~/.gitconfig
+{{ end -}}
