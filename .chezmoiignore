@@ -15,6 +15,8 @@ README.md
 .config/polybar
 .config/rofi
 .config/wallpapers
+{{ else if ne .chezmoi.os "darwin" -}}
+.config/iterm2
 {{ end -}}
 
 {{ if ne .chezmoi.username "evan" -}}
