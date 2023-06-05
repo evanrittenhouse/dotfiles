@@ -59,6 +59,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local lspconfig = require('lspconfig')
+
+-- Since init.lua is now a .lua.tmpl file in Chezmoi, let's force lua_ls to run on 
+-- that filetype to maintain the benefits of LSP 
+vim.cmd [[
+    autocmd! BufNewFile,BufRead *.lua.tmpl set filetype=lua
+]]
+
 lspconfig['lua_ls'].setup {
     on_attach = base_on_attach,
     flags = {},
