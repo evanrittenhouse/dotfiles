@@ -3,11 +3,15 @@ brew 'bat'
 brew 'fish'
 brew 'lua-language-server'
 brew 'neovim'
+{{ if eq (index . "python") true -}}
 brew 'poetry'
 brew 'pyright'
 brew 'python'
+{{ end }}
 brew 'ripgrep'
+{{ if eq (index . "rust") true -}}
 brew 'rust-analyzer'
+{{ end }}
 brew 'starship'
 brew 'tig'
 brew 'tmux'
