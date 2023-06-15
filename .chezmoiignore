@@ -15,6 +15,6 @@ README.md
 .config/polybar
 .config/rofi
 .config/wallpapers
-{{ else if ne .chezmoi.os "darwin" -}}
+{{ else if or (ne .chezmoi.os "darwin") (ne .email "evanrittenhouse@gmail.com") -}}
 .config/iterm2
 {{ end -}}
