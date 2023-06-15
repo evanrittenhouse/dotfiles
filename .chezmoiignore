@@ -18,7 +18,3 @@ README.md
 {{ else if ne .chezmoi.os "darwin" -}}
 .config/iterm2
 {{ end -}}
-
-{{ if ne .chezmoi.username "evan" -}}
-~/.gitconfig
-{{ end -}}
