@@ -57,6 +57,7 @@
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 
     wip = commit -a -m "wip" 
+    unwip = reset HEAD~1
 
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
