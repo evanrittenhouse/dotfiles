@@ -56,11 +56,11 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'lewis6991/impatient.nvim'
   use 'kylechui/nvim-surround'
-  use 'nvim-telescope/telescope-file-browser.nvim'
   use 'folke/trouble.nvim'
   use 'ThePrimeagen/harpoon'
   use 'ggandor/leap.nvim'
   use 'freddiehaddad/feline.nvim'
+  use 'stevearc/oil.nvim'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"         -- The completion plugin
