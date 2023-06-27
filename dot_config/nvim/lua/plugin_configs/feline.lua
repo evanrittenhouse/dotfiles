@@ -7,7 +7,7 @@ end
 
 local one_monokai = {
         fg = "#abb2bf",
-        bg = "#1e2024",
+        bg = "#1f1f28",
         green = "#98c379",
         yellow = "#e5c07b",
         purple = "#c678dd",
