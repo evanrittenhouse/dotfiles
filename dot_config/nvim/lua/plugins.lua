@@ -45,22 +45,37 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"    -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim"  -- Useful lua functions used by lots of plugins
 
-  use 'nvim-telescope/telescope.nvim'
-  use 'tpope/vim-fugitive'
-  use 'lewis6991/gitsigns.nvim'
-  use 'tpope/vim-sleuth'
-  use 'windwp/nvim-autopairs'   -- pair characters ( [], {}, etc)
-  use 'leafOfTree/vim-matchtag' -- highlights matching character
-  use 'tpope/vim-commentary'
-  use 'kyazdani42/nvim-web-devicons'
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'lewis6991/impatient.nvim'
-  use 'kylechui/nvim-surround'
-  use 'folke/trouble.nvim'
-  use 'ThePrimeagen/harpoon'
-  use 'ggandor/leap.nvim'
-  use 'freddiehaddad/feline.nvim'
-  use 'stevearc/oil.nvim'
+  use({
+    "lewis6991/gitsigns.nvim",
+    config = function() require("gitsigns").setup() end
+  })
+  use({
+    "windwp/nvim-autopairs", -- pair characters ( [], {}, etc)
+    config = function() require("nvim-autopairs").setup() end
+  })
+  use({
+    "kylechui/nvim-surround",
+    config = function() require("nvim-surround").setup() end
+  })
+  use({
+    "ggandor/leap.nvim",
+    config = function() require("leap").add_default_mappings() end
+  })
+  use({
+    "stevearc/oil.nvim",
+    config = function() require("oil").setup() end
+  })
+  use "freddiehaddad/feline.nvim"
+  use "folke/trouble.nvim"
+  use "ThePrimeagen/harpoon"
+  use "lewis6991/impatient.nvim"
+  use "leafOfTree/vim-matchtag" -- highlights matching character
+  use "tpope/vim-commentary"
+  use "kyazdani42/nvim-web-devicons"
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use "tpope/vim-sleuth"
+  use "nvim-telescope/telescope.nvim"
+  use "tpope/vim-fugitive"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"         -- The completion plugin
