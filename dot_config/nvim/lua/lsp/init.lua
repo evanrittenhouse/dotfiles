@@ -59,13 +59,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local lspconfig = require('lspconfig')
-
--- Since init.lua is now a .lua.tmpl file in Chezmoi, let's force lua_ls to run on 
--- that filetype to maintain the benefits of LSP 
-vim.cmd [[
-    autocmd! BufNewFile,BufRead *.lua.tmpl set filetype=lua
-]]
-
 lspconfig['lua_ls'].setup {
     on_attach = base_on_attach,
     flags = {},
@@ -78,14 +71,12 @@ lspconfig['lua_ls'].setup {
     }
 }
 
-{{ if eq (index . "python") true -}}
 lspconfig['pyright'].setup {
     on_attach = base_on_attach,
     capabilities = capabilities,
     flags = {}
 }
-{{ end }}
-{{ if eq (index . "typescript") true -}}
+
 lspconfig['tsserver'].setup {
     on_attach = function(client, bufnr)
         base_on_attach(client, bufnr)
@@ -94,15 +85,13 @@ lspconfig['tsserver'].setup {
     end,
     flags = {},
 }
-{{ end }}
-{{ if eq (index . "rust") true -}}
+
 lspconfig['rust_analyzer'].setup {
     on_attach = base_on_attach,
     capabilities = capabilities
     -- cmd = "rustup run stable rust-analyzer"
 }
-{{ end }}
-{{ if eq (index . "flutter") true -}}
+
 require('flutter-tools').setup {
     lsp = {
         on_attach = base_on_attach,
@@ -115,4 +104,3 @@ require('flutter-tools').setup {
         }
     }
 }
-{{ end }}
