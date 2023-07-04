@@ -13,6 +13,7 @@ set_vim_option('incsearch', true)
 -- Make searches case-insensitive, unless you include a capital letter in the search pattern
 set_vim_option('ignorecase', true)
 set_vim_option('smartcase', true)
+set_vim_option('laststatus', 3)
 
 vim.o.updatetime = 300
 vim.g.mapleader = " " -- change leader key
