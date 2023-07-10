@@ -22,15 +22,18 @@ brew 'tree-sitter'
         tap 'homebrew/cask-fonts'
 
         cask 'dash'
-        cask 'discord'
         cask 'docker'
-        cask 'firefox'
         cask 'flux'
         cask 'iterm2'
         cask 'obsidian'
         cask 'rectangle'
         cask 'signal'
         cask 'spotify'
+
+        {{ if eq .email "evanrittenhouse@gmail.com" -}}
+        cask 'discord'
+        cask 'firefox'
+        {{ end -}}
 
         # TODO - figure out a way to avoid hard-coding font
         cask 'font-fira-code-nerd-font'
