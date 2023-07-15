@@ -1,0 +1,12 @@
+{{ $email := promptString "Email" -}}
+{{ $name := promptString "Name" -}}
+
+data:
+    email: {{ $email | quote }}
+    name: {{ $name | quote }}
+    python: true
+    rust: true
+
+edit: 
+    apply: true
+    command: nvim
