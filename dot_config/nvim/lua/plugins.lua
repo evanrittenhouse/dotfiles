@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "tpope/vim-fugitive"
   use "folke/zen-mode.nvim"
+  use "ludovicchabant/vim-gutentags"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp"         -- The completion plugin
