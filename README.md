@@ -9,7 +9,6 @@
 
 # TODO
 
-1. **MOVE OFF SNAP**
 1. Install Pyright, Rust-Analyzer, GoPls, and TSServer in `install_packages.sh`
 1. Get Polybar to set bars on the biggest monitor (currently hard-coded via `xrandr`, so single screen doesn't show Polybar)
 1. Find another wallpaper for the second monitor

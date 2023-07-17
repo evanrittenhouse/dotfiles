@@ -28,11 +28,12 @@ alias dev="cd ~/Documents/projects"
     alias obsidian="flatpak run md.obsidian.Obsidian"
     alias spotify="flatpak run com.spotify.Client" 
     alias firefox="flathub run org.mozilla.Firefox"
+    alias signal="flathub run org.signal.Signal"
 {{ end }}
 
 # vim keybinds
 fish_hybrid_key_bindings
 
-set -g HOMEBREW_AUTO_UPDATE_SECS 604800
+set -g HOMEBREW_NO_AUTO_UPDATE 1
 
 starship init fish | source

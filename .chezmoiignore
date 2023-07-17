@@ -9,7 +9,7 @@ Dockerfile
 reset_chezmoi.sh
 README.md
 
-{{ if ne and (.chezmoi.os "linux") (.chezmoi.email "evanrittenhouse@gmail.com") -}}
+{{ if and (ne .chezmoi.os "linux") (ne .email "evanrittenhouse@gmail.com") -}}
 .config/i3
 .config/picom
 .config/polybar
