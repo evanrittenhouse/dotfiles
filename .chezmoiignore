@@ -4,6 +4,7 @@
 .config/brew/Brewfile.lock.json
 
 .config/nvim/plugin/packer_compiled.lua
+.config/tmux/plugins
 
 Dockerfile
 reset_chezmoi.sh
