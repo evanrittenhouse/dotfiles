@@ -18,6 +18,8 @@ $hg_branch\
 $pijul_channel\
 $docker_context\
 $sudo\
+$python\
+$rust\
 $cmd_duration\
 $line_break\
 $jobs\
@@ -53,6 +55,9 @@ disabled = true
 
 [python]
 symbol = "Python "
+
+[rust]
+symbol = "Rust "
 
 [git_status]
 ahead = "⇡${count}"
