@@ -3,19 +3,19 @@ if status is-interactive
 end
 
 {{ if eq .chezmoi.os "linux" -}}
-    # put homebrew on path 
-    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# put homebrew on path 
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 {{ end }}
 
 {{ if eq .chezmoi.os "darwin" -}}
-    eval (/opt/homebrew/bin/brew shellenv)
+eval (/opt/homebrew/bin/brew shellenv)
 
-    # autojump
-    [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+# autojump
+[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
 {{ else if eq .chezmoi.os "linux" -}}
-    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    [ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
+[ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
 {{ end }}
 
 # aliases
@@ -25,10 +25,10 @@ alias ls="ls -laG"
 alias cat="bat"
 alias dev="cd ~/Documents/projects"
 {{ if eq .chezmoi.os "linux" -}}
-    alias obsidian="flatpak run md.obsidian.Obsidian"
-    alias spotify="flatpak run com.spotify.Client" 
-    alias firefox="flathub run org.mozilla.Firefox"
-    alias signal="flathub run org.signal.Signal"
+alias obsidian="flatpak run md.obsidian.Obsidian"
+alias spotify="flatpak run com.spotify.Client" 
+alias firefox="flathub run org.mozilla.Firefox"
+alias signal="flathub run org.signal.Signal"
 {{ end }}
 
 # vim keybinds
@@ -37,3 +37,10 @@ fish_hybrid_key_bindings
 set -g HOMEBREW_NO_AUTO_UPDATE 1
 
 starship init fish | source
+
+{{ if eq (index . "python") true -}}
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+
+pyenv init - | source
+{{ end }}
