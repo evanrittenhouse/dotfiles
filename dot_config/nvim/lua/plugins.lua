@@ -99,8 +99,8 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim"
 
   -- Colorschemes
-  use 'savq/melange-nvim'
-  -- use 'rebelot/kanagawa.nvim'
+  -- use 'savq/melange-nvim'
+  use 'rebelot/kanagawa.nvim'
   -- use 'folke/tokyonight.nvim'
   -- use 'sainnhe/gruvbox-material'
   -- use 'navarasu/onedark.nvim'
