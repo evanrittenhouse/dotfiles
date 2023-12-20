@@ -100,9 +100,9 @@ return packer.startup(function(use)
 
   -- Colorschemes
   -- use 'savq/melange-nvim'
-  use 'rebelot/kanagawa.nvim'
+  -- use 'rebelot/kanagawa.nvim'
   -- use 'folke/tokyonight.nvim'
-  -- use 'sainnhe/gruvbox-material'
+  use 'sainnhe/gruvbox-material'
   -- use 'navarasu/onedark.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
