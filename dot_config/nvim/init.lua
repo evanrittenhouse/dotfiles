@@ -1,5 +1,5 @@
 require('options')
 require("plugins")
-require("plugin_configs")
 require("colorscheme")
+require("plugin_configs")
 require("lsp")

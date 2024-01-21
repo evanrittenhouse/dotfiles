@@ -243,8 +243,21 @@ local components = {
         },
 }
 
+local COLORSCHEME_PAIRS = {
+        gruvbox_material = gruvbox_material,
+        kanagawa = one_monokai
+}
+
+local function determine_colorscheme()
+        -- Normalize to Lua key
+        local vim_scheme = string.gsub(vim.g.colors_name, "-", "_")
+        local match = COLORSCHEME_PAIRS[vim_scheme]
+
+        return match ~= nil and match or "one_monokai"
+end
+
 feline.setup({
         components = components,
-        theme = gruvbox_material,
+        theme = determine_colorscheme(),
         vi_mode_colors = vi_mode_colors,
 })
