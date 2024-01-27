@@ -1,4 +1,4 @@
-require('options')
+require("vim_config")
 require("plugins")
 require("colorscheme")
 require("plugin_configs")
