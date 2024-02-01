@@ -1,5 +1,4 @@
-require("vim_config")
+require("vim_config") -- Must be first so mappings are correct due to leader key, etc.
 require("plugins")
 require("colorscheme")
-require("plugin_configs")
 require("lsp")

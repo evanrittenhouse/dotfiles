@@ -91,16 +91,3 @@ lspconfig['rust_analyzer'].setup {
     capabilities = capabilities
     -- cmd = "rustup run stable rust-analyzer"
 }
-
-require('flutter-tools').setup {
-    lsp = {
-        on_attach = base_on_attach,
-        capabilities = capabilities,
-        settings = {
-            dart = {
-                lineLength = 132,
-                enableSdkFormatter = true,
-            }
-        }
-    }
-}

@@ -1,8 +1,0 @@
-require 'plugin_configs.cmp'
-require 'plugin_configs.feline'
-require 'plugin_configs.harpoon'
-require 'plugin_configs.telescope'
-require 'plugin_configs.treesitter'
-require 'plugin_configs.trouble'
-require 'plugin_configs.vim-gutentags'
-require 'plugin_configs.zen-mode'
