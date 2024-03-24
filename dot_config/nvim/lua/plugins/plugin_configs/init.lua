@@ -1,8 +1,0 @@
-require 'cmp'
-require 'feline'
-require 'harpoon'
-require 'telescope'
-require 'treesitter'
-require 'trouble'
-require 'vim-gutentags'
-require 'zen-mode'
