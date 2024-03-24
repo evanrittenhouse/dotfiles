@@ -9,13 +9,6 @@ local M = {
     event = { "BufReadPre", "BufReadPost", "BufNewFile" },
   },
   {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").create_default_mappings()
-    end,
-    event = BUF_READ,
-  },
-  {
     "tpope/vim-commentary",
     event = BUF_READ,
     keys = { mode = { "n", "v", "x" } },
@@ -30,25 +23,16 @@ local M = {
     },
   },
   {
-    "windwp/nvim-autopairs",
+    'windwp/nvim-autopairs',
     event = "InsertEnter",
+    config = true
   },
-  {
-    "ThePrimeagen/harpoon",
-    keys = { "<Leader>am", ":lua require ('harpoon.mark').add_file()<CR>" }
-  },
-  --   -- cmp plugins
-  --   "hrsh7th/nvim-cmp",                -- The completion plugin
-  --   "hrsh7th/cmp-buffer",              -- buffer completions
-  --   "hrsh7th/cmp-path",                -- path completions
-  --   "hrsh7th/cmp-cmdline",             -- cmdline completions
-  --   "hrsh7th/cmp-nvim-lsp",            -- LSP completions
-  --   "saadparwaiz1/cmp_luasnip",        -- snippet completions
-  --   "L3MON4D3/LuaSnip",                --snippet engine
-  --   "rafamadriz/friendly-snippets",    -- a bunch of snippets to use
-  --
-  --   "jose-elias-alvarez/null-ls.nvim", -- Formatter, etc. for LSP servers
 
+  -- {
+  --   "ThePrimeagen/harpoon",
+  --   keys = { "<Leader>am", ":lua require ('harpoon.mark').add_file()<CR>" }
+  -- },
+  --   "jose-elias-alvarez/null-ls.nvim", -- Formatter, etc. for LSP servers
 }
 
 return M
