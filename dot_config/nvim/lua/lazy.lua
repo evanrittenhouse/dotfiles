@@ -1,5 +1,3 @@
-require("vim_config") -- Must be first so mappings are correct due to leader key, etc.
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -13,6 +11,4 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugin_configs_lazy", {
-  install = { colorscheme = { "kanagawa", "gruvbox-material" } },
-})
+require("lazy").setup("plugins")
