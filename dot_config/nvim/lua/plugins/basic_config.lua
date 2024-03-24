@@ -16,11 +16,9 @@ local M = {
     lazy = false,
   },
   {
+    -- Can't lazy-load or `vim .` will use netrw
     "stevearc/oil.nvim",
-    event = "VeryLazy",
-    opts = {
-      default_file_explorer = true
-    },
+    opts = {},
   },
   {
     'windwp/nvim-autopairs',

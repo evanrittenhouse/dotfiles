@@ -1,8 +1,11 @@
 local M = {
   {
     "rebelot/kanagawa.nvim",
+    config = function(_, opts)
+      require('kanagawa').setup(opts)
+      vim.cmd('colorscheme kanagawa')
+    end,
     lazy = false,
-    priority = 1000,
     opts = {
       transparent = false,
       colors = {
@@ -19,10 +22,13 @@ local M = {
         light = "lotus"
       }
     },
-    config = function(_, opts)
-      require('kanagawa').setup(opts)
-      vim.cmd('colorscheme kanagawa')
-    end
+    overrides = function(colors)
+      return {
+        -- Set command line background
+        MsgArea = { bg = colors.palette.sumiInk0 }
+      }
+    end,
+    priority = 1000,
   },
   {
     "sainnhe/gruvbox-material",

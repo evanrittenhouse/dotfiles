@@ -21,6 +21,8 @@ set_vim_option('smartcase', true)
 set_vim_option('laststatus', 3)
 -- Write to the swap file if nothing's been written in X miliseconds
 set_vim_option('updatetime', 300)
+-- Remove the command line
+set_vim_option("cmdheight", 0)
 
 -- Necessary for feline
 vim.cmd('set termguicolors')
