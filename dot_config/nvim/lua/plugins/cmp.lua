@@ -117,7 +117,8 @@ local M = {
         { name = "nvim_lsp", max_item_count = 20 },
         { name = "luasnip" },
         { name = "buffer" },
-        { name = "path" }
+        { name = "path" },
+        { name = "orgmode" }
       },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
