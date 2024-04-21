@@ -33,7 +33,7 @@ brew bundle --file=~/.config/brew/Brewfile
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
         # dependencies for i3
-        sudo apt install alacritty i3
+        sudo apt install alacritty i3 rofi
 
         {{ if eq .email "evanrittenhouse@gmail.com" -}}
         sudo apt install flatpak light picom polybar rofi
