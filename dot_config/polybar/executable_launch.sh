@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 0.5
 
 # kill old bars
 killall -q polybar

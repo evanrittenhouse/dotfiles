@@ -33,10 +33,9 @@ brew bundle --file=~/.config/brew/Brewfile
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
         # dependencies for i3
-        sudo apt install alacritty i3 rofi
+        sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi
 
         {{ if eq .email "evanrittenhouse@gmail.com" -}}
-        sudo apt install flatpak light picom polybar rofi
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak install flathub md.obsidian.Obsidian
         flatpak install flathub com.spotify.Client
