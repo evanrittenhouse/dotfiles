@@ -2,12 +2,16 @@
 set -g prefix C-Space
 bind Space send-prefix
 
+# https://unix.stackexchange.com/a/1098
 {{ if eq .chezmoi.os "linux" -}}
+
 set -g default-terminal "tmux-256color"
+set-option -ga terminal-overrides ",*:RGB"
+
 {{ else if eq .chezmoi.os "darwin" -}}
 set -g default-terminal "xterm-256color"
-{{ end }}
 set-option -ga terminal-overrides ",xterm-256color"
+{{ end }}
 
 {{ if eq .chezmoi.os "darwin" -}}
 set -g default-shell "/opt/homebrew/bin/fish"
