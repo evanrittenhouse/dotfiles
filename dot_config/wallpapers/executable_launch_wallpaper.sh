@@ -1,1 +1,1 @@
-feh --bg-scale ~/.config/wallpapers/lofi_sunflower_biker.jpeg
+feh --bg-center ~/.config/wallpapers/kanagawa_minimalist.jpg
