@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+
+set wallpaper "{{ .chezmoi.homeDir }}/.config/wallpapers/lofi_sunflower_biker.jpeg"
+
+if string match -r -q "lofi_sunflower_biker" $wallpaper
+        feh --bg-scale $wallpaper 
+else 
+        feh --bg-center $wallpaper
+end
