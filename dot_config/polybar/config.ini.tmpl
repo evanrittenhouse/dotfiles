@@ -107,33 +107,33 @@ label = CPU
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = #aaff77
+ramp-coreload-0-foreground = {{ .colors.springGreen }}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = #aaff77
+ramp-coreload-1-foreground = {{ .colors.springGreen }}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = #aaff77
+ramp-coreload-2-foreground = {{ .colors.springGreen }}
 ramp-coreload-3 = ▄
 ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = #aaff77
+ramp-coreload-3-foreground = {{ .colors.springGreen }}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = #fba922
+ramp-coreload-4-foreground = {{ .colors.roninYellow }}
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = #fba922
+ramp-coreload-5-foreground = {{ .colors.roninYellow }}
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = #ff5555
+ramp-coreload-6-foreground = {{ .colors.samuraiRed }}
 ramp-coreload-7 = █
 ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = #ff5555
+ramp-coreload-7-foreground = {{ .colors.samuraiRed }}
 
 [module/date]
 type = internal/date
 date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F{{ .colors.roninYellow }}}%S%%{F-}
 
 [module/memory]
 type = internal/memory
@@ -141,10 +141,10 @@ format = <label> <bar-used>
 label = RAM
 
 bar-used-width = 30
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
+bar-used-foreground-0 = {{ .colors.springGreen }}
+bar-used-foreground-1 = {{ .colors.springGreen }}
+bar-used-foreground-2 = {{ .colors.roninYellow }}
+bar-used-foreground-3 = {{ .colors.samuraiRed }}
 bar-used-indicator = |
 bar-used-indicator-font = 6
 bar-used-indicator-foreground = #ff
@@ -236,27 +236,27 @@ label-open = 
 label-close = 
 
 menu-0-0 = Terminate WM
-menu-0-0-foreground = #fba922
+menu-0-0-foreground = {{ .colors.roninYellow }}
 menu-0-0-exec = bspc quit -1
 menu-0-1 = Reboot
-menu-0-1-foreground = #fba922
+menu-0-1-foreground = {{ .colors.roninYellow }}
 menu-0-1-exec = menu_open-1
 menu-0-2 = Power off
-menu-0-2-foreground = #fba922
+menu-0-2-foreground = {{ .colors.roninYellow }}
 menu-0-2-exec = menu_open-2
 
 menu-1-0 = Cancel
-menu-1-0-foreground = #fba922
+menu-1-0-foreground = {{ .colors.roninYellow }}
 menu-1-0-exec = menu_open-0
 menu-1-1 = Reboot
-menu-1-1-foreground = #fba922
+menu-1-1-foreground = {{ .colors.roninYellow }}
 menu-1-1-exec = sudo reboot
 
 menu-2-0 = Power off
-menu-2-0-foreground = #fba922
+menu-2-0-foreground = {{ .colors.roninYellow }}
 menu-2-0-exec = sudo poweroff
 menu-2-1 = Cancel
-menu-2-1-foreground = #fba922
+menu-2-1-foreground = {{ .colors.roninYellow }}
 menu-2-1-exec = menu_open-0
 
 [module/clock]
@@ -272,7 +272,7 @@ label-focused = %icon% %name% %icon%
 label-unfocused = %icon% %name% %icon%
 
 label-focused-foreground = {{ .colors.sumiInk3 }}
-label-focused-background = {{ .colors.surimiOrange }}
+label-focused-background = {{ .colors.springGreen }}
 ; Only show workspaces defined on the same output as the bar
 ;
 ; Useful if you want to show monitor specific workspaces
