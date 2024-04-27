@@ -1,4 +1,0 @@
-configuration {
-    modi: "window,run,ssh,drun,combi";
-}
-@theme "/usr/share/rofi/themes/Monokai.rasi"
