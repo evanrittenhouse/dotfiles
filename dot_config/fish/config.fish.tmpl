@@ -44,3 +44,12 @@ set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 
 pyenv init - | source
 {{ end }}
+
+{{ if eq .chezmoi.os "linux" -}}
+# TODO: select SSH keys, or add all of them to the agent
+# https://unix.stackexchange.com/questions/322124/ssh-add-add-all-private-keys-in-ssh-directory
+if test -z (pgrep ssh-agent | string collect)
+    eval $(ssh-agent -c)
+    ssh-add ~/.ssh/id_ed25519
+end
+{{ end }}

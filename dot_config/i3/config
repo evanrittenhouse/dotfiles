@@ -13,13 +13,6 @@
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
-# Start redshift (Linux f.lux equivalent) on computer startup
-exec_always --no-startup-id redshift -l 41.878:-87.629 -m randr
-
-exec_always --no-startup-id ~/.config/wallpapers/launch_wallpaper.sh
-exec_always --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
 set $mod Mod1
 
 # Hide borders around the edges of windows
@@ -195,3 +188,11 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Convenience processes
+exec_always --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/wallpapers/launch_wallpaper.sh
+
+# Start redshift (Linux f.lux equivalent) on computer startup, NOT on i3 startup
+exec --no-startup-id redshift -l 41.878:-87.629 -m randr
