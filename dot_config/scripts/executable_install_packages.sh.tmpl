@@ -32,18 +32,21 @@ brew bundle --file=~/.config/brew/Brewfile
 
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
-        # dependencies for i3
-        sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift
+# dependencies for computer use
+sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift
 
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak install flathub md.obsidian.Obsidian
-        flatpak install flathub com.spotify.Client
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub md.obsidian.Obsidian
 
-        {{ if eq .email "evanrittenhouse@gmail.com" -}}
-        flatpak install flathub org.mozilla.firefox 
-        flatpak install flathub org.signal.Signal
-        flatpak install https://downloads.1password.com/linux/flatpak/1Password.flatpakref
-        {{ end -}}
+# TODO: does the spotify flatpak client work?
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+
+{{ if eq .email "evanrittenhouse@gmail.com" -}}
+flatpak install flathub org.mozilla.firefox 
+flatpak install flathub org.signal.Signal
+{{ end -}}
 {{ end -}}
 
 # set fish as default shell
