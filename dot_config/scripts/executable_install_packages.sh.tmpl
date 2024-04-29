@@ -35,6 +35,10 @@ brew bundle --file=~/.config/brew/Brewfile
 # dependencies for computer use
 sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift
 
+# Install Hack Nerd Font separately for Linux
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
+tar -xf Hack.tar.xz -C {{ .chezmoi.homeDir }}/.local/share/fonts
+
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub md.obsidian.Obsidian
 

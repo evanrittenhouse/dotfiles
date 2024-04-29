@@ -50,7 +50,7 @@ unfocused_hollow = true
 size = 8.8
 
 [font.normal]
-family = "FiraMonoNerdFont"
+family = "HackNerdFont"
 
 [font.offset]
 x = 0
