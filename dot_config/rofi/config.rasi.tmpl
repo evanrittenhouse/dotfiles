@@ -3,11 +3,12 @@
  * User                 : LR-Tech               
  * Theme Repo           : https://github.com/lr-tech/rofi-themes-collection
 
- * See https://github.com/davatorium/rofi/blob/next/doc/rofi-theme.5.markdown
+ * See https://github.com/davatorium/rofi/blob/next/doc/rofi-theme.5.markdown for 
+ * CSS structure
  *******************************************************************************/
 
 * {
-    font:   "FiraCode Nerd Font Medium 12";
+    font:   "Hack Nerd Font Medium 12";
 
     background-color:   transparent;
     text-color:        {{ .colors.fujiWhite }};
@@ -18,7 +19,7 @@
 }
 
 window {
-    location:   south;
+    location:   north;
     width:      480;
 
     background-color:   {{ .colors.sumiInk0 }};
@@ -36,7 +37,7 @@ prompt, entry, element-icon, element-text {
 }
 
 prompt {
-    text-color: {{ .colors.springGreen }};
+    text-color: {{ .colors.autumnYellow }};
 }
 
 entry {
@@ -79,7 +80,7 @@ element selected {
 }
 
 element selected normal, element selected active {
-    background-color:   {{ .colors.springGreen }};
+    background-color:   {{ .colors.autumnYellow }};
 }
 
 element selected urgent {
