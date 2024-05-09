@@ -20,8 +20,8 @@ local base_on_attach = function(_, bufnr)
 
   buf_set_keymap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
   buf_set_keymap("gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
-  buf_set_keymap("gm", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>")
-  buf_set_keymap("gi", "<cmd>lua require('telescope.builtin').lsp_implementations<CR>")
+  buf_set_keymap("gb", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>")
+  buf_set_keymap("gm", "<cmd>lua require('telescope.builtin').lsp_implementations<CR>")
   buf_set_keymap("<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   buf_set_keymap("gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
   buf_set_keymap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -71,7 +71,7 @@ local M = {
                 globals = { "vim" }
               },
               format = {
-                enable = true,
+                enable = false,
                 defaultConfig = {
                   indent_style = "space",
                   indent_size = "2",

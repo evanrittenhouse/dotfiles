@@ -25,6 +25,10 @@ local M = {
     event = "InsertEnter",
     config = true
   },
+  {
+    "ludovicchabant/vim-gutentags",
+    ft = { "c", "lua" }
+  }
 
   -- {
   --   "ThePrimeagen/harpoon",
