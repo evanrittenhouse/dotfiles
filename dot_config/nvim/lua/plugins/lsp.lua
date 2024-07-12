@@ -46,7 +46,8 @@ local M = {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "tsserver"
+        "tsserver",
+        "gopls"
       }
 
       local lspconfig = require("lspconfig")
@@ -88,7 +89,8 @@ local M = {
             client.server_capabilities.document_range_formatting = false
           end,
           flags = {}
-        }
+        },
+        gopls = base_lsp
       },
     },
   },
