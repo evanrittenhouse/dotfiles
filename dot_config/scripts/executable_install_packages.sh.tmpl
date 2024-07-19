@@ -34,6 +34,8 @@ brew bundle --file=~/.config/brew/Brewfile
 {{ if eq .chezmoi.os "linux" -}}
 # dependencies for computer use
 sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift
+# for screenshots
+sudo apt install xfce4-screenshooter
 
 # Install Hack Nerd Font separately for Linux
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
