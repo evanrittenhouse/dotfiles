@@ -52,7 +52,10 @@ local M = {
 
       local lspconfig = require("lspconfig")
       for _, server in ipairs(servers) do
-        lspconfig[server].setup(opts.servers[server])
+        local settings = opts.servers[server]
+        local actual_settings = settings ~= nil and settings or base_lsp
+
+        lspconfig[server].setup(actual_settings)
       end
     end,
     dependencies = {
@@ -80,8 +83,6 @@ local M = {
             }
           }
         },
-        pyright = base_lsp,
-        rust_analyzer = base_lsp,
         tsserver = {
           on_attach = function(client, bufnr)
             base_on_attach(client, bufnr)
@@ -90,7 +91,6 @@ local M = {
           end,
           flags = {}
         },
-        gopls = base_lsp
       },
     },
   },
