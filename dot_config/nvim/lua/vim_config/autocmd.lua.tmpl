@@ -23,3 +23,15 @@ vim.api.nvim_create_autocmd('FileType', {
     set_vim_option('breakindent', true)
   end
 })
+
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
+  desc = "Auto-save all buffers when changing tmux panes",
+  pattern = '*',
+  command = 'silent! wall'
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  desc = 'Automatically run `chezmoi apply` when saving files in the chezmoi source directory',
+  pattern = '{{ .chezmoi.sourceDir }}/*',
+  command = '!chezmoi apply'
+})

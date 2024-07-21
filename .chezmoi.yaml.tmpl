@@ -1,5 +1,5 @@
 {{ $email := promptString "Email" -}}
-{{ $name := promptString "Name" -}}
+{{ $name := promptString "Name for git commits" -}}
 
 data:
     email: {{ $email | quote }}

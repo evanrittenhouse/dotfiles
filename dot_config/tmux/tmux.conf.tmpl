@@ -16,7 +16,11 @@ set -g default-shell "/opt/homebrew/bin/fish"
 {{ else if eq .chezmoi.os "linux" -}}
 set -g default-shell "/home/linuxbrew/.linuxbrew/bin/fish"
 {{ end }}
+
+# Install TPM plugins to the chezmoi target directory, rather than the source
 set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux/plugins/'
+
+set -g focus-events on
 
 set -g base-index 1
 set -s escape-time 0
