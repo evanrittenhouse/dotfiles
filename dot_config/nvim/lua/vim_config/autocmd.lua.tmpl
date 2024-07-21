@@ -32,6 +32,6 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   desc = 'Automatically run `chezmoi apply` when saving files in the chezmoi source directory',
-  pattern = '{{ .chezmoi.sourceDir }}/*',
+  pattern = '{{ .chezmoi.sourceDir }}/**/*',
   command = '!chezmoi apply'
 })
