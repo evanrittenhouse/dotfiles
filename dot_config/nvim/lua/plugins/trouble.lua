@@ -18,11 +18,12 @@ local M = {
       "<cmd>Trouble symbols toggle focus=false win.postition=left<cr>",
       desc = "Symbols (Trouble)",
     },
-    {
-      "<leader>tl",
-      "<cmd>Trouble lsp toggle focus=false win.position=left<cr>",
-      desc = "LSP Definitions / references / ... (Trouble)",
-    },
+    -- disabled for now - telescope seems better (see lsp.lua)
+    -- {
+    --   "<leader>tl",
+    --   "<cmd>Trouble lsp toggle focus=false win.position=left<cr>",
+    --   desc = "LSP Definitions / references / ... (Trouble)",
+    -- },
     {
       "<leader>tL",
       "<cmd>Trouble loclist toggle<cr>",
