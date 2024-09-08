@@ -1,3 +1,5 @@
+local string_ends_with = require "utils".string_ends_with
+
 -- Configuration for LSP diagnostics
 vim.diagnostic.config({
   virtual_text = false, -- Turn off inline diagnostics
@@ -7,6 +9,15 @@ vim.diagnostic.config({
   severity_sort = true,
   float = { focusable = false, style = "minimal", border = "rounded", source = "always", header = "", prefix = "" }
 })
+
+local telescope_cmd = function(arg)
+  if arg ~= nil then
+    local no_paren = not string_ends_with(arg, "()")
+    local paren_opt = no_paren and "()" or ""
+
+    return "<cmd>lua require ('telescope.builtin')." .. arg .. paren_opt .. "<CR>"
+  end
+end
 
 -- Base callback called when attaching an LSP to a buffer
 -- TODO: create autocmd instead of this
@@ -18,10 +29,10 @@ local base_on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, { noremap = true, silent = true })
   end
 
-  buf_set_keymap("gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
-  buf_set_keymap("gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
-  buf_set_keymap("gm", "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>")
-  buf_set_keymap("gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>")
+  buf_set_keymap("gd", telescope_cmd("lsp_definitions"))
+  buf_set_keymap("gr", telescope_cmd("lsp_references"))
+  buf_set_keymap("gm", telescope_cmd("lsp_implementations"))
+  buf_set_keymap("gs", telescope_cmd("lsp_document_symbols"))
   buf_set_keymap("<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   buf_set_keymap("gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
   buf_set_keymap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
