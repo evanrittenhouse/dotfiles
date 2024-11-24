@@ -235,29 +235,35 @@ local components = {
 }
 
 local COLORSCHEME_PAIRS = {
-  gruvbox_material = gruvbox_material,
+  ["gruvbox-material"] = gruvbox_material,
   kanagawa = one_monokai
 }
 
-local function determine_colorscheme()
-  -- Normalize to Lua key
-  local vim_scheme = string.gsub(vim.g.colors_name, "-", "_")
-  local match = COLORSCHEME_PAIRS[vim_scheme]
+local function determine_colorscheme(opts)
+  for vim_color, feline_color in pairs(COLORSCHEME_PAIRS) do
+    if vim.g.colors_name == vim_color then
+      opts.theme = feline_color
+      return
+    end
+  end
 
-  return match ~= nil and match or "one_monokai"
+  -- Just in case
+  if opts.theme == nil then
+    opts.theme = one_monokai
+  end
 end
 
 local M = {
   "freddiehaddad/feline.nvim",
   config = function(_, opts)
     local feline = require("feline")
-    opts.theme = determine_colorscheme()
-    feline.winbar.setup()
+    determine_colorscheme(opts)
+
     feline.setup(opts)
+    feline.winbar.setup()
   end,
   opts = {
     components = components,
-    theme = gruvbox_material,
     vi_mode_colors = vi_mode_colors,
   },
 }

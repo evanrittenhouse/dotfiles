@@ -3,7 +3,10 @@ local M = {
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require('kanagawa').setup(opts)
+
+      -- vim.cmd('colorscheme kanagawa')
     end,
+    lazy = false,
     opts = {
       transparent = false,
       colors = {
@@ -35,7 +38,9 @@ local M = {
       vim.api.nvim_set_var('gruvbox_material_background', 'hard')
 
       vim.cmd('colorscheme gruvbox-material')
-    end
+    end,
+    lazy = false,
+    priority = 1000
   },
 }
 

@@ -12,4 +12,17 @@ utils.string_ends_with = function(str, suffix)
     return suffix_len > 0 and string.len(str) > 0 and string.sub(str, -suffix_len) == suffix
 end
 
+utils.copy_table = function(t)
+  if type(t) ~= "table" then
+    return
+  end
+
+  local new = {}
+  for k, v in pairs(t) do
+    new[k] = v
+  end
+
+  return new
+end
+
 return utils
