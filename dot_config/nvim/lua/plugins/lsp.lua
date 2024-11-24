@@ -19,12 +19,7 @@ local telescope_cmd = function(arg)
   end
 end
 
--- Base callback called when attaching an LSP to a buffer
--- TODO: create autocmd instead of this
-local base_on_attach = function(_, bufnr)
-  -- Format on save
-  vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
-
+local setup_lsp_keybinds = function(bufnr)
   local function buf_set_keymap(key, cmd)
     vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, { noremap = true, silent = true })
   end
@@ -43,12 +38,23 @@ local base_on_attach = function(_, bufnr)
   buf_set_keymap("gl", "<cmd>lua vim.diagnostic.open_float()<CR>")
 end
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+  callback = function(args)
+    setup_lsp_keybinds(args.buf)
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.format({ async = false, id = args.data.client_id })
+      end
+    })
+  end
+})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-local base_lsp = {
-  on_attach = base_on_attach,
-  capabilities = capabilities
-}
+local base_lsp = { capabilities = capabilities }
 
 local M = {
   {
@@ -79,7 +85,6 @@ local M = {
       servers = {
         lua_ls = {
           flags = {},
-          on_attach = base_on_attach,
           settings = {
             Lua = {
               diagnostics = {
@@ -96,8 +101,7 @@ local M = {
           }
         },
         tsserver = {
-          on_attach = function(client, bufnr)
-            base_on_attach(client, bufnr)
+          on_attach = function(client, _)
             client.server_capabilities.document_formatting = false
             client.server_capabilities.document_range_formatting = false
           end,
