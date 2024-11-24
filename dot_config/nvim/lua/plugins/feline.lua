@@ -239,26 +239,27 @@ local COLORSCHEME_PAIRS = {
   kanagawa = one_monokai
 }
 
--- local function determine_colorscheme()
---   -- Normalize to Lua key
---   local vim_scheme = string.gsub(vim.g.colors_name, "-", "_")
---   local match = COLORSCHEME_PAIRS[vim_scheme]
+local function determine_colorscheme()
+  -- Normalize to Lua key
+  local vim_scheme = string.gsub(vim.g.colors_name, "-", "_")
+  local match = COLORSCHEME_PAIRS[vim_scheme]
 
---   return match ~= nil and match or "one_monokai"
--- end
+  return match ~= nil and match or "one_monokai"
+end
 
 local M = {
   "freddiehaddad/feline.nvim",
   config = function(_, opts)
     local feline = require("feline")
+    opts.theme = determine_colorscheme()
     feline.winbar.setup()
     feline.setup(opts)
   end,
   opts = {
     components = components,
-    theme = one_monokai,
+    theme = gruvbox_material,
     vi_mode_colors = vi_mode_colors,
-  }
+  },
 }
 
 return M
