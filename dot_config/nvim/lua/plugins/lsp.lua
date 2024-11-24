@@ -64,7 +64,6 @@ local M = {
         "lua_ls",
         "pyright",
         "rust_analyzer",
-        "tsserver",
         "gopls"
       }
 
