@@ -1,13 +1,28 @@
 local string_ends_with = require "utils".string_ends_with
+local diagnostic = vim.diagnostic
 
 -- Configuration for LSP diagnostics
-vim.diagnostic.config({
-  virtual_text = false, -- Turn off inline diagnostics
-  signs = true,
+diagnostic.config({
+  virtual_text = {
+    severity = diagnostic.severity.ERROR,
+  },
+  signs = {
+    text = {
+      [diagnostic.severity.ERROR] = 'E',
+      [diagnostic.severity.WARN] = 'W',
+      [diagnostic.severity.INFO] = '?',
+      [diagnostic.severity.HINT] = ''
+    }
+  },
   update_in_insert = false,
   underline = true,
   severity_sort = true,
-  float = { focusable = false, style = "minimal", border = "rounded", source = "always", header = "", prefix = "" }
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+  }
 })
 
 local telescope_cmd = function(arg)
