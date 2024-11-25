@@ -4,11 +4,11 @@ local M = {
     config = function(_, opts)
       require('kanagawa').setup(opts)
 
-      -- vim.cmd('colorscheme kanagawa')
+      vim.cmd('colorscheme kanagawa')
     end,
     lazy = false,
     opts = {
-      transparent = false,
+      transparent = true,
       colors = {
         theme = {
           all = {
@@ -37,7 +37,7 @@ local M = {
       vim.api.nvim_set_var('gruvbox_material_transparent_background', 1)
       vim.api.nvim_set_var('gruvbox_material_background', 'hard')
 
-      vim.cmd('colorscheme gruvbox-material')
+      -- vim.cmd('colorscheme gruvbox-material')
     end,
     lazy = false,
     priority = 1000

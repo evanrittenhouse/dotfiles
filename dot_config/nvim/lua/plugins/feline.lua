@@ -1,8 +1,8 @@
 local one_monokai = {
   fg = "#abb2bf",
   -- kanagawa background
-  bg = "#1f1f28",
-  -- bg = "#292522",
+  -- bg = "#1f1f28",
+  bg = "#1f1f1e",
   green = "#98c379",
   yellow = "#e5c07b",
   purple = "#c678dd",
