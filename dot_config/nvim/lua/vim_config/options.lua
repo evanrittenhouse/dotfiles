@@ -17,6 +17,8 @@ set_vim_option('incsearch', true)
 -- Make searches case-insensitive, unless you include a capital letter in the search pattern
 set_vim_option('ignorecase', true)
 set_vim_option('smartcase', true)
+-- Show substitutions in separate pane
+set_vim_option('inccommand', 'split')
 -- Global statusline
 set_vim_option('laststatus', 3)
 -- Write to the swap file if nothing's been written in X miliseconds
