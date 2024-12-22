@@ -47,7 +47,7 @@ style = "Block"
 unfocused_hollow = true
 
 [font]
-size = 8.8
+size = 9.75
 
 [font.normal]
 family = "HackNerdFont"
@@ -64,3 +64,10 @@ startup_mode = "Windowed"
 [window.padding]
 x = 10
 y = 2
+
+[terminal.shell]
+{{ if eq .osid "darwin" }}
+program = "/opt/homebrew/bin/fish"
+{{ else }}
+program = "/usr/bin/fish"
+{{ end }}

@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-{{ if eq .chezmoi.os "linux" -}}
+{{ if and (eq .chezmoi.os "linux") (ne .osid "linux-fedora-asahi-remix") -}}
 # put homebrew on path 
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 {{ end }}
@@ -12,7 +12,7 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 # autojump
 [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
-{{ else if eq .chezmoi.os "linux" -}}
+{{ else if and (eq .chezmoi.os "linux") (ne .osid "linux-fedora-asahi-remix") -}}
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 [ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
@@ -33,17 +33,14 @@ alias signal="flathub run org.signal.Signal"
 
 # vim keybinds
 fish_hybrid_key_bindings
+{{ if eq .osid "linux-fedora-asahi-remix" }}
+fish_add_path /usr/bin
+fish_add_path ~/bin
+{{ end }}
 
 set -g HOMEBREW_NO_AUTO_UPDATE 1
 
 starship init fish | source
-
-{{ if eq (index . "python") true -}}
-set -Ux PYENV_ROOT $HOME/.pyenv
-set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-
-pyenv init - | source
-{{ end }}
 
 {{ if eq .chezmoi.os "linux" -}}
 # TODO: select SSH keys, or add all of them to the agent
