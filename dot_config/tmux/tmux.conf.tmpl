@@ -1,0 +1,131 @@
+# General
+set -g prefix C-Space
+bind Space send-prefix
+
+# https://unix.stackexchange.com/a/1098
+{{ if eq .chezmoi.os "linux" -}}
+set -g default-terminal "tmux-256color"
+set-option -ga terminal-overrides ",*:RGB"
+{{ else if eq .chezmoi.os "darwin" -}}
+set -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",xterm-256color"
+{{ end }}
+
+{{ if eq .chezmoi.os "darwin" -}}
+set -g default-shell "/opt/homebrew/bin/fish"
+{{ else if eq .chezmoi.os "linux" -}}
+set -g default-shell "/home/linuxbrew/.linuxbrew/bin/fish"
+{{ end }}
+
+# Install TPM plugins to the chezmoi target directory, rather than the source
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '{{ .chezmoi.homeDir }}/.config/tmux/plugins/'
+
+set -g focus-events on
+
+set -g base-index 1
+set -s escape-time 0
+set -g mouse
+
+bind r source-file {{ .chezmoi.homeDir }}/.tmux.conf \; display "Tmux config reloaded"
+
+setw -g mode-keys vi
+
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind '"' split-window -v -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+
+set-option -g status-position bottom
+set-option -g renumber-windows on
+
+set -g status-style bg='#1d2021',fg=default,dim
+set -g status-right "%d %b %Y %l:%M %p #[fg=green,bg=default,bright] #(pmset -g batt | tail -1 | awk '{print $3}' | tr -d ';') #[default]"
+
+
+# Plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+run '{{ .chezmoi.homeDir }}/.config/tmux/plugins/tpm/tpm'
+
+
+## Kanagawa colorscheme stuff
+# taken from gruvbox and changed toLmy needs: https://github.com/egel/tmux-gruvbox/blob/main/tmux-gruvbox-dark.conf
+
+set-option -g status "on"
+
+# default statusbar color
+set-option -g status-style bg=colour237,fg=colour223 # bg=bg1, fg=fg1
+
+# default window title colors
+set-window-option -g window-status-style bg=colour214,fg=colour237 # bg=yellow, fg=bg1
+
+# default window with an activity alert
+set-window-option -g window-status-activity-style bg=colour237,fg=colour248 # bg=bg1, fg=fg3
+
+# active window title colors
+set-window-option -g window-status-current-style bg=red,fg=colour237 # fg=bg1
+
+# pane border
+set-option -g pane-active-border-style fg=colour250 #fg2
+set-option -g pane-border-style fg=colour237 #bg1
+
+# message infos
+set-option -g message-style bg=colour239,fg=colour223 # bg=bg2, fg=fg1
+
+# writing commands inactive
+set-option -g message-command-style bg=colour239,fg=colour223 # bg=fg3, fg=bg1
+
+# pane number display
+set-option -g display-panes-active-colour colour250 #fg2
+set-option -g display-panes-colour colour237 #bg1
+
+# clock
+# set-window-option -g clock-mode-colour colour109 #blue
+
+# bell
+# set-window-option -g window-status-bell-style bg=colour167,fg=colour235 # bg=red, fg=bg
+
+# Theme settings mixed with colors (unfortunately, but there is no cleaner way)
+set-option -g status-justify "left"
+set-option -g status-left-style none
+set-option -g status-left-length "80"
+set-option -g status-right-style none
+set-option -g status-right-length "80"
+set-window-option -g window-status-separator ""
+
+set-option -g status-left "#[bg=colour241,fg=colour248] #S #[bg=colour237,fg=colour241,nobold,noitalics,nounderscore]"
+set-option -g status-right "#[bg=colour237,fg=colour239 nobold, nounderscore, noitalics]#[bg=colour239,fg=colour246] %Y-%m-%d  %H:%M #[bg=colour239,fg=colour248,nobold,noitalics,nounderscore]#[bg=colour248,fg=colour237] #h "
+
+set-window-option -g window-status-current-format "#[bg=colour214,fg=colour237,nobold,noitalics,nounderscore]#[bg=colour214,fg=colour239] #I #[bg=colour214,fg=colour239,bold] #W#{?window_zoomed_flag,*Z,} #[bg=colour237,fg=colour214,nobold,noitalics,nounderscore]"
+set-window-option -g window-status-format "#[bg=colour239,fg=colour237,noitalics]#[bg=colour239,fg=colour223] #I #[bg=colour239,fg=colour223] #W #[bg=colour237,fg=colour239,noitalics]"
+
+
+# vim-tmux-navigator - move to TPM once it works on linux
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+bind-key -T copy-mode-vi 'C-h' select-pane -L
+bind-key -T copy-mode-vi 'C-j' select-pane -D
+bind-key -T copy-mode-vi 'C-k' select-pane -U
+bind-key -T copy-mode-vi 'C-l' select-pane -R
+bind-key -T copy-mode-vi 'C-\' select-pane -l
