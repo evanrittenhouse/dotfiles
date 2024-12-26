@@ -14,7 +14,7 @@ local M = {
     telescope.load_extension("live_grep_args")
   end,
   keys = {
-    { "<leader>ff", "<cmd>Telescope find_files<CR>" },
+    { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>" },
     { "<leader>FF", "<cmd>Telescope git_files<cr>" },
     { "<leader>rg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>" },
     { "<leader>fo", "<cmd>Telescope oldfiles cwd_only=True<cr>" },
