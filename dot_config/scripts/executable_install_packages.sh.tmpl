@@ -32,14 +32,16 @@ brew bundle --file=~/.config/brew/Brewfile
 
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
-# dependencies for computer use
+
+# Install Hack Nerd Font separately for Linux, required with headless since we want neovim to work properly
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
+tar -xf Hack.tar.xz -C {{ .chezmoi.homeDir }}/.local/share/fonts
+
+{{ if ne (index . "headless") true -}}
+# Full Linux desktop environment dependencies
 sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift xss-lock
 # for screenshots
 sudo apt install xfce4-screenshooter
-
-# Install Hack Nerd Font separately for Linux
-curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
-tar -xf Hack.tar.xz -C {{ .chezmoi.homeDir }}/.local/share/fonts
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub md.obsidian.Obsidian
@@ -53,11 +55,15 @@ sudo apt-get update && sudo apt-get install spotify-client
 flatpak install flathub org.mozilla.firefox 
 flatpak install flathub org.signal.Signal
 {{ end -}}
+
+# Headless dependencies
+{{ end -}}
+# Parent Linux block
 {{ end -}}
 
 # set fish as default shell
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish) 
 
-#  reload shell to launch fish
+# reload shell to launch fish
 exec sudo --login --user {{ .chezmoi.username }}

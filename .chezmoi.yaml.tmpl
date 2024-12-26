@@ -2,6 +2,7 @@
 {{ $name := promptString "Name for git commits" -}}
 {{ $python := promptBool "Install Python dependencies (y/n)" -}}
 {{ $rust := promptBool "Install Rust dependencies (y/n)" -}}
+{{ $headless := promptBool "Install headless Linux dependencies only (y/n)" -}}
 
 # From https://www.chezmoi.io/user-guide/machines/linux/#combine-operating-system-and-linux-distribution-conditionals
 # Allows for conditionals like { if eq .osid "darwin"} { else if eq .osid "linux-fedora" }
@@ -15,6 +16,7 @@ data:
     name: {{ $name | quote }}
     python: {{ $python }}
     rust: {{ $rust }}
+    headless: {{ $headless }}
     osid: {{ $osid | quote }}
 
     colors:
