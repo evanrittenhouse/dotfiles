@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "darwin" -}}
+tap 'homebrew/cask-versions'
+tap 'homebrew/cask-fonts'
+
+cask 'dash'
+cask 'docker'
+cask 'flux'
+cask 'iterm2'
+cask 'obsidian'
+cask 'rectangle'
+cask 'signal'
+cask 'spotify'
+cask 'utm'
+
+{{ if eq .email "evanrittenhouse@gmail.com" -}}
+cask 'discord'
+cask 'firefox'
+{{ end -}}
+
+# TODO - figure out a way to avoid hard-coding font
+cask 'font-hack-nerd-font'
+{{end -}}

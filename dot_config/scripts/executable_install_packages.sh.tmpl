@@ -1,5 +1,7 @@
 #! /bin/sh
 
+CMD=""
+
 # TODO - scripts to install various languages
 # python by default should be good, but we also might want java/dart
 install_brew () {
@@ -25,18 +27,67 @@ install_brew () {
         brew install gcc
 }
 
-# install packages
-command -v brew > /dev/null && continue || install_brew
+detect_package_manager() {
+        UNAME=$(uname)
 
-brew bundle --file=~/.config/brew/Brewfile
+        if [[ "$UNAME" == "Linux" ]]; then
+                ARCH=$(uname -m)
+
+                if [[ "$ARCH" == "aarch64" ]]; then
+                        # Homebrew isn't supported on ARM64 Linux
+                        CMD="sudo apt install --ignore-missing"
+                else
+                        CMD="brew"
+                fi
+        elif [[ "UNAME" == "Darwin" ]]; then
+                CMD="brew"
+        fi
+
+        echo "package manager determined: $CMD"
+}
+
+echo "running package install script..."
+
+if [[ "$CMD" == "brew" ]]; then
+        echo "installing brew..."
+        command -v brew > /dev/null && continue || install_brew
+fi
+
+PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/packages/packages.txt"
+PACKAGES=$(cat $PACKAGE_FILE | tr '\n' ' ')
+
+determine_package_manager
+
+echo "installing packages..."
+echo "install command: $CMD $PACKAGES"
+eval "$CMD $PACKAGES"
+
+{{ if eq .chezmoi.os "darwin" -}}
+echo "installing casks..."
+brew bundle --file={{ .chezmoi.homeDir }}/.config/packages/casks
+{{ end }}
+
+{{ if eq (index . "rust") true -}}
+        if [[ "$CMD" == "brew" ]]; then
+                sudo apt install curl -y
+        fi
+
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        rustup component add rust-analyzer
+{{ end }}
+
+{{ if eq (index . "python") true -}}
+        $CMD poetry pyright python pyenv
+{{ end }}
 
 # linux equivalent of homebrew casks
 {{ if eq .chezmoi.os "linux" -}}
 
 # Install Hack Nerd Font separately for Linux, required with headless since we want neovim to work properly
+mkdir -p ~/Downloads && cd Downloads
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
-tar -xf Hack.tar.xz -C {{ .chezmoi.homeDir }}/.local/share/fonts
-
+mkdir -p {{ .chezmoi.homeDir }}/.local/share/fonts && tar -xf Hack.tar.xz -C {{ .chezmoi.homeDir }}/.local/share/fonts
+ 
 {{ if ne (index . "headless") true -}}
 # Full Linux desktop environment dependencies
 sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift xss-lock
@@ -55,9 +106,9 @@ sudo apt-get update && sudo apt-get install spotify-client
 flatpak install flathub org.mozilla.firefox 
 flatpak install flathub org.signal.Signal
 {{ end -}}
-
 # Headless dependencies
 {{ end -}}
+
 # Parent Linux block
 {{ end -}}
 
