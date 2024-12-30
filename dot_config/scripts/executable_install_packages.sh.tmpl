@@ -35,7 +35,7 @@ detect_package_manager() {
 
                 if [[ "$ARCH" == "aarch64" ]]; then
                         # Homebrew isn't supported on ARM64 Linux
-                        CMD="sudo apt install --ignore-missing"
+                        CMD="sudo apt update && sudo apt upgrade && sudo apt install --ignore-missing"
                 else
                         CMD="brew"
                 fi
@@ -56,7 +56,7 @@ fi
 PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/packages/packages.txt"
 PACKAGES=$(cat $PACKAGE_FILE | tr '\n' ' ')
 
-determine_package_manager
+detect_package_manager
 
 echo "installing packages..."
 echo "install command: $CMD $PACKAGES"
