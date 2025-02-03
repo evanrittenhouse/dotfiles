@@ -4,11 +4,11 @@ local M = {
     config = function(_, opts)
       require('kanagawa').setup(opts)
 
-      vim.cmd('colorscheme kanagawa')
+      -- vim.cmd('colorscheme kanagawa')
     end,
     lazy = false,
     opts = {
-      transparent = true,
+      transparent = false,
       background = {
         dark = "wave",
         light = "lotus"
@@ -43,11 +43,17 @@ local M = {
       vim.api.nvim_set_var('gruvbox_material_transparent_background', 1)
       vim.api.nvim_set_var('gruvbox_material_background', 'hard')
 
-      -- vim.cmd('colorscheme gruvbox-material')
+      vim.cmd('colorscheme gruvbox-material')
     end,
     lazy = false,
     priority = 1000
   },
+  { 
+    "savq/melange-nvim",
+    config = function()
+      -- vim.cmd('colorscheme melange')
+    end
+  }
 }
 
 return M
