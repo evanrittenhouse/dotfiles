@@ -27,7 +27,7 @@ local M = {
   },
   {
     "ludovicchabant/vim-gutentags",
-    ft = { "c", "lua", "cpp" }
+    ft = { "c", "lua", "cpp", "zig" }
   }
 
   -- {
