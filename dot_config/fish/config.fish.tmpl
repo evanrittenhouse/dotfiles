@@ -16,6 +16,12 @@ eval (/opt/homebrew/bin/brew shellenv)
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 [ -f /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish ]; and source /home/linuxbrew/.linuxbrew/share/autojump/autojump.fish
+
+{{ else if (eq .osid "linux-fedora-asahi-remix") -}}
+[ -f /usr/share/autojump/autojump.fish ]; and source /usr/share/autojump/autojump.fish
+
+{{ else }}
+# jfc lol
 {{ end }}
 
 # aliases
