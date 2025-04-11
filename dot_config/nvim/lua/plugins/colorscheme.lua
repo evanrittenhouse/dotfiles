@@ -1,12 +1,21 @@
+local defaults = {
+  priority = 1000,
+  lazy = false
+}
+
+-- Helper to apply defaults using metatables
+local function colorscheme(spec)
+  return setmetatable(spec, { __index = defaults })
+end
+
 local M = {
-  {
+  colorscheme({
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require('kanagawa').setup(opts)
 
-      -- vim.cmd('colorscheme kanagawa')
+      vim.cmd('colorscheme kanagawa')
     end,
-    lazy = false,
     opts = {
       transparent = false,
       background = {
@@ -35,25 +44,24 @@ local M = {
         MsgArea = { bg = colors.palette.sumiInk0 }
       }
     end,
-    priority = 1000,
-  },
-  {
+  }),
+  colorscheme({
     "sainnhe/gruvbox-material",
+    enabled = false,
     config = function()
       vim.api.nvim_set_var('gruvbox_material_transparent_background', 0)
       vim.api.nvim_set_var('gruvbox_material_background', 'hard')
 
       vim.cmd('colorscheme gruvbox-material')
     end,
-    lazy = false,
-    priority = 1000
-  },
-  { 
+  }),
+  colorscheme({ 
     "savq/melange-nvim",
+    enabled = false,
     config = function()
-      -- vim.cmd('colorscheme melange')
+      vim.cmd('colorscheme melange')
     end
-  }
+  })
 }
 
 return M
