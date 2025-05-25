@@ -11,9 +11,6 @@ brew 'python'
 brew 'pyenv'
 {{ end }}
 brew 'ripgrep'
-{{ if eq (index . "rust") true -}}
-brew 'rust-analyzer'
-{{ end }}
 brew 'starship'
 brew 'tig'
 brew 'tree-sitter'
