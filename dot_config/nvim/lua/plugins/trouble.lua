@@ -31,11 +31,6 @@ local M = {
       desc = "Buffer Diagnostics (Trouble)",
     },
     {
-      "<leader>ts",
-      "<cmd>Trouble symbols toggle<cr>",
-      desc = "Symbols (Trouble)",
-    },
-    {
       "<leader>tL",
       "<cmd>Trouble loclist toggle<cr>",
       desc = "Location List (Trouble)",

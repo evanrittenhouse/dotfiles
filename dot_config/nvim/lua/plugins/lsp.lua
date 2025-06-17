@@ -39,9 +39,9 @@ local setup_lsp_keybinds = function(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, { noremap = true, silent = true })
   end
 
-  buf_set_keymap("gd", telescope_cmd("lsp_definitions"))
+  buf_set_keymap("gd", "<cmd>lua require('trouble').toggle('lsp_definitions')<CR>")
   buf_set_keymap("gr", "<cmd>lua require('trouble').toggle('lsp_references')<CR>")
-  buf_set_keymap("gm", telescope_cmd("lsp_implementations"))
+  buf_set_keymap("gm", "<cmd>lua require('trouble').toggle('lsp_implementations')<CR>")
   buf_set_keymap("gs", "<cmd>lua require('trouble').toggle('lsp_document_symbols')<CR>")
   buf_set_keymap("<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   buf_set_keymap("gt", "<cmd>lua require('trouble').toggle('lsp_type_definitions')<CR>")
