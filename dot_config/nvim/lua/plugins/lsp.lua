@@ -40,11 +40,11 @@ local setup_lsp_keybinds = function(bufnr)
   end
 
   buf_set_keymap("gd", telescope_cmd("lsp_definitions"))
-  buf_set_keymap("gr", telescope_cmd("lsp_references"))
+  buf_set_keymap("gr", "<cmd>lua require('trouble').toggle('lsp_references')<CR>")
   buf_set_keymap("gm", telescope_cmd("lsp_implementations"))
   buf_set_keymap("gs", telescope_cmd("lsp_document_symbols"))
   buf_set_keymap("<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-  buf_set_keymap("gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+  buf_set_keymap("gt", "<cmd>lua require('trouble').toggle('lsp_type_definitions')<CR>")
   buf_set_keymap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   buf_set_keymap("[a", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
   buf_set_keymap("]a", "<cmd>lua vim.diagnostic.goto_next()<CR>")

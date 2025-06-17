@@ -50,7 +50,7 @@ local M = {
     enabled = false,
     config = function()
       vim.api.nvim_set_var('gruvbox_material_transparent_background', 0)
-      vim.api.nvim_set_var('gruvbox_material_background', 'hard')
+      vim.api.nvim_set_var('gruvbox_material_background', 'medium')
 
       vim.cmd('colorscheme gruvbox-material')
     end,
