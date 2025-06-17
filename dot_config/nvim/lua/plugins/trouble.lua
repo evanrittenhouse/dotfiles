@@ -1,13 +1,21 @@
 local M = {
   "folke/trouble.nvim",
   opts = {
+    focus = true, 
     modes = {
       lsp_references = {
         auto_refresh = false
       },
       lsp_type_definitions = {
         auto_refresh = false
-      }
+      },
+      lsp_document_symbols = {
+        focus = false,
+        win = {
+          relative = "win",
+          position = "left"
+        },
+      },
     }
   },
   cmd = "Trouble",
@@ -24,7 +32,7 @@ local M = {
     },
     {
       "<leader>ts",
-      "<cmd>Trouble symbols toggle focus=false win.relative=win win.position=left<cr>",
+      "<cmd>Trouble symbols toggle<cr>",
       desc = "Symbols (Trouble)",
     },
     {
