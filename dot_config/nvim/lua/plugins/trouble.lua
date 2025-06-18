@@ -1,7 +1,7 @@
 local M = {
   "folke/trouble.nvim",
   opts = {
-    focus = true, 
+    focus = true,
     modes = {
       lsp_references = {
         auto_refresh = false
@@ -10,7 +10,6 @@ local M = {
         auto_refresh = false
       },
       lsp_document_symbols = {
-        focus = false,
         win = {
           relative = "win",
           position = "left"
