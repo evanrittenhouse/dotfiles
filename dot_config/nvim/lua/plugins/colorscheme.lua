@@ -16,6 +16,7 @@ local M = {
 
       vim.cmd('colorscheme kanagawa')
     end,
+    enabled = false,
     opts = {
       transparent = false,
       background = {
@@ -47,7 +48,7 @@ local M = {
   }),
   colorscheme({
     "sainnhe/gruvbox-material",
-    enabled = false,
+    enabled = true,
     config = function()
       vim.api.nvim_set_var('gruvbox_material_transparent_background', 0)
       vim.api.nvim_set_var('gruvbox_material_background', 'medium')
