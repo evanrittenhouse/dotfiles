@@ -62,7 +62,10 @@ local M = {
           }
         },
         lualine_x = {
-          { "diagnostics" }
+          { 
+            "diagnostics",
+            sources = { "nvim_workspace_diagnostic" }
+          }
         },
         lualine_y = {
           {
