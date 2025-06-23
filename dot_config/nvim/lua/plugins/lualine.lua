@@ -48,20 +48,17 @@ local M = {
           },
           {
             "filename",
-            separator = { right = SEPARATORS.right }
+            separator = { right = SEPARATORS.right },
+            path = 1
           }
         },
-        lualine_c = {
-          {
-            "branch",
-            icon = ""
-          },
-          {
-            "diff",
-            symbols = { added = "+", removed = "-", modified = "~" }
-          }
-        },
+        lualine_c = {},
         lualine_x = {
+          {
+            lsp_clients,
+            icon = "",
+            separator = { left = SEPARATORS.left }
+          },
           { 
             "diagnostics",
             sources = { "nvim_workspace_diagnostic" }
@@ -69,14 +66,17 @@ local M = {
         },
         lualine_y = {
           {
-            lsp_clients,
-            icon = "",
-            separator = { left = SEPARATORS.left }
+            "branch",
+            icon = "",
+            separator = { left = SEPARATORS.left },
+          },
+          {
+            "diff",
+            symbols = { added = "+", removed = "-", modified = "~" },
+            separator = { right = SEPARATORS.right }
           }
         },
-        lualine_z = {
-          { "location", separator = SEPARATORS, icon = "" },
-        },
+        lualine_z = {}
       },
     })
   end
