@@ -1,11 +1,11 @@
-local defaults = {
-  priority = 1000,
-  lazy = false
-}
-
 -- Helper to apply defaults using metatables
 local function colorscheme(spec)
-  return setmetatable(spec, { __index = defaults })
+  return setmetatable(spec, {
+    __index = {
+      priority = 1000,
+      lazy = false
+    }
+  })
 end
 
 local M = {
@@ -50,17 +50,22 @@ local M = {
     "sainnhe/gruvbox-material",
     enabled = true,
     config = function()
-      vim.api.nvim_set_var('gruvbox_material_transparent_background', 0)
-      vim.api.nvim_set_var('gruvbox_material_background', 'medium')
-
+      vim.api.nvim_set_var('gruvbox_material_background', 'hard')
       vim.cmd('colorscheme gruvbox-material')
     end,
   }),
-  colorscheme({ 
+  colorscheme({
     "savq/melange-nvim",
     enabled = false,
     config = function()
       vim.cmd('colorscheme melange')
+    end
+  }),
+  colorscheme({
+    'AlexvZyl/nordic.nvim',
+    enabled = false,
+    config = function()
+        require('nordic').load()
     end
   })
 }
