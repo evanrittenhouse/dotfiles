@@ -31,7 +31,6 @@ local M = {
       options = {
         component_separators = "",
         section_separators = SEPARATORS,
-        theme = 'gruvbox-material',
       },
       sections = {
         lualine_a = {
