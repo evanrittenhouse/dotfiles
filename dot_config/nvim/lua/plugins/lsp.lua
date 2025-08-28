@@ -25,15 +25,6 @@ diagnostic.config({
   }
 })
 
-local telescope_cmd = function(arg)
-  if arg ~= nil then
-    local no_paren = not string_ends_with(arg, "()")
-    local paren_opt = no_paren and "()" or ""
-
-    return "<cmd>lua require ('telescope.builtin')." .. arg .. paren_opt .. "<CR>"
-  end
-end
-
 local setup_lsp_keybinds = function(bufnr)
   local function buf_set_keymap(key, cmd)
     vim.api.nvim_buf_set_keymap(bufnr, "n", key, cmd, { noremap = true, silent = true })
@@ -44,7 +35,7 @@ local setup_lsp_keybinds = function(bufnr)
   buf_set_keymap("gm", "<cmd>lua require('trouble').toggle('lsp_implementations')<CR>")
   buf_set_keymap("gs", "<cmd>lua require('trouble').toggle('lsp_document_symbols')<CR>")
   buf_set_keymap("<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-  buf_set_keymap("gt", "<cmd>lua require('trouble').toggle('lsp_type_definitions')<CR>")
+  buf_set_keymap("gT", "<cmd>lua require('trouble').toggle('lsp_type_definitions')<CR>")
   buf_set_keymap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   buf_set_keymap("[a", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
   buf_set_keymap("]a", "<cmd>lua vim.diagnostic.goto_next()<CR>")
