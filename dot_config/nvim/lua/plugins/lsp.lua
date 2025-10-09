@@ -68,7 +68,7 @@ local M = {
     config = function(_, opts)
       local servers = {
         "lua_ls",
-        "pyright",
+        "ruff",
         "rust_analyzer",
         "gopls",
         "zls"
