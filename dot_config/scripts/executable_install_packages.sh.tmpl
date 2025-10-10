@@ -1,120 +1,81 @@
-#! /bin/sh
+#!/bin/bash
 
-CMD=""
+set -e
 
-# TODO - scripts to install various languages
-# python by default should be good, but we also might want java/dart
-install_brew () {
-        echo "Homebrew not found, installing..."
+DRY_RUN=false
+
+# Parse arguments
+for arg in "$@"; do
+    case "$arg" in
+        --dry-run|-n)
+            DRY_RUN=true
+            ;;
+    esac
+done
+
+echo "🔍 Detecting OS..."
+
+SOURCE_DIR="{{ .chezmoi.sourceDir }}/dot_config"
+BREW_FILE="$SOURCE_DIR/packages/brew.txt"
+BREW_CASK_FILE="$SOURCE_DIR/packages/brew_cask.txt.tmpl"
+DNF_FILE="$SOURCE_DIR/packages/dnf.txt"
+INSTALL_CMDS="{{ .chezmoi.homeDir }}/.config/scripts/install_commands.sh"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "🖥 macOS detected"
+
+    if ! command -v brew &>/dev/null; then
+        echo "🍺 Homebrew not found. Installing..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
 
-        {{ if eq .chezmoi.os "linux" -}}
-                sudo apt install build-essential curl git file procps  -y
-
-                # add to bash for initial install
-                echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.config/fish/config.fish
-
-                # add to fish config so it's on fish's path
-                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        {{ else if eq .chezmoi.os "darwin" -}}
-                # add to bash for initial install
-                echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> {{ .chezmoi.homeDir }}/.config/fish/config.fish
-
-                # add to fish config so it's on fish's path
-                eval "$(/opt/homebrew/bin/brew shellenv)"
-        {{ end -}}
-
-        brew install gcc
-}
-
-detect_package_manager() {
-        UNAME=$(uname)
-
-        if [[ "$UNAME" == "Linux" ]]; then
-                ARCH=$(uname -m)
-
-                if [[ "$ARCH" == "aarch64" ]]; then
-                        # Homebrew isn't supported on ARM64 Linux
-                        CMD="sudo apt update && sudo apt upgrade && sudo apt install --ignore-missing"
-                else
-                        CMD="brew"
-                fi
-        elif [[ "UNAME" == "Darwin" ]]; then
-                CMD="brew"
+    echo ""
+    echo "📦 Installing Homebrew packages from brew.txt..."
+    while IFS= read -r package || [[ -n "$package" ]]; do
+        [[ -z "$package" || "$package" =~ ^# ]] && continue
+        if [ "$DRY_RUN" = true ]; then
+            echo "🔍 [DRY-RUN] Would install: $package"
+        else
+            echo "📦 Installing: $package"
+            brew install "$package" || echo "⚠️ Failed to install $package"
         fi
+    done < "BREW_FILE"
 
-        echo "package manager determined: $CMD"
-}
+    echo ""
+    echo "🍾 Installing Homebrew cask packages from brew_cask.txt..."
+    while IFS= read -r cask || [[ -n "$cask" ]]; do
+        [[ -z "$cask" || "$cask" =~ ^# ]] && continue
+        if [ "$DRY_RUN" = true ]; then
+            echo "🔍 [DRY-RUN] Would install cask: $cask"
+        else
+            echo "🍾 Installing cask: $cask"
+            brew install --cask "$cask" || echo "⚠️ Failed to install cask $cask"
+        fi
+    done < "$BREW_CASK_FILE"
 
-echo "running package install script..."
+elif [ -f /etc/fedora-release ]; then
+    echo "🐧 Fedora detected"
 
-if [[ "$CMD" == "brew" ]]; then
-        echo "installing brew..."
-        command -v brew > /dev/null && continue || install_brew
+    echo "📦 Installing DNF packages from dnf.txt..."
+    mapfile -t dnf_packages < <(grep -vE '^\s*#' "$DNF_FILE")
+
+    if [ "$DRY_RUN" = true ]; then
+        for pkg in "${dnf_packages[@]}"; do
+            echo "🔍 [DRY-RUN] Would install: $pkg"
+        done
+    else
+        sudo dnf install -y "${dnf_packages[@]}"
+    fi
+
+    # Install certain packages via shell commands.
+    $INSTALL_CMDS
+
+else
+    echo "❌ Unsupported OS: $OSTYPE"
+    exit 1
 fi
 
-PACKAGE_FILE="{{ .chezmoi.homeDir }}/.config/packages/packages.txt"
-PACKAGES=$(cat $PACKAGE_FILE | tr '\n' ' ')
 
-detect_package_manager
+echo ""
+echo "✅ Package installation script complete!"
 
-echo "installing packages..."
-echo "install command: $CMD $PACKAGES"
-eval "$CMD $PACKAGES"
-
-{{ if eq .chezmoi.os "darwin" -}}
-echo "installing casks..."
-brew bundle --file={{ .chezmoi.homeDir }}/.config/packages/casks
-{{ end }}
-
-{{ if eq (index . "rust") true -}}
-        if [[ "$CMD" == "brew" ]]; then
-                sudo apt install curl -y
-        fi
-
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        rustup component add rust-analyzer
-{{ end }}
-
-{{ if eq (index . "python") true -}}
-        $CMD poetry pyright python pyenv
-{{ end }}
-
-# linux equivalent of homebrew casks
-{{ if eq .chezmoi.os "linux" -}}
-
-# Install Hack Nerd Font separately for Linux, required with headless since we want neovim to work properly
-mkdir -p ~/Downloads && cd Downloads
-curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
-mkdir -p {{ .chezmoi.homeDir }}/.local/share/fonts && tar -xf Hack.tar.xz -C {{ .chezmoi.homeDir }}/.local/share/fonts
- 
-{{ if ne (index . "headless") true -}}
-# Full Linux desktop environment dependencies
-sudo apt install alacritty i3 rofi brightnessctl flatpak picom polybar rofi feh redshift xss-lock
-# for screenshots
-sudo apt install xfce4-screenshooter
-
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub md.obsidian.Obsidian
-
-# TODO: does the spotify flatpak client work?
-curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update && sudo apt-get install spotify-client
-
-{{ if eq .email "evanrittenhouse@gmail.com" -}}
-flatpak install flathub org.mozilla.firefox 
-flatpak install flathub org.signal.Signal
-{{ end -}}
-# Headless dependencies
-{{ end -}}
-
-# Parent Linux block
-{{ end -}}
-
-# set fish as default shell
-echo $(which fish) | sudo tee -a /etc/shells
-chsh -s $(which fish) 
-
-# reload shell to launch fish
-exec sudo --login --user {{ .chezmoi.username }}

@@ -1,0 +1,9 @@
+autojump
+bat
+fish
+lua
+neovim
+ripgrep
+ruff
+tig
+tree-sitter

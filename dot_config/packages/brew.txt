@@ -1,0 +1,11 @@
+autojump
+bat
+fish
+lua-language-server
+neovim
+ripgrep
+ruff
+starship
+tig
+tree-sitter
+zelllij
