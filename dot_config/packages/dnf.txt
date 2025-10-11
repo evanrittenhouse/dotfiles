@@ -1,4 +1,4 @@
-autojump
+autojump-fish
 bat
 fish
 lua

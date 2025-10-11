@@ -16,7 +16,8 @@ if ! command -v zellij --version >/dev/null 2>&1; then
 fi
 
 # Install lua-language-server
-LATEST=$(curl -s https://api.github.com/repos/LuaLS/lua-language-server/releases/latest | grep "browser_download_url" | grep linux-x64.tar.gz | cut -d '"' -f 4)
+# TODO: genericize over arm64 and x86
+LATEST=$(curl -s https://api.github.com/repos/LuaLS/lua-language-server/releases/latest | grep "browser_download_url" | grep linux-arm64.tar.gz | cut -d '"' -f 4)
 
 mkdir -p /tmp/lua-ls
 cd /tmp/lua-ls
