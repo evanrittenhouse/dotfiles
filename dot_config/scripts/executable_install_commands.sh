@@ -24,4 +24,6 @@ cd /tmp/lua-ls
 wget "$LATEST" -O lua-language-server.tar.gz
 tar -xzf lua-language-server.tar.gz
 
-sudo mv ./bin/lua-language-server /usr/local/bin/lua-language-server
+mkdir -p /opt/lua-language-server
+sudo mv ./* /opt/lua-language-server
+sudo ln -s /opt/lua-language-server/bin/lua-language-server /usr/local/bin/lua-language-server
