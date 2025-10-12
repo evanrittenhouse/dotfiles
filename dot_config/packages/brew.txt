@@ -1,5 +1,6 @@
 autojump
 bat
+fd
 fish
 lua-language-server
 neovim

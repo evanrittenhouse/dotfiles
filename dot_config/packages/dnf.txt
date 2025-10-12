@@ -1,5 +1,6 @@
 autojump-fish
 bat
+fd
 fish
 lua
 neovim
