@@ -11,13 +11,14 @@
 
 # TODO
 
-1. Set up Fedora-compatible package installation script
-        - Font
 1. Fedora OS configurations
         - Remove sound on volume key
         - Reverse scroll direction
         - keybinds - control/caps lock switch, is it possible to change option and command?
         - allow two finger scrolling
+        - install coprs/ghostty
+        - customizable fonts instead of hard-coding Hack
+
 
 - PIA with network manager or openvpn
 

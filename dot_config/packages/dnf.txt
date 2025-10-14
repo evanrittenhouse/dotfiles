@@ -4,6 +4,7 @@ fd
 fish
 lua
 neovim
+python3-neovim
 ripgrep
 ruff
 tig
