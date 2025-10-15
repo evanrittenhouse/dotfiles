@@ -9,7 +9,7 @@ local M = {
       lsp_type_definitions = {
         auto_refresh = false
       },
-      lsp_document_symbols = {
+      symbols = {
         win = {
           relative = "win",
           position = "left"
