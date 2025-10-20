@@ -14,10 +14,13 @@
 1. Fedora OS configurations
         - Remove sound on volume key
         - Reverse scroll direction
-        - keybinds - control/caps lock switch, is it possible to change option and command?
         - allow two finger scrolling
         - install coprs/ghostty
+                - keyd copr: alternateved/keyd
+                - ghostty copr: 
         - customizable fonts instead of hard-coding Hack
+        - ensure keyd starts on login
+2. Move i3 dependencies into /i3 to simplify base directory structure
 
 
 - PIA with network manager or openvpn

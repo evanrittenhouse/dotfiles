@@ -8,5 +8,5 @@ ripgrep
 ruff
 starship
 tig
+tmux
 tree-sitter
-zelllij

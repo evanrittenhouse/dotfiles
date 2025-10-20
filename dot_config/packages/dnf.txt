@@ -1,11 +1,15 @@
 autojump-fish
 bat
+brightnessctl
 fd
 fish
+keyd
 lua
 neovim
 python3-neovim
+redshift
 ripgrep
 ruff
 tig
+tmux
 tree-sitter
