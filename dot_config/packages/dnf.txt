@@ -13,3 +13,4 @@ ruff
 tig
 tmux
 tree-sitter
+waybar
