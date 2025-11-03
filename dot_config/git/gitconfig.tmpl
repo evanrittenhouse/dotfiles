@@ -42,8 +42,10 @@
     ca = commit -a --verbose
     cm = commit -m
     cam = commit -a -m
+
     m = commit --amend --verbose
     mne = commit --amend --no-edit
+    edit = "!git a . && git mne"
     please = push --force-with-lease
     
     d = diff
