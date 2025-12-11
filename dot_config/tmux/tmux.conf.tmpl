@@ -14,7 +14,7 @@ set-option -ga terminal-overrides ",xterm-256color"
 {{ if eq .chezmoi.os "darwin" -}}
 set -g default-shell "/opt/homebrew/bin/fish"
 {{ else if eq .chezmoi.os "linux" -}}
-set -g default-shell "/home/linuxbrew/.linuxbrew/bin/fish"
+set -g default-shell "/usr/bin/fish"
 {{ end }}
 
 # Install TPM plugins to the chezmoi target directory, rather than the source
