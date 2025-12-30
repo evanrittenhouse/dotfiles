@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-local base_lsp = { capabilities = capabilities }
+local base_settings = { capabilities = capabilities }
 
 local M = {
   {
@@ -74,12 +74,12 @@ local M = {
         "zls"
       }
 
-      local lspconfig = require("lspconfig")
       for _, server in ipairs(servers) do
-        local settings = opts.servers[server]
-        local actual_settings = settings ~= nil and settings or base_lsp
+        local custom_settings = opts.servers[server]
+        local settings = custom_settings ~= nil and custom_settings or base_settings
 
-        lspconfig[server].setup(actual_settings)
+        vim.lsp.config(server, settings)
+        vim.lsp.enable(server)
       end
     end,
     dependencies = {
