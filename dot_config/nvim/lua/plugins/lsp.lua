@@ -64,9 +64,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-local base_settings = { capabilities = capabilities }
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+local base_lsp = { capabilities = capabilities }
 
 local M = {
   {
@@ -82,14 +81,14 @@ local M = {
 
       for _, server in ipairs(servers) do
         local custom_settings = opts.servers[server]
-        local settings = custom_settings ~= nil and custom_settings or base_settings
+        local settings = custom_settings ~= nil and custom_settings or base_lsp
 
         vim.lsp.config(server, settings)
         vim.lsp.enable(server)
       end
     end,
     dependencies = {
-      "hrsh7th/nvim-cmp"
+      "saghen/blink.cmp"
     },
     event = "BufReadPre",
     opts = {
