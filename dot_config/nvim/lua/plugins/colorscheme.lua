@@ -78,6 +78,10 @@ local M = {
     opts = {
       styles = {
         italic = false
+      },
+      highlight_groups = {
+        Pmenu = { bg = 'surface' },
+        PmenuSel = { bg = 'overlay' },
       }
     }
   })
