@@ -3,7 +3,6 @@ local set_vim_option = require "utils".set_vim_option
 -- Change leader key
 vim.g.mapleader = " "
 
-set_vim_option('completeopt', { "menuone", "noselect" })
 -- Disable printing the mode, since it's already in Feline
 set_vim_option('showmode', false)
 -- Split tabs to the right
@@ -21,6 +20,7 @@ set_vim_option('smartcase', true)
 set_vim_option('laststatus', 3)
 -- Write to the swap file if nothing's been written in X miliseconds
 set_vim_option('updatetime', 300)
+set_vim_option('winborder', 'single')
 
 -- Necessary for feline
 vim.cmd('set termguicolors')

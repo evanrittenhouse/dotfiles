@@ -49,6 +49,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     setup_lsp_keybinds(args.buf)
 
+    -- Disable LSP semantic tokens (let treesitter handle highlighting)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = args.buf,
       callback = function()
