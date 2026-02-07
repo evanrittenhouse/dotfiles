@@ -12,6 +12,9 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 # autojump
 [ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
 {{ else if and (eq .chezmoi.os "linux") (ne .osid "linux-fedora-asahi-remix") -}}
 eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
