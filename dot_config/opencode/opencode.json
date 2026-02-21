@@ -1,0 +1,37 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "default_agent": "plan",
+    "model": "anthropic/claude-opus-4-5",
+    "permission": {
+        "bash": {
+            "*": "ask",
+
+            "npm *": "allow",
+            "npx *": "allow",
+            "node *": "allow",
+            "bun *": "allow",
+            "cargo *": "allow",
+            "make *": "allow",
+            "grep *": "allow",
+            "echo *": "allow",
+            "rg *": "allow",
+            "ls *": "allow",
+            "cat *": "allow",
+            "head *": "allow",
+            "tail *": "allow",
+            "find *": "allow",
+            "wc *": "allow",
+            "which *": "allow",
+
+            "git status *": "allow",
+            "git log *": "allow",
+            "git diff *": "allow",
+            "git show *": "allow",
+            "git branch *": "allow",
+            "git branch -?": "allow",
+            "git remote *": "allow",
+            "git rev-parse *": "allow",
+            "git config --get *": "allow"
+        }
+    }
+}
