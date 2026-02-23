@@ -43,6 +43,8 @@
     cm = commit -m
     cam = commit -a -m
 
+    reb = "!f() { git rebase -i HEAD~$1; }; f"
+
     m = commit --amend --verbose
     mne = commit --amend --no-edit
     edit = "!git a . && git mne"
