@@ -19,6 +19,7 @@
             "cat *": "allow",
             "head *": "allow",
             "tail *": "allow",
+            "sort *": "allow",
             "find *": "allow",
             "wc *": "allow",
             "which *": "allow",
