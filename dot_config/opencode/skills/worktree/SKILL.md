@@ -79,7 +79,29 @@ git worktree list
 # /Users/dev/projects/agent2/fix-bug-123       ghi9012 [fix-bug-123]
 ```
 
-### 3. Switch to an Existing Worktree
+### 3. Determine Whether You're in a Worktree
+
+Use `git rev-parse --git-dir` together with `git rev-parse --git-common-dir`:
+
+```bash
+GIT_DIR=$(git rev-parse --git-dir)
+COMMON_DIR=$(git rev-parse --git-common-dir)
+
+if [ "$GIT_DIR" = "$COMMON_DIR" ]; then
+  echo "You are in the main working tree"
+else
+  echo "You are in a linked worktree"
+fi
+```
+
+Typical output patterns:
+
+- Main working tree: both commands return the same path, often `.git`
+- Linked worktree: `--git-dir` points to `.git/worktrees/<name>` while `--git-common-dir` points to the main repo's `.git`
+
+**Important**: `git rev-parse --is-inside-work-tree` only tells you whether you are inside any Git working tree. It does **not** tell you whether that working tree is the main checkout or a linked worktree.
+
+### 4. Switch to an Existing Worktree
 
 ```bash
 # Find the worktree path
@@ -89,7 +111,7 @@ git worktree list | grep "<branch-name>"
 cd "../agent<N>/<branch-name>"
 ```
 
-### 4. Sync Worktree with Main Branch
+### 5. Sync Worktree with Main Branch
 
 Keep your worktree up-to-date with the main branch to minimize merge conflicts:
 
@@ -102,7 +124,7 @@ git rebase origin/main
 git merge origin/main
 ```
 
-### 5. Merge Worktree Changes Back to Main
+### 6. Merge Worktree Changes Back to Main
 
 **IMPORTANT: NEVER merge worktree branches into main without explicit user confirmation.** Always ask the user before performing any merge operation.
 
@@ -117,7 +139,7 @@ git checkout main
 git merge <branch-name>
 ```
 
-### 6. Remove a Worktree
+### 7. Remove a Worktree
 
 ```bash
 # From main repo
@@ -133,7 +155,7 @@ git branch -d <branch-name>
 git worktree prune
 ```
 
-### 7. Clean Up All Agent Worktrees
+### 8. Clean Up All Agent Worktrees
 
 ```bash
 cd "$TOP_LEVEL"
