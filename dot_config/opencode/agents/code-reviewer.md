@@ -6,6 +6,11 @@ permission:
   edit: deny
   bash: allow
   webfetch: allow
+  read: allow
+  grep: allow
+  glob: allow
+  list: allow
+  write: deny
 ---
 
 You are a code reviewer. Provide actionable, evidence-based feedback.
