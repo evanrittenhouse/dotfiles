@@ -4,6 +4,10 @@
 
 When finding relevant information on the Internet, always provide a direct URL link to the source.
 
+## Making Code Changes
+
+Keep diffs small and reviewable wherever possible. Avoid unnecessary abstractions.
+
 ## Code References
 
 When discussing code, always show specific file paths and line numbers in the format `file_path:line_number`. This helps with navigation and context.
