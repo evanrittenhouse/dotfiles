@@ -118,6 +118,9 @@ local M = {
           end,
           flags = {}
         },
+        ruff = {
+          filetypes = { 'python' },
+        },
       },
     },
   },

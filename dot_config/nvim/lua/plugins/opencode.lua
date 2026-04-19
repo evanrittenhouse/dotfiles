@@ -16,6 +16,7 @@ local M = {
     'saghen/blink.cmp',
     'nvim-telescope/telescope.nvim',
   },
+  enabled = false,
   opts = {
     default_mode = "plan",
     ui = {
