@@ -13,14 +13,14 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function()
     -- `number` already set in options.lua
-    set_vim_option('wrap', true)
-    set_vim_option('textwidth', 0)
-    set_vim_option('wrapmargin', 0)
-    set_vim_option('linebreak', true)
+    vim.opt_local.wrap = true
+    vim.opt_local.textwidth = 0
+    vim.opt_local.wrapmargin = 0
+    vim.opt_local.linebreak = true
 
-    set_vim_option('tabstop', 8)
-    set_vim_option('shiftwidth', 8)
-    set_vim_option('breakindent', true)
+    vim.opt_local.tabstop = 8
+    vim.opt_local.shiftwidth = 8
+    vim.opt_local.breakindent = true
   end
 })
 
