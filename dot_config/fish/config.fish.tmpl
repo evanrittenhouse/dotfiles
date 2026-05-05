@@ -90,3 +90,8 @@ if test -z (pgrep ssh-agent | string collect)
     ssh-add ~/.ssh/id_ed25519
 end
 {{ end }}
+
+# Added by magic CLI installer
+set -gx PATH /opt/homebrew/bin:/opt/homebrew/sbin:/Users/evan.rittenhouse/go/bin:/opt/nvim/bin:/opt/nvim:/Users/evan.rittenhouse/.cargo/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pkg/env/active/bin:/opt/pmk/env/global/bin:/usr/local/go/bin:/Applications/Ghostty.app/Contents/MacOS:/Users/evan.rittenhouse/.krew/bin /Users/evan.rittenhouse/.local/bin
+
+set -gx GIT_LFS_SKIP_SMUDGE 1
