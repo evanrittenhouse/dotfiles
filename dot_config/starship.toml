@@ -5,7 +5,6 @@ $hostname\
 $localip\
 $shlvl\
 $singularity\
-$kubernetes\
 $directory\
 $vcsh\
 $fossil_branch\
@@ -20,6 +19,7 @@ $docker_context\
 $sudo\
 $python\
 $rust\
+$kubernetes\
 $cmd_duration\
 $line_break\
 $jobs\
@@ -49,6 +49,11 @@ bright-blue = "#7daea3"
 bright-magenta = "#d3869b"
 bright-cyan = "#89b482"
 bright-white = "#dfbf8e"
+
+[kubernetes]
+disabled = false
+style = "bold blue"
+format = 'on [$context( \($namespace\))]($style) '
 
 [package]
 disabled = true

@@ -14,14 +14,16 @@ local M = {
     config = function(_, opts)
       require('kanagawa').setup(opts)
 
-      vim.cmd('colorscheme kanagawa')
+      -- vim.cmd('colorscheme kanagawa')
     end,
-    enabled = false,
+    enabled = true,
     opts = {
-      transparent = false,
       background = {
         dark = "wave",
         light = "lotus"
+      },
+      keywordStyle = {
+        italic = false
       }
     },
     overrides = function(colors)
@@ -31,10 +33,10 @@ local M = {
         FloatBorder = { bg = "none" },
         FloatTitle = { bg = "none" },
 
-        -- Save an hlgroup with dark background and dimmed foreground
-        -- so that you can use it where your still want darker windows.
-        -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-        NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+--         -- Save an hlgroup with dark background and dimmed foreground
+--         -- so that you can use it where your still want darker windows.
+--         -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+--         NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
         -- Popular plugins that open floats will link to NormalFloat by default;
         -- set their background accordingly if you wish to keep them dark and borderless
