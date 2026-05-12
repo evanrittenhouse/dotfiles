@@ -41,6 +41,7 @@ bind l select-pane -R
 
 bind '"' split-window -v -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
+bind a split-window -hb -l 33% -c "#{pane_current_path}"
 
 # Plugins
 set -g @plugin 'tmux-plugins/tpm'
