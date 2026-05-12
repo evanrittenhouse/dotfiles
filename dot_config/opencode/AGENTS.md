@@ -1,6 +1,6 @@
 # Global Agent Guidelines
 
-Be liberal with newlines when creating new code. 
+When writing code, each block should be followed by a newline.
 
 ## Source Attribution
 
