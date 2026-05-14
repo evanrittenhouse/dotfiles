@@ -39,10 +39,36 @@ alias cat="bat"
 alias dev="cd ~/Documents/projects"
 {{ if eq .chezmoi.os "linux" -}}
 alias obsidian="flatpak run md.obsidian.Obsidian"
-alias spotify="flatpak run com.spotify.Client" 
+alias spotify="flatpak run com.spotify.Client"
 alias firefox="flathub run org.mozilla.Firefox"
 alias signal="flathub run org.signal.Signal"
 {{ end }}
+
+function gbd --description "Delete a git branch (translates + to /); remove its worktree first if it blocks deletion"
+    if test (count $argv) -ne 1
+        echo "usage: gbd <branch>" >&2
+        return 1
+    end
+
+    set -l branch (string replace -a '+' '/' -- $argv[1])
+
+    set -l output (git branch -d $branch 2>&1)
+    set -l rc $status
+    if test $rc -eq 0
+        printf '%s\n' $output
+        return 0
+    end
+
+    set -l wt (string match -rg "checked out at '([^']+)'" -- $output)
+    if test -z "$wt"
+        printf '%s\n' $output >&2
+        return $rc
+    end
+
+    echo "Worktree at $wt is blocking deletion; removing it..."
+    git worktree remove $wt; or return
+    git branch -d $branch
+end
 
 # vim keybinds
 fish_hybrid_key_bindings
