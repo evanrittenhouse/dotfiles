@@ -20,7 +20,7 @@ When discussing code, always show specific file paths and line numbers in the fo
 
 If you are not already in a git worktree, or if the change isn't related to the worktree you're in, create a new one with a descriptive branch name before making code changes. Use the `/worktree <branch-name>` skill to create isolated workspaces (e.g., `/worktree feature/add-auth`, `/worktree fix/login-bug`).
 
-**Session cleanup**: When the session is complete, ask the user if they want to delete the worktree. Only remove the worktree if they explicitly confirm.
+**Session cleanup**: When the session is complete, ask the user if they want to delete the worktree. Only remove the worktree if they explicitly confirm. When removing a worktree, also remove the associated branch.
 
 ## Plan mode
 
