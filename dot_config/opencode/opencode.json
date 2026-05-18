@@ -11,6 +11,7 @@
             "bun *": "allow",
             "cargo *": "allow",
             "make *": "allow",
+            "gofmt *": "allow",
             "grep *": "allow",
             "echo *": "allow",
             "rg *": "allow",
