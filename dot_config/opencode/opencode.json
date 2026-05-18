@@ -8,6 +8,8 @@
             "npm *": "allow",
             "npx *": "allow",
             "node *": "allow",
+            "bazel build *": "allow",
+            "bazel test *": "allow",
             "bun *": "allow",
             "cargo *": "allow",
             "make *": "allow",
@@ -34,6 +36,10 @@
             "git rev-parse *": "allow",
             "git worktree *": "allow",
             "git config --get *": "allow"
+        },
+        "external_directory": {
+            "~/.cargo/registry/**": "allow",
+            "~/Documents/projects"
         }
     }
 }

@@ -12,6 +12,8 @@ Keep diffs small and reviewable. Avoid unnecessary abstractions. Be liberal with
 
 Avoid free functions when a function takes a parameter that is a member of a class, struct, or similar type. In that case, make the function a member of that type instead.
 
+Avoid adding single-statement helper functions. Prefer inlining where possible. 
+
 ## Code References
 
 When discussing code, always show specific file paths and line numbers in the format `file_path:line_number`. This helps with navigation and context.
