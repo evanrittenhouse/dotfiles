@@ -10,6 +10,8 @@ When finding relevant information on the Internet, always provide a direct URL l
 
 Keep diffs small and reviewable. Avoid unnecessary abstractions. Be liberal with newlines; for example, when writing Rust, each block should be followed by a newline.
 
+Avoid free functions when a function takes a parameter that is a member of a class, struct, or similar type. In that case, make the function a member of that type instead.
+
 ## Code References
 
 When discussing code, always show specific file paths and line numbers in the format `file_path:line_number`. This helps with navigation and context.
