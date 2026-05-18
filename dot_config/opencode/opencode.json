@@ -31,7 +31,7 @@
             "git branch -?": "allow",
             "git remote *": "allow",
             "git rev-parse *": "allow",
-            "git worktree list": "allow",
+            "git worktree *": "allow",
             "git config --get *": "allow"
         }
     }
