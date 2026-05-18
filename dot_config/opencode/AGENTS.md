@@ -22,4 +22,8 @@ If you are not already in a git worktree, or if the change isn't related to the 
 
 ## Plan mode
 
-When creating a plan or reviewing a plan, always show the entire plan rather than making me scroll for it. 
+When creating a plan or reviewing a plan, always show the entire plan.
+
+Each step in a plan should be as small and focused as possible.
+
+Before implementing a new plan step, ask the user to review the current diff. If the user approves it, commit the changes with a detailed commit message before proceeding to the next implementation step.
