@@ -41,6 +41,7 @@
         },
         "external_directory": {
             "~/.cargo/registry/**": "allow",
+            "~/go/pkg/mod/**": "allow",
             "~/Documents/projects/**": "allow"
         }
     }
