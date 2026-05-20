@@ -14,6 +14,8 @@ Avoid free functions when a function takes a parameter that is a member of a cla
 
 Avoid adding single-statement helper functions. Prefer inlining where possible. 
 
+Commit messages should be restricted to 72 characters per line.
+
 ## Code References
 
 When discussing code, always show specific file paths and line numbers in the format `file_path:line_number`. This helps with navigation and context.
