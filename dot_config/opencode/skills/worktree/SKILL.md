@@ -5,35 +5,40 @@ description: Create, manage, and delete git worktrees for parallel AI agent work
 
 # Git Worktree Management for AI Agents
 
-Manage isolated git worktrees for parallel AI agent workflows. Worktrees are created as sibling directories to the main repository with naming pattern `agent<N>/<branch>`.
+Manage isolated git worktrees for parallel AI agent workflows. Worktrees live under `~/Documents/projects/worktrees/<project-name>/<branch-name>`, where `<project-name>` matches the repository name and `<branch-name>` uses the form `<agent>+<descriptive-name>`.
 
 ## Arguments
 
-This skill accepts a **branch name** argument:
-- `/worktree feature-auth` - Creates/switches to worktree for branch `feature-auth`
-- `/worktree fix/bug-123` - Creates/switches to worktree for branch `fix/bug-123`
+This skill accepts a **branch name** argument in the form `<agent>+<descriptive-name>`:
+- `/worktree opencode+feature-auth` - Creates/switches to worktree for branch `opencode+feature-auth`
+- `/worktree reviewer+fix-bug-123` - Creates/switches to worktree for branch `reviewer+fix-bug-123`
+
+Use hyphens in the descriptive segment. Avoid `/` so the branch name and worktree directory stay identical.
 
 ## Directory Structure
 
-Worktrees are created as siblings to the top-level git repository:
+Worktrees are created in `~/Documents/projects/worktrees/<project-name>/`, where `<project-name>` is the basename of the top-level repository (or superproject for submodules).
 
+```text
+~/Documents/projects/worktrees/
+├── sandboxes/
+│   ├── opencode+feature-auth/
+│   └── reviewer+fix-pagination/
+└── chezmoi/
+    └── opencode+update-worktree-skill/
 ```
-~/projects/
-├── myrepo/                    # Main repository (or superrepo if using submodules)
-├── agent1/feature-auth/       # Agent 1's worktree
-├── agent2/fix-bug-123/        # Agent 2's worktree
-└── agent3/refactor-api/       # Agent 3's worktree
-```
+
+The worktree directory name must exactly match the branch name.
 
 ## Quick Reference
 
 | Task | Command |
 |------|---------|
-| Create worktree | `git worktree add -b <branch> ../<agent-dir>/<branch>` |
+| Create worktree | `git worktree add -b <branch> "$HOME/Documents/projects/worktrees/<project>/<branch>"` |
 | List worktrees | `git worktree list` |
-| Remove worktree | `git worktree remove ../<agent-dir>/<branch>` |
+| Remove worktree | `git worktree remove "$HOME/Documents/projects/worktrees/<project>/<branch>"` |
 | Prune stale refs | `git worktree prune` |
-| Find next agent slot | See workflow below |
+| Derive project/worktree path | See workflow below |
 
 ---
 
@@ -45,26 +50,31 @@ Worktrees are created as siblings to the top-level git repository:
 
 ```bash
 # Step 1: Find the top-level git directory (handles submodules)
-TOP_LEVEL=$(git rev-parse --show-superproject-working-tree 2>/dev/null || git rev-parse --show-toplevel)
+TOP_LEVEL=$(git rev-parse --show-superproject-working-tree)
+if [ -z "$TOP_LEVEL" ]; then
+  TOP_LEVEL=$(git rev-parse --show-toplevel)
+fi
 cd "$TOP_LEVEL"
 
-# Step 2: Find the next available agent slot
-AGENT_NUM=1
-while [ -d "../agent${AGENT_NUM}" ]; do
-  AGENT_NUM=$((AGENT_NUM + 1))
-done
+# Step 2: Build the project-specific worktree path
+PROJECT_NAME=$(basename "$TOP_LEVEL")
+WORKTREE_ROOT="$HOME/Documents/projects/worktrees/$PROJECT_NAME"
 
 # Step 3: Create the worktree with a new branch
-BRANCH_NAME="<branch>"  # Replace with actual branch name
-git worktree add -b "$BRANCH_NAME" "../agent${AGENT_NUM}/${BRANCH_NAME}"
+BRANCH_NAME="<agent>+<descriptive-name>"  # Example: opencode+feature-auth
+WORKTREE_PATH="$WORKTREE_ROOT/$BRANCH_NAME"
+
+mkdir -p "$WORKTREE_ROOT"
+git worktree add -b "$BRANCH_NAME" "$WORKTREE_PATH"
 
 # Step 4: Navigate to the worktree
-cd "../agent${AGENT_NUM}/${BRANCH_NAME}"
+cd "$WORKTREE_PATH"
 ```
 
 **For an existing branch:**
 ```bash
-git worktree add "../agent${AGENT_NUM}/${BRANCH_NAME}" "$BRANCH_NAME"
+mkdir -p "$WORKTREE_ROOT"
+git worktree add "$WORKTREE_PATH" "$BRANCH_NAME"
 ```
 
 ### 2. List All Worktrees
@@ -74,9 +84,9 @@ git worktree add "../agent${AGENT_NUM}/${BRANCH_NAME}" "$BRANCH_NAME"
 git worktree list
 
 # Example output:
-# /Users/dev/projects/myrepo                   abc1234 [main]
-# /Users/dev/projects/agent1/feature-auth      def5678 [feature-auth]
-# /Users/dev/projects/agent2/fix-bug-123       ghi9012 [fix-bug-123]
+# /Users/dev/projects/myrepo                                                abc1234 [main]
+# /Users/dev/Documents/projects/worktrees/myrepo/opencode+feature-auth     def5678 [opencode+feature-auth]
+# /Users/dev/Documents/projects/worktrees/myrepo/reviewer+fix-bug-123      ghi9012 [reviewer+fix-bug-123]
 ```
 
 ### 3. Determine Whether You're in a Worktree
@@ -97,7 +107,7 @@ fi
 Typical output patterns:
 
 - Main working tree: both commands return the same path, often `.git`
-- Linked worktree: `--git-dir` points to `.git/worktrees/<name>` while `--git-common-dir` points to the main repo's `.git`
+- Linked worktree: `--git-dir` points to `.git/worktrees/<branch-name>` while `--git-common-dir` points to the main repo's `.git`
 
 **Important**: `git rev-parse --is-inside-work-tree` only tells you whether you are inside any Git working tree. It does **not** tell you whether that working tree is the main checkout or a linked worktree.
 
@@ -108,7 +118,14 @@ Typical output patterns:
 git worktree list | grep "<branch-name>"
 
 # Navigate to it
-cd "../agent<N>/<branch-name>"
+TOP_LEVEL=$(git rev-parse --show-superproject-working-tree)
+if [ -z "$TOP_LEVEL" ]; then
+  TOP_LEVEL=$(git rev-parse --show-toplevel)
+fi
+PROJECT_NAME=$(basename "$TOP_LEVEL")
+BRANCH_NAME="<agent>+<descriptive-name>"
+
+cd "$HOME/Documents/projects/worktrees/$PROJECT_NAME/$BRANCH_NAME"
 ```
 
 ### 5. Sync Worktree with Main Branch
@@ -134,6 +151,10 @@ git push -u origin <branch-name>
 # Then create PR via GitHub/GitLab
 
 # Only if user explicitly requests direct merge:
+TOP_LEVEL=$(git rev-parse --show-superproject-working-tree)
+if [ -z "$TOP_LEVEL" ]; then
+  TOP_LEVEL=$(git rev-parse --show-toplevel)
+fi
 cd "$TOP_LEVEL"
 git checkout main
 git merge <branch-name>
@@ -142,26 +163,44 @@ git merge <branch-name>
 ### 7. Remove a Worktree
 
 ```bash
+TOP_LEVEL=$(git rev-parse --show-superproject-working-tree)
+if [ -z "$TOP_LEVEL" ]; then
+  TOP_LEVEL=$(git rev-parse --show-toplevel)
+fi
+PROJECT_NAME=$(basename "$TOP_LEVEL")
+BRANCH_NAME="<agent>+<descriptive-name>"
+WORKTREE_PATH="$HOME/Documents/projects/worktrees/$PROJECT_NAME/$BRANCH_NAME"
+
 # From main repo
 cd "$TOP_LEVEL"
 
 # Remove the worktree (keeps the branch)
-git worktree remove "../agent<N>/<branch-name>"
+git worktree remove "$WORKTREE_PATH"
 
 # Optionally delete the branch too
-git branch -d <branch-name>
+git branch -d "$BRANCH_NAME"
 
 # Clean up any stale worktree references
 git worktree prune
+
+# Optionally remove the project directory if it's empty
+rmdir "$HOME/Documents/projects/worktrees/$PROJECT_NAME" 2>/dev/null || true
 ```
 
-### 8. Clean Up All Agent Worktrees
+### 8. Clean Up All Worktrees for a Project
 
 ```bash
+TOP_LEVEL=$(git rev-parse --show-superproject-working-tree)
+if [ -z "$TOP_LEVEL" ]; then
+  TOP_LEVEL=$(git rev-parse --show-toplevel)
+fi
+PROJECT_NAME=$(basename "$TOP_LEVEL")
+PROJECT_WORKTREE_ROOT="$HOME/Documents/projects/worktrees/$PROJECT_NAME"
+
 cd "$TOP_LEVEL"
 
-# List and remove all agent worktrees
-for wt in $(git worktree list --porcelain | grep "^worktree" | grep "/agent[0-9]" | cut -d' ' -f2); do
+for wt in "$PROJECT_WORKTREE_ROOT"/*; do
+  [ -d "$wt" ] || continue
   echo "Removing: $wt"
   git worktree remove "$wt"
 done
@@ -169,8 +208,8 @@ done
 # Prune stale references
 git worktree prune
 
-# Optionally remove empty agent directories
-rmdir ../agent* 2>/dev/null
+# Optionally remove the empty project directory
+rmdir "$PROJECT_WORKTREE_ROOT" 2>/dev/null || true
 ```
 
 ---
@@ -179,8 +218,9 @@ rmdir ../agent* 2>/dev/null
 
 ### Naming Conventions
 
-- **Branch names**: Use descriptive prefixes: `feature/`, `fix/`, `refactor/`, `docs/`
-- **Agent directories**: Sequential numbering (`agent1`, `agent2`, etc.) ensures no conflicts
+- **Branch names**: Always use `<agent>+<descriptive-name>`, for example `opencode+feature-auth`
+- **Descriptive segment**: Use lowercase hyphenated words and avoid `/`
+- **Project directories**: Use the top-level repository name, such as `sandboxes` or `chezmoi`
 - **Keep branches short-lived**: Merge or discard within hours/days, not weeks
 
 ### Environment Setup
@@ -212,22 +252,28 @@ npm install          # or pnpm install, yarn, etc.
 ### Scenario: Run Multiple Agents in Parallel
 
 ```bash
-# Terminal 1: Agent 1 works on auth
+# Terminal 1: Agent works on auth
 cd ~/projects/myrepo
-git worktree add -b feature-auth ../agent1/feature-auth
-cd ../agent1/feature-auth
+mkdir -p "$HOME/Documents/projects/worktrees/myrepo"
+git worktree add -b opencode+feature-auth \
+  "$HOME/Documents/projects/worktrees/myrepo/opencode+feature-auth"
+cd "$HOME/Documents/projects/worktrees/myrepo/opencode+feature-auth"
 # Start agent with task...
 
-# Terminal 2: Agent 2 works on bug fix
+# Terminal 2: Agent works on bug fix
 cd ~/projects/myrepo
-git worktree add -b fix-pagination ../agent2/fix-pagination
-cd ../agent2/fix-pagination
+mkdir -p "$HOME/Documents/projects/worktrees/myrepo"
+git worktree add -b fixer+fix-pagination \
+  "$HOME/Documents/projects/worktrees/myrepo/fixer+fix-pagination"
+cd "$HOME/Documents/projects/worktrees/myrepo/fixer+fix-pagination"
 # Start agent with task...
 
-# Terminal 3: Agent 3 works on tests
+# Terminal 3: Agent works on tests
 cd ~/projects/myrepo
-git worktree add -b add-tests ../agent3/add-tests
-cd ../agent3/add-tests
+mkdir -p "$HOME/Documents/projects/worktrees/myrepo"
+git worktree add -b tester+add-auth-tests \
+  "$HOME/Documents/projects/worktrees/myrepo/tester+add-auth-tests"
+cd "$HOME/Documents/projects/worktrees/myrepo/tester+add-auth-tests"
 # Start agent with task...
 ```
 
@@ -237,26 +283,29 @@ cd ../agent3/add-tests
 # List what agents have been working on
 git worktree list
 
+PROJECT_WORKTREE_ROOT="$HOME/Documents/projects/worktrees/myrepo"
+
 # Check each worktree's status
-for agent_dir in ../agent*/; do
-  echo "=== $agent_dir ==="
-  git -C "$agent_dir"/* status --short
-  git -C "$agent_dir"/* log --oneline -3
+for wt in "$PROJECT_WORKTREE_ROOT"/*; do
+  [ -d "$wt" ] || continue
+  echo "=== $wt ==="
+  git -C "$wt" status --short
+  git -C "$wt" log --oneline -3
 done
 
 # Merge completed work
 cd ~/projects/myrepo
 git checkout main
-git merge feature-auth
-git worktree remove ../agent1/feature-auth
+git merge opencode+feature-auth
+git worktree remove "$PROJECT_WORKTREE_ROOT/opencode+feature-auth"
 ```
 
 ### Scenario: Discard Failed Work
 
 ```bash
 # If an agent's work isn't useful, discard it
-git worktree remove --force ../agent2/fix-pagination
-git branch -D fix-pagination
+git worktree remove --force "$HOME/Documents/projects/worktrees/myrepo/fixer+fix-pagination"
+git branch -D fixer+fix-pagination
 git worktree prune
 ```
 
@@ -281,11 +330,11 @@ The worktree has uncommitted changes:
 
 ```bash
 # Option 1: Commit or stash changes first
-cd ../agent<N>/<branch>
+cd "$HOME/Documents/projects/worktrees/<project-name>/<branch-name>"
 git stash  # or git commit
 
 # Option 2: Force remove (discards changes!)
-git worktree remove --force ../agent<N>/<branch>
+git worktree remove --force "$HOME/Documents/projects/worktrees/<project-name>/<branch-name>"
 ```
 
 ### Submodules in Worktrees
@@ -293,7 +342,7 @@ git worktree remove --force ../agent<N>/<branch>
 If your project uses submodules, initialize them in each worktree:
 
 ```bash
-cd ../agent<N>/<branch>
+cd "$HOME/Documents/projects/worktrees/<project-name>/<branch-name>"
 git submodule update --init --recursive
 ```
 
@@ -302,7 +351,9 @@ git submodule update --init --recursive
 When working with submodules, always operate from the superproject:
 
 ```bash
-# This returns the superproject path, or toplevel if no superproject
-TOP_LEVEL=$(git rev-parse --show-superproject-working-tree 2>/dev/null || git rev-parse --show-toplevel)
+TOP_LEVEL=$(git rev-parse --show-superproject-working-tree)
+if [ -z "$TOP_LEVEL" ]; then
+  TOP_LEVEL=$(git rev-parse --show-toplevel)
+fi
 echo "Top-level repository: $TOP_LEVEL"
 ```
