@@ -85,7 +85,7 @@ For auth changes: verify access modifiers not weakened, permission checks not re
 
 ### Performance
 
-Flag only obvious issues: O(n²) on unbounded data, N+1 queries, blocking I/O on hot paths, missing pagination.
+Flag only obvious issues: O(n²) on unbounded data, N+1 queries, blocking I/O on hot paths, missing pagination, etc.
 
 ## Before You Flag Something
 

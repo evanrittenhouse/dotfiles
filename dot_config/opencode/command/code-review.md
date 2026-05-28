@@ -3,7 +3,7 @@ description: Review changes with parallel @code-review subagents
 agent: plan
 ---
 
-Review uncommitted changes by default. If no uncommitted changes, review the last commit. If the user provides a PR/MR number or link, fetch it with CLI tools first.
+Review the full local changeset against the repository's default branch by default. If the user provides a PR/MR number or link, fetch it with CLI tools first and review that. If no PR/MR is provided, resolve the exact default-branch ref with `set remote "$(git config --get "branch.$(git branch --show-current).remote")" && git symbolic-ref --quiet --short "refs/remotes/$remote/HEAD"`. If that fails, prompt the user for a branch name to diff against. Diff from the merge-base so committed, staged, and unstaged changes on the current branch are all included.
 
 Guidance: $ARGUMENTS
 
