@@ -13,9 +13,11 @@
             "bazel test *": "allow",
             "bun *": "allow",
             "cargo *": "allow",
+            "rustfmt *": "allow",
             "make *": "allow",
             "mkdir *": "allow",
             "gofmt *": "allow",
+            "golangci-lint run *": "allow",
             "grep *": "allow",
             "echo *": "allow",
             "rg *": "allow",
@@ -30,15 +32,20 @@
             "which *": "allow",
 
             "git status *": "allow",
+            "git branch *": "allow",
             "git log *": "allow",
             "git diff *": "allow",
             "git show *": "allow",
-            "git branch *": "allow",
             "git branch -?": "allow",
             "git remote *": "allow",
             "git rev-parse *": "allow",
             "git worktree *": "allow",
-            "git config --get *": "allow"
+            "git config --get *": "allow",
+            "git merge-base *": "allow",
+            "git symbolic-ref *": "allow",
+
+            "gh pr view *": "allow",
+            "gh pr diff *": "allow"
         },
         "external_directory": {
             "~/.cargo/registry/**": "allow",
