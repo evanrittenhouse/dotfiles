@@ -48,7 +48,7 @@
             "gh pr diff *": "allow"
         },
         "external_directory": {
-            "~/.cargo/registry/**": "allow",
+            "~/.cargo/**": "allow",
             "~/go/pkg/mod/**": "allow",
             "~/Documents/projects/**": "allow"
         }
