@@ -44,6 +44,9 @@
             "git merge-base *": "allow",
             "git symbolic-ref *": "allow",
 
+            "~/.config/scripts/git-default-branch": "allow",
+            "~/.config/scripts/git-default-branch *": "allow",
+
             "gh pr view *": "allow",
             "gh pr diff *": "allow"
         },

@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_path="${1:-.}"
+
+if ! git -C "$repo_path" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "not a git repository: $repo_path" >&2
+    exit 1
+fi
+
+remotes=""
+
+add_remote() {
+    local candidate="$1"
+    local remote
+
+    if [ -z "$candidate" ] || [ "$candidate" = "." ]; then
+        return
+    fi
+
+    for remote in $remotes; do
+        if [ "$remote" = "$candidate" ]; then
+            return
+        fi
+    done
+
+    remotes="$remotes $candidate"
+}
+
+current_branch="$(git -C "$repo_path" branch --show-current 2>/dev/null || true)"
+
+if [ -n "$current_branch" ]; then
+    add_remote "$(git -C "$repo_path" config --get "branch.$current_branch.remote" 2>/dev/null || true)"
+fi
+
+if git -C "$repo_path" remote | grep -qx "origin"; then
+    add_remote "origin"
+fi
+
+while IFS= read -r remote; do
+    add_remote "$remote"
+done < <(git -C "$repo_path" remote)
+
+for remote in $remotes; do
+    default_ref="$(git -C "$repo_path" symbolic-ref --quiet --short "refs/remotes/$remote/HEAD" 2>/dev/null || true)"
+
+    if [ -n "$default_ref" ] &&
+        git -C "$repo_path" rev-parse --verify --quiet "$default_ref^{commit}" >/dev/null; then
+        printf '%s\n' "$default_ref"
+        exit 0
+    fi
+done
+
+for remote in $remotes; do
+    default_branch="$(
+        git -C "$repo_path" ls-remote --symref "$remote" HEAD 2>/dev/null \
+            | awk '$1 == "ref:" && $3 == "HEAD" { sub("^refs/heads/", "", $2); print $2; exit }' \
+            || true
+    )"
+
+    if [ -n "$default_branch" ] &&
+        git -C "$repo_path" rev-parse --verify --quiet "refs/remotes/$remote/$default_branch^{commit}" >/dev/null; then
+        printf '%s/%s\n' "$remote" "$default_branch"
+        exit 0
+    fi
+done
+
+for default_branch in main master trunk develop; do
+    for remote in $remotes; do
+        if git -C "$repo_path" rev-parse --verify --quiet "refs/remotes/$remote/$default_branch^{commit}" >/dev/null; then
+            printf '%s/%s\n' "$remote" "$default_branch"
+            exit 0
+        fi
+    done
+
+    if git -C "$repo_path" rev-parse --verify --quiet "$default_branch^{commit}" >/dev/null; then
+        printf '%s\n' "$default_branch"
+        exit 0
+    fi
+done
+
+echo "unable to determine default branch" >&2
+exit 1
