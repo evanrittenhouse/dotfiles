@@ -6,6 +6,14 @@
 .config/nvim/plugin/packer_compiled.lua
 .config/tmux/plugins
 
+# pi writes runtime state/secrets into ~/.config/pi (via the ~/.pi/agent symlink)
+.config/pi/auth.json
+.config/pi/settings.json
+.config/pi/trust.json
+.config/pi/*-debug.log
+.config/pi/sessions
+.config/pi/sessions/**
+
 Dockerfile
 reset_chezmoi.sh
 README.md
