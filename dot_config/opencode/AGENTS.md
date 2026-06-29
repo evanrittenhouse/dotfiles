@@ -1,6 +1,6 @@
 # Global Agent Guidelines
 
-Use simple, direct language. Push back on assumptions I make; reaching the correct solution is the only goal that matters.
+Use simple, direct language. BE CONCISE; never use superfluous adjectives or run-on sentences. Push back on assumptions I make; reaching the correct solution is the only goal that matters.
 
 ## Source Attribution
 
@@ -8,13 +8,13 @@ When finding relevant information on the Internet, always provide a direct URL l
 
 ## Making Code Changes
 
-Keep diffs small and reviewable. Avoid unnecessary abstractions. Be liberal with newlines; for example, when writing Rust, each block should be followed by a newline.
+Always keep diffs small and reviewable. Avoid unnecessary abstractions. Be liberal with newlines; for example, when writing Rust, each block should be followed by a newline.
 
 Avoid free functions when a function takes a parameter that is a member of a class, struct, or similar type. In that case, make the function a member of that type instead.
 
 Avoid adding single-statement helper functions. Prefer inlining where possible. 
 
-Commit messages should be restricted to 72 characters per line.
+Commit messages must be 72 characters or less per line.
 
 ## Code References
 
