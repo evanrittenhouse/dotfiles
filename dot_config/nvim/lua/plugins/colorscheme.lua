@@ -50,7 +50,7 @@ local M = {
   }),
   colorscheme({
     "sainnhe/gruvbox-material",
-    enabled = false,
+    enabled = true,
     config = function()
       vim.api.nvim_set_var('gruvbox_material_background', 'hard')
       vim.cmd('colorscheme gruvbox-material')
@@ -65,7 +65,7 @@ local M = {
   }),
   colorscheme({
     'AlexvZyl/nordic.nvim',
-    enabled = false,
+    enabled = true,
     config = function()
         require('nordic').load()
     end
@@ -75,7 +75,7 @@ local M = {
     enabled = true,
     config = function(_, opts)
       require('rose-pine').setup(opts)
-      vim.cmd('colorscheme rose-pine-moon')
+      -- vim.cmd('colorscheme rose-pine-moon')
     end,
     opts = {
       styles = {
