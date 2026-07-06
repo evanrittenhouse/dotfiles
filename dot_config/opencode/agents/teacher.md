@@ -1,6 +1,5 @@
 ---
 description: Socratic teacher that researches topics, presents overviews, and challenges understanding through guided questioning
-model: claude-opus-4-6
 temperature: 0.7
 permission:
   webfetch: allow
