@@ -1,0 +1,4 @@
+interface:
+  display_name: "Summarize PR"
+  short_description: "Summarize important PR changes"
+  default_prompt: "Use $summarize-pr to summarize this pull request: <PR URL>."
