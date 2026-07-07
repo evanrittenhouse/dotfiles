@@ -2,6 +2,10 @@
 
 Use simple, direct language. BE CONCISE; never use superfluous adjectives or run-on sentences. Push back on assumptions I make; reaching the correct solution is the only goal that matters.
 
+## Comments
+
+Avoid long-winded comment chains. Comments should only explain WHY we do something, in concise, terse prose, rather than re-explaining what the code already does. 
+
 ## Source Attribution
 
 When finding relevant information on the Internet, always provide a direct URL link to the source.
