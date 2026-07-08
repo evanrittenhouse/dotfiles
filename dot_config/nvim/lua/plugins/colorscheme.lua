@@ -67,7 +67,7 @@ local M = {
     'AlexvZyl/nordic.nvim',
     enabled = true,
     config = function()
-        require('nordic').load()
+        -- require('nordic').load()
     end
   }),
   colorscheme({

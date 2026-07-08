@@ -21,6 +21,7 @@ set_vim_option('laststatus', 3)
 -- Write to the swap file if nothing's been written in X miliseconds
 set_vim_option('updatetime', 300)
 set_vim_option('winborder', 'single')
+set_vim_option('cursorline', true)
 
 -- Necessary for feline
 vim.cmd('set termguicolors')

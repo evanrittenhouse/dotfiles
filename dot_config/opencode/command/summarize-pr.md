@@ -1,12 +1,6 @@
 ---
-name: summarize-pr
-description: >-
-  Summarize a GitHub pull request from a PR URL, number, or branch by gathering PR metadata,
-  changed files, important diffs, tests, CI status, and reviewer-facing risk areas. Use when
-  the user asks for a PR summary, wants the important files and changes explained, needs test
-  coverage called out, or wants critical sections and likely review concerns such as race
-  conditions, lifecycle issues, rollout risk, security, data compatibility, performance, or
-  missing validation highlighted without performing a full code review.
+description: Summarize a PR's changes, tests, CI, and reviewer risk areas
+argument-hint: <PR URL | number | branch>
 ---
 
 # Summarize PR
