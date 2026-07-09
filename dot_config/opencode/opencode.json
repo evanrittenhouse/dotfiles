@@ -13,6 +13,8 @@
             "*bazel test *": "allow",
             "*bun *": "allow",
             "*cargo *": "allow",
+            "go *": "allow",
+
             "*rustfmt *": "allow",
             "*make *": "allow",
             "*mkdir *": "allow",
