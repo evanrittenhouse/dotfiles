@@ -50,6 +50,9 @@
 
             "*gh pr view *": "allow",
             "*gh pr diff *": "allow"
+
+            "*gcloud logging read*": "allow",
+            "*gcx metrics query*": "allow"
         },
         "external_directory": {
             "~/.cargo/**": "allow",
