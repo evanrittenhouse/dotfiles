@@ -71,9 +71,9 @@ Use `headRepository.nameWithOwner` and `headRefOid` from `/tmp/summarize-pr/pr.j
 
 ## Risk Lens
 
-Flag important areas to review even when you are not certain they are bugs. Label them as review focus, risk, or test gap rather than findings unless the evidence is conclusive.
+Flag important areas to review even when you are not certain they are bugs. Label them as review focus, risk, or test gap rather than findings unless the evidence is conclusive. The following IS NOT an exhaustive list, but a guide on the types of things to look for.
 
-Check for:
+Check for issues like:
 
 - **Race conditions**: shared mutable state, goroutines, async callbacks, event handlers, parallel tests, locks, atomics, channel closing, request cancellation.
 - **Lifecycle issues**: startup and shutdown order, cleanup, ownership transfer, finalizers, subscriptions, watchers, retries, background workers, timers, context propagation.
@@ -81,8 +81,9 @@ Check for:
 - **Rollout and config**: feature flags, environment variables, Helm or Terraform changes, default behavior, partial deployment safety.
 - **Security and privacy**: authorization checks, token handling, secret logging, tenant boundaries, path traversal, injection risk.
 - **Error handling**: retry loops, idempotency, timeouts, cancellation, partial failure, observability around failures.
-- **Performance**: new loops over unbounded collections, extra network calls, N+1 behavior, cache invalidation, memory ownership.
+- **Performance**: new loops over unbounded collections, extra network calls, N+1 behavior, cache invalidation, memory ownership, blocking syscalls.
 - **Tests**: missing negative tests, concurrency tests, lifecycle cleanup tests, migration tests, integration coverage, flaky timing assumptions.
+- **Boundaries**: API contracts, package boundaries, proper encapsulation.
 
 ## Output Shape
 
