@@ -15,12 +15,12 @@
             "*bun *": "allow",
             "*cargo *": "allow",
             "go *": "allow",
-
             "*rustfmt *": "allow",
             "*make *": "allow",
-            "*mkdir *": "allow",
             "*gofmt *": "allow",
             "*golangci-lint run *": "allow",
+
+            "*mkdir *": "allow",
             "*grep *": "allow",
             "*echo *": "allow",
             "*rg *": "allow",
@@ -33,6 +33,8 @@
             "*find *": "allow",
             "*wc *": "allow",
             "*which *": "allow",
+            "*sed *": "allow",
+            "*grep *": "allow",
 
             "*git status *": "allow",
             "*git branch *": "allow",
