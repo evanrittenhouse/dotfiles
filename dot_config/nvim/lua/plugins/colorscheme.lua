@@ -60,7 +60,7 @@ local M = {
     "savq/melange-nvim",
     enabled = false,
     config = function()
-      vim.cmd('colorscheme melange')
+      -- vim.cmd('colorscheme melange')
     end
   }),
   colorscheme({
