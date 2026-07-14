@@ -2,6 +2,7 @@ local BUF_READ = { "BufReadPre", "BufReadPost" }
 local M = {
   { "tpope/vim-sleuth" },
   { "tpope/vim-fugitive" },
+  { "tpope/vim-rhubarb", dependencies = { "tpope/vim-fugitive" } },
   {
     "lewis6991/gitsigns.nvim",
     -- TODO: remove config = true
