@@ -14,7 +14,7 @@
             "*bazel test *": "allow",
             "*bun *": "allow",
             "*cargo *": "allow",
-            "go *": "allow",
+            "*go *": "allow",
             "*rustfmt *": "allow",
             "*make *": "allow",
             "*gofmt *": "allow",
