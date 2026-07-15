@@ -43,3 +43,8 @@ rename_tab = "prefix+comma"
 # Agent panel navigation (unset by default in herdr)
 next_agent = "prefix+a"
 previous_agent = "prefix+shift+a"
+
+# Indexed shortcuts: prefix+1..9 focuses agent rows (herdr default:
+# switch_tab), so switch_tab moves to prefix+shift+1..9.
+focus_agent = "prefix+1..9"
+switch_tab = "prefix+shift+1..9"
