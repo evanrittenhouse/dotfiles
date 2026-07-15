@@ -1,0 +1,45 @@
+# Keybindings ported from tmux.conf. Non-key settings (theme, shell,
+# plugins, status bar) intentionally left at herdr defaults.
+
+[keys]
+prefix = "ctrl+space"
+
+# tmux: bind r source-file (reload). Swapped with herdr's default
+# resize_mode = "prefix+r" to keep tmux muscle memory.
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+# tmux: bind h/j/k/l select-pane (herdr defaults, kept explicit)
+focus_pane_left = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+
+# tmux: C-\ select-pane -l (last pane); prefix+; is the tmux default
+last_pane = ["prefix+semicolon", "ctrl+alt+backslash"]
+
+# tmux: bind '"' / % split-window (herdr defaults kept as alternates)
+split_horizontal = ["prefix+double_quote", "prefix+minus"]
+split_vertical = ["prefix+percent", "prefix+v"]
+
+# tmux: prefix+& kill-window, prefix+d detach (herdr defaults kept)
+close_tab = ["prefix+ampersand", "prefix+shift+x"]
+detach = ["prefix+d", "prefix+q"]
+
+# prefix+c creates a workspace (herdr default: prefix+shift+n),
+# freed up by new_tab moving to prefix+n.
+new_workspace = "prefix+c"
+
+# new_tab takes prefix+n (herdr default: prefix+c), so next_tab
+# moves from its default prefix+n to prefix+t.
+new_tab = "prefix+n"
+next_tab = "prefix+t"
+previous_tab = "prefix+shift+t"
+
+# rename_tab moves off its default prefix+shift+t (now previous_tab)
+# to prefix+comma, matching tmux's rename-window binding.
+rename_tab = "prefix+comma"
+
+# Agent panel navigation (unset by default in herdr)
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
