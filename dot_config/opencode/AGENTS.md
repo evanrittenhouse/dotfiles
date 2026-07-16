@@ -4,7 +4,7 @@ Use simple, direct language. BE CONCISE; never use superfluous adjectives or run
 
 ## Comments
 
-Avoid long-winded comment chains. Comments should only explain WHY we do something, in concise, terse prose, rather than re-explaining what the code already does. 
+Avoid long-winded comment chains. Comments should only explain WHY we do something, in concise, terse prose, rather than re-explaining what the code already does. BIAS TOWARDS NO COMMENTS.
 
 ## Source Attribution
 

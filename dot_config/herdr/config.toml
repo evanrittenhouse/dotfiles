@@ -40,6 +40,11 @@ previous_tab = "prefix+shift+t"
 # to prefix+comma, matching tmux's rename-window binding.
 rename_tab = "prefix+comma"
 
+# Navigate mode: shift+j/k move through the workspace list alongside
+# the default arrows. Plain j/k keep their default pane-focus behavior.
+navigate_workspace_up = ["up", "shift+k"]
+navigate_workspace_down = ["down", "shift+j"]
+
 # Agent panel navigation (unset by default in herdr)
 next_agent = "prefix+a"
 previous_agent = "prefix+shift+a"

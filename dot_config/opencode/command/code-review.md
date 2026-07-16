@@ -13,4 +13,4 @@ After all three complete, deduplicate their findings — keep the version with b
 
 Then launch ONE (1) final @code-review subagent to validate. Pass it the compiled findings, the user guidance, and this instruction: "For each finding, read the code at the referenced file:line. Classify as **Confirmed** (provably real), **Disputed** (not supported by the code), or **Acknowledged** (real but not worth fixing). Return only Confirmed findings."
 
-Present only Confirmed findings to the user, ranked by severity. If nothing survived validation, say so.
+Present only Confirmed findings to the user, numbered ranked by severity. If nothing survived validation, say so.
