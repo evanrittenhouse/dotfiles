@@ -63,6 +63,7 @@
             "*git status *": "allow",
             "*git branch *": "allow",
             "*git log *": "allow",
+            "*git blame*": "allow",
             "*git diff *": "allow",
             "*git show *": "allow",
             "*git branch -?": "allow",
@@ -79,7 +80,7 @@
             "*gh pr diff *": "allow",
 
             "*gcloud logging read*": "allow",
-            "*gcx metrics query*": "allow"
+            "*gcx * query*": "allow"
         },
         "external_directory": {
             "~/.cargo/**": "allow",
