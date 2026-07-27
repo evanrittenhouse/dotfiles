@@ -56,3 +56,6 @@ switch_tab = "prefix+shift+1..9"
 
 [theme]
 name = "nord"
+
+[worktrees]
+directory = "~/Documents/projects/worktrees"
