@@ -14,6 +14,8 @@ focus_pane_left = ["prefix+h", "ctrl+alt+h"]
 focus_pane_down = ["prefix+j", "ctrl+alt+j"]
 focus_pane_up = ["prefix+k", "ctrl+alt+k"]
 focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+cycle_pane_next = ""
+cycle_pane_previous = ""
 
 # tmux: C-\ select-pane -l (last pane); prefix+; is the tmux default
 last_pane = ["prefix+semicolon", "ctrl+alt+backslash"]
@@ -29,6 +31,8 @@ detach = ["prefix+d", "prefix+q"]
 # prefix+c creates a workspace (herdr default: prefix+shift+n),
 # freed up by new_tab moving to prefix+n.
 new_workspace = "prefix+c"
+previous_workspace = "prefix+shift+tab"
+next_workspace = "prefix+tab"
 
 # new_tab takes prefix+n (herdr default: prefix+c), so next_tab
 # moves from its default prefix+n to prefix+t.
