@@ -19,7 +19,7 @@ permission:
     "git diff*": allow
     "git blame*": allow
     "git branch*: allow
-    "gcx metrics query*": allow
+    "gcx * query*": allow
     "gcloud logging read*": allow
     "gh pr view*": allow
 ---
