@@ -1,5 +1,5 @@
 ---
-description: Summarize a PR's changes, tests, CI, and reviewer risk areas
+description: Summarize a PR's entrypoints, changes, tests, CI, and reviewer risk areas
 argument-hint: <PR URL | number | branch>
 ---
 
@@ -7,7 +7,7 @@ argument-hint: <PR URL | number | branch>
 
 ## Overview
 
-Create a reviewer-ready summary of a pull request. Focus on what changed, why the changed files matter, what was tested, and where reviewers should spend attention.
+Create a reviewer-ready summary of a pull request. Focus on its entrypoints, what changed, why the changed files matter, what was tested, and where reviewers should spend attention.
 
 This is not a full adversarial code review. Do enough inspection to identify important sections and plausible risks, but do not approve, request changes, post comments, or modify code unless the user explicitly asks.
 
@@ -38,9 +38,10 @@ Build the summary from primary PR artifacts, not only the PR description.
 1. Read the PR title, body, labels, commit subjects, changed-file list, and file stats.
 2. Classify changed files by role: public API, core logic, lifecycle or concurrency, persistence or migrations, auth or security, infra or deployment, tests, generated artifacts, documentation.
 3. Read the most important patches. Prioritize files with user-visible behavior, shared libraries, lifecycle management, goroutines or async work, locking, retries, cancellation, migrations, permissions, configuration, and deletion paths.
-4. Identify tests added or changed. Capture what they cover and what risk they leave uncovered.
-5. Read CI status from `statusCheckRollup`; distinguish passing, failing, pending, skipped, and missing checks.
-6. If a file requires more context, inspect nearby source in the local checkout or via `gh api` before summarizing it.
+4. Identify the change's entrypoint or entrypoints: the commands, handlers, public APIs, controllers, hooks, jobs, or startup paths through which the new behavior is invoked. Include file, line, symbol, caller, and role. If the change is not wired into production code, say so explicitly.
+5. Identify tests added or changed. Capture what they cover and what risk they leave uncovered.
+6. Read CI status from `statusCheckRollup`; distinguish passing, failing, pending, skipped, and missing checks.
+7. If a file requires more context, inspect nearby source in the local checkout or via `gh api` before summarizing it.
 
 Use local checkout commands only for reading:
 
@@ -95,6 +96,11 @@ Use this structure unless the user asks for a different format:
 
 **Net Change**
 - <2-5 bullets describing behavior and intent>
+
+**Entrypoints**
+| Entrypoint | Invoked By | Role |
+| --- | --- | --- |
+| path/to/file:123 `Symbol` | <caller, command, framework, or not yet wired> | <how execution enters the changed behavior> |
 
 **Important Files**
 | File | Why It Matters | Change |
