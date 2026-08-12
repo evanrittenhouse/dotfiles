@@ -80,7 +80,10 @@
             "*gh pr diff *": "allow",
 
             "*gcloud logging read*": "allow",
-            "*gcx * query*": "allow"
+            "*gcx * query*": "allow",
+
+            "*kubectl get *": "allow",
+            "*kubectl logs *": "allow"
         },
         "external_directory": {
             "~/.cargo/**": "allow",
