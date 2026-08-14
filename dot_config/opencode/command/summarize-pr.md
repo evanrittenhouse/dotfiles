@@ -17,18 +17,6 @@ Accept a GitHub PR URL, PR number, or branch name. If the target is a number and
 
 Use `gh` for PR data. GitHub commands need network access, so request sandbox escalation when the harness requires it.
 
-```bash
-PR="$ARGUMENTS"
-mkdir -p /tmp/summarize-pr
-gh pr view "$PR" --json \
-  number,title,body,author,state,isDraft,url,baseRefName,baseRefOid,headRefName,headRefOid,headRepository,headRepositoryOwner,isCrossRepository,additions,deletions,changedFiles,files,commits,labels,reviewRequests,latestReviews,reviewDecision,statusCheckRollup \
-  > /tmp/summarize-pr/pr.json
-gh pr diff "$PR" --name-only > /tmp/summarize-pr/files.txt
-gh pr view "$PR" --json files --jq '.files[] | [.path, (.additions|tostring), (.deletions|tostring)] | @tsv' \
-  > /tmp/summarize-pr/file-stats.tsv
-gh pr diff "$PR" --patch --color=never > /tmp/summarize-pr/diff.patch
-```
-
 If the PR is too large to read in one pass, use the file list and file stats to prioritize patches. Read generated files, vendored files, lockfiles, and snapshots only after understanding the source changes that produced them.
 
 ## Inspect the Change
