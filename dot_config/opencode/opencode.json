@@ -63,6 +63,7 @@
             "*git status *": "allow",
             "*git branch *": "allow",
             "*git log *": "allow",
+            "*git ls-files*": "allow",
             "*git blame*": "allow",
             "*git diff *": "allow",
             "*git show *": "allow",
