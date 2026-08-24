@@ -27,6 +27,7 @@
             "*whoami *": "allow",
             "*id *": "allow",
             "*grep *": "allow",
+            "*pre-commit run*": "allow",
             "*echo *": "allow",
             "*printf *": "allow",
             "*rg *": "allow",

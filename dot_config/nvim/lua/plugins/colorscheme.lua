@@ -14,7 +14,7 @@ local M = {
     config = function(_, opts)
       require('kanagawa').setup(opts)
 
-      -- vim.cmd('colorscheme kanagawa')
+      vim.cmd('colorscheme kanagawa')
     end,
     enabled = true,
     opts = {
@@ -68,7 +68,7 @@ local M = {
     enabled = true,
     config = function()
         require('nordic').load()
-        vim.cmd('colorscheme nordic')
+        -- vim.cmd('colorscheme nordic')
     end
   }),
   colorscheme({
