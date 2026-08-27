@@ -41,21 +41,6 @@ local M = {
   --   keys = { "<Leader>am", ":lua require ('harpoon.mark').add_file()<CR>" }
   -- },
   --   "jose-elias-alvarez/null-ls.nvim", -- Formatter, etc. for LSP servers
-  {
-  'nvim-orgmode/orgmode',
-  event = 'VeryLazy',
-  ft = { 'org' },
-  config = function()
-    -- Setup orgmode
-    require('orgmode').setup({
-      org_agenda_files = '~/orgfiles/**/*',
-      org_default_notes_file = '~/orgfiles/refile.org',
-    })
-
-    -- Experimental LSP support
-    vim.lsp.enable('org')
-  end,
-}
 }
 
 return M
