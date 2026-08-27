@@ -44,6 +44,7 @@
     cam = commit -a -m
 
     reb = "!f() { git rebase -i HEAD~$1; }; f"
+    bl = "!f() { git branch --format='%(refname:short)' | grep -i $1; }; f"
 
     m = commit --amend --verbose
     mne = commit --amend --no-edit
