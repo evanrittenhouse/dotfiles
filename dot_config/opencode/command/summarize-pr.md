@@ -61,7 +61,7 @@ Use `headRepository.nameWithOwner` and `headRefOid` from `/tmp/summarize-pr/pr.j
 
 ## Diagram the Change
 
-When the PR has a meaningful runtime, data, dependency, or lifecycle flow, include a small ASCII diagram of it. Use actual component or symbol names, and show the main entrypoint, changed logic, important branches, and outcome where applicable. Keep it basic enough to read in a terminal.
+When the PR has a meaningful runtime, data, dependency, or lifecycle flow, include a small ASCII diagram of it both before and after the change. Use actual component or symbol names, and show the main entrypoint, changed logic, important branches, and outcome where applicable. Keep it basic enough to read in a terminal.
 
 Do not invent relationships to complete a diagram. Omit the diagram for changes such as documentation, formatting, or dependency updates when it would not improve understanding.
 
