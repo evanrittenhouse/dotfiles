@@ -89,6 +89,7 @@
         },
         "external_directory": {
             "~/.cargo/**": "allow",
+            "~/.config/**": "allow",
             "~/go/pkg/mod/**": "allow",
             "~/Documents/projects/**": "allow",
             "/tmp/**": "allow"

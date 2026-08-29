@@ -30,17 +30,6 @@ local M = {
     "ludovicchabant/vim-gutentags",
     ft = { "c", "lua", "cpp", "zig" }
   },
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    opts = {},
-  },
-
-  -- {
-  --   "ThePrimeagen/harpoon",
-  --   keys = { "<Leader>am", ":lua require ('harpoon.mark').add_file()<CR>" }
-  -- },
-  --   "jose-elias-alvarez/null-ls.nvim", -- Formatter, etc. for LSP servers
 }
 
 return M
