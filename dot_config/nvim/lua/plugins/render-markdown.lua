@@ -52,6 +52,7 @@ local function parse_org(ctx)
   end
 
   local marks = {}
+  local ordered_lists = {}
   local dash_highlight = "Dash"
   local dash_string = "-"
   local quote_highlight = "Quote"
@@ -217,6 +218,21 @@ local function parse_org(ctx)
       })
     elseif capture == "number" then
       local text = vim.treesitter.get_node_text(node, ctx.buf)
+      local value, suffix = text:match("^(%d+)([.)])$")
+      local list = node:parent():parent()
+      local list_start_row, list_start_col, list_end_row, list_end_col = list:range()
+      local list_key = table.concat({ list_start_row, list_start_col, list_end_row, list_end_col }, ":")
+      local sequence = ordered_lists[list_key]
+
+      if not sequence then
+        sequence = { start = tonumber(value), index = 0 }
+        ordered_lists[list_key] = sequence
+      end
+
+      sequence.index = sequence.index + 1
+
+      local rendered = string.format("%d%s", sequence.start + sequence.index - 1, suffix)
+      local overflow = vim.fn.strdisplaywidth(rendered) > vim.fn.strdisplaywidth(text)
 
       table.insert(marks, {
         start_row = start_row,
@@ -224,8 +240,9 @@ local function parse_org(ctx)
         opts = {
           end_row = start_row,
           end_col = start_column + #text,
-          virt_text = { { text, "RenderMarkdownBullet" } },
-          virt_text_pos = "overlay",
+          conceal = overflow and "" or nil,
+          virt_text = { { rendered, "RenderMarkdownBullet" } },
+          virt_text_pos = overflow and "inline" or "overlay",
         },
       })
     elseif capture == "checkbox_bullet" then
