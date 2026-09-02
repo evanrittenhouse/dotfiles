@@ -1,4 +1,7 @@
-local LANGUAGES = {"python", "rust", "lua", "go", "vimdoc", "cpp", "c", "zig"}
+local LANGUAGES = {
+  "python", "rust", "lua", "go", "vimdoc", "cpp", "c", "zig",
+  "markdown", "markdown_inline",
+}
 
 local M = {
   "nvim-treesitter/nvim-treesitter",

@@ -20,6 +20,8 @@ Use `gh` for PR data. GitHub commands need network access, so request sandbox es
 
 If the PR is too large to read in one pass, use the file list and file stats to prioritize patches. Read generated files, vendored files, lockfiles, and snapshots only after understanding the source changes that produced them.
 
+If you are running in a worktree, check out the PR's branch in the worktree. 
+
 ## Inspect the Change
 
 Build the summary from primary PR artifacts, not only the PR description.

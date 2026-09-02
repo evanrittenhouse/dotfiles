@@ -75,6 +75,7 @@
             "*git config --get *": "allow",
             "*git merge-base *": "allow",
             "*git symbolic-ref *": "allow",
+            "*git rebase*": "allow",
 
             "*git-default-branch*": "allow",
 
