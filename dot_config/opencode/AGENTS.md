@@ -12,13 +12,15 @@ Avoid long-winded comment chains. Comments should only explain WHY we do somethi
 
 When finding relevant information on the Internet, always provide a direct URL link to the source.
 
-## Making Code Changes
+## Code Changes
 
 Always keep diffs small and reviewable. Avoid unnecessary abstractions. Be liberal with newlines; for example, when writing Rust, each block should be followed by a newline.
 
 Avoid free functions when a function takes a parameter that is a member of a class, struct, or similar type. In that case, make the function a member of that type instead.
 
 Avoid adding single-statement helper functions. Prefer inlining where possible. 
+
+In Rust, always put `impl` blocks directly after the corresponding struct's definition.
 
 Commit messages must be 72 characters or less per line.
 

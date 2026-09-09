@@ -13,6 +13,7 @@
             "*bazel *": "allow",
             "*bun *": "allow",
             "*cargo *": "allow",
+            "*rustc *": "allow",
             "*go *": "allow",
             "*rustfmt *": "allow",
             "*make *": "allow",
