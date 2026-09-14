@@ -30,3 +30,7 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<leader>y", "\"+y", opts)
 keymap("n", "<leader>Y", "\"+Y", opts)
 keymap("v", "<leader>y", "\"+y", opts)
+
+keymap("n", "<leader>ot", "<cmd>Obsidian today<CR>", opts)
+keymap("n", "<leader>oT", "<cmd>Obsidian tomorrow<CR>", opts)
+keymap("n", "<leader>oy", "<cmd>Obsidian yesterday<CR>", opts)
