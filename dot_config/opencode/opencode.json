@@ -81,6 +81,7 @@
             "*git-default-branch*": "allow",
 
             "*gh pr view *": "allow",
+            "*gh browse*": "allow",
             "*gh pr diff *": "allow",
 
             "*gcloud logging read*": "allow",
