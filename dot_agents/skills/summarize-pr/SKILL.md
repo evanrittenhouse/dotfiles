@@ -1,8 +1,8 @@
 ---
 name: summarize-pr
 description: >-
-  Summarize a pull request for review: entrypoints, change flow, critical sections, tests, CI,
-  and reviewer risks, then quiz the user on the implementation. Use when the user asks to
+  Summarize a pull request for review: entrypoints, change flow, critical sections, and
+  reviewer risks, then quiz the user on the implementation. Use when the user asks to
   summarize, explain, or walk through a PR, or to prepare to review one. Accepts a PR URL,
   number, or branch.
 argument-hint: <PR URL | number | branch>
@@ -12,7 +12,7 @@ argument-hint: <PR URL | number | branch>
 
 ## Overview
 
-Create a reviewer-ready summary of a pull request. Focus on its entrypoints, what changed, why the changed files matter, what was tested, and where reviewers should spend attention.
+Create a reviewer-ready summary of a pull request. Focus on its entrypoints, what changed, why the changed files matter, and where reviewers should spend attention.
 
 This is not a full adversarial code review. Do enough inspection to identify important sections and plausible risks, but do not approve, request changes, post comments, or modify code unless the user explicitly asks.
 
@@ -35,9 +35,7 @@ Build the summary from primary PR artifacts, not only the PR description.
 3. Read the most important patches. Prioritize files with user-visible behavior, shared libraries, lifecycle management, goroutines or async work, locking, retries, cancellation, migrations, permissions, configuration, and deletion paths.
 4. Identify the change's entrypoint or entrypoints: the commands, handlers, public APIs, controllers, hooks, jobs, or startup paths through which the new behavior is invoked. Include file, line, symbol, caller, and role. If the change is not wired into production code, say so explicitly.
 5. Trace the main control, data, dependency, or lifecycle flow through the changed behavior. Use only relationships supported by the code or PR artifacts.
-6. Identify tests added or changed. Capture what they cover and what risk they leave uncovered.
-7. Read CI status from `statusCheckRollup`; distinguish passing, failing, pending, skipped, and missing checks.
-8. If a file requires more context, inspect nearby source in the local checkout or via `gh api` before summarizing it.
+6. If a file requires more context, inspect nearby source in the local checkout or via `gh api` before summarizing it.
 
 Use local checkout commands only for reading:
 
@@ -133,16 +131,8 @@ Use this structure unless the user asks for a different format:
 | --- | --- | --- |
 | path/to/file:123 | <question or concern> | <risk or invariant> |
 
-**Tests and CI**
-- Tests changed: <files and what they cover>
-- CI: <pass/fail/pending/skipped summary>
-- Gaps: <missing tests or validation worth adding>
-
 **Reviewer Focus**
 - <race/lifecycle/rollout/security/perf/test-review prompts, as applicable>
-
-**Not Verified**
-- <anything not checked, inaccessible, too large, or outside scope>
 
 **Understanding Quiz**
 1. <meaningful implementation question>
@@ -152,4 +142,4 @@ Use this structure unless the user asks for a different format:
 5. <optional meaningful implementation question>
 ```
 
-Keep summaries factual and reviewer-oriented. Avoid restating every file in the diff. Do not invent test execution; say whether evidence came from changed test files, PR text, CI checks, or commands you personally ran. End the initial response after the quiz questions so the user can answer them.
+Keep summaries factual and reviewer-oriented. Avoid restating every file in the diff. End the initial response after the quiz questions so the user can answer them.
