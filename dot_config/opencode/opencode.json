@@ -1,7 +1,6 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "default_agent": "coworker",
-    "theme": "nord",
     "lsp": true,
     "permission": {
         "bash": {
