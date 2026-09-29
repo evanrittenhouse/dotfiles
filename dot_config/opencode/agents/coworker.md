@@ -10,7 +10,6 @@ permission:
   webfetch: allow
   websearch: allow
   edit: deny
-  write: deny
   todowrite: deny
   bash:
     "*": deny
@@ -18,7 +17,7 @@ permission:
     "git show*": allow
     "git diff*": allow
     "git blame*": allow
-    "git branch*: allow
+    "git branch*": allow
     "gcx * query*": allow
     "gcloud logging read*": allow
     "gh pr view*": allow
