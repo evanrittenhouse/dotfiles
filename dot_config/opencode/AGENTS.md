@@ -28,6 +28,14 @@ Commit messages must be 72 characters or less per line.
 
 When discussing code, always show specific file paths and line numbers in the format `file_path:line_number`. This helps with navigation and context.
 
+## Shell Commands
+
+Permission rules match the start of each command, so other command shapes need manual approval.
+
+- Put the subcommand first and flags after it: `kubectl get pods --context X`, not `kubectl --context X get pods`.
+- Do not put global options before a git subcommand (`git -C`, `git --no-optional-locks`, `git --no-pager`). Set the tool's working directory instead of using `-C`.
+- Do not prefix commands with environment variable assignments or wrap them in `sh -c` or `bash -c` unless the command cannot run without it.
+
 ## Git Worktrees
 
 Create all Git worktrees under `~/Documents/projects/worktrees/<repository>/<worktree-name>`. If the `/worktree` skill is unavailable, use `git worktree` with this same location.
