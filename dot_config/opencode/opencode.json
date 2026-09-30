@@ -130,7 +130,8 @@
             "~/.config/**": "allow",
             "~/go/pkg/mod/**": "allow",
             "~/Documents/projects/**": "allow",
-            "/tmp/**": "allow"
+            "/tmp/**": "allow",
+            "/private/**": "allow"
         }
     }
 }
