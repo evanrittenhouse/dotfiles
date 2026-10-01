@@ -18,6 +18,14 @@ local M = {
   },
   enabled = true,
   opts = {
+    -- Obsidian uses these (vim_config/keybinds.lua).
+    keymap = {
+      editor = {
+        ['<leader>ot'] = false,
+        ['<leader>oT'] = false,
+        ['<leader>oy'] = false,
+      },
+    },
     ui = {
       position = "left",
       input = {
