@@ -16,9 +16,8 @@ local M = {
     'saghen/blink.cmp',
     'nvim-telescope/telescope.nvim',
   },
-  enabled = false,
+  enabled = true,
   opts = {
-    default_mode = "plan",
     ui = {
       position = "left",
       input = {

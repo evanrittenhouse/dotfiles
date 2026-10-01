@@ -15,6 +15,11 @@ local M = {
       pattern = LANGUAGES,
       callback = function() vim.treesitter.start() end,
     })
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'opencode_output',
+      callback = function(args) vim.treesitter.start(args.buf) end,
+    })
   end
 }
 
