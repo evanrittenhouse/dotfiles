@@ -1,5 +1,5 @@
 local M = {
-  "ggandor/leap.nvim",
+  url = "https://codeberg.org/andyg/leap.nvim",
   config = function()
     vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward)')
     -- Don't map 'x' mode since it conflicts with nvim-surround
