@@ -36,17 +36,18 @@ local M = {
     opts = {
       legacy_commands=false,
       ui = { enable = false },
-      workspaces = { 
+      workspaces = {
         {
           name = "work",
           path = "~/work"
         },
         {
           name = "brain",
-          path = "~/projects/brain",
-        },
+          path = "~/Documents/brain",
+        }
       }
-    }
+    },
+    event = "VeryLazy"
   },
   {
     'MeanderingProgrammer/render-markdown.nvim',
