@@ -1,0 +1,8 @@
+{{- $src := include "dot_config/agents/agents/coworker.md" -}}
+{{- $parts := splitn "---\n" 3 $src -}}
+{{- $meta := $parts._1 | fromYaml -}}
+name = {{ $meta.name | quote }}
+description = {{ $meta.description | quote }}
+developer_instructions = '''
+{{ $parts._2 | trim }}
+'''

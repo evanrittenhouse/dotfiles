@@ -1,6 +1,8 @@
 ---
+name: code-reviewer
 description: Reviews code for bugs, security, and maintainability with tool-assisted validation
 mode: subagent
+disallowedTools: Edit, Write, NotebookEdit
 temperature: 0.1
 permission:
   edit: deny

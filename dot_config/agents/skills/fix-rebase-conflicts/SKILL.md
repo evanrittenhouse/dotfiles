@@ -79,7 +79,7 @@ If `rerere` pre-resolved a conflict, review that resolution with the same rubric
 2. Both sides of the conflict, plus the base version when it clarifies intent
 3. A proposed resolution with reasoning
 
-Then ask for approval with the question tool. Offer at minimum: accept the proposal, take ours, take theirs, or user resolves manually. Only after approval: apply the resolution and `git add <file>`.
+Then ask for approval with a structured question tool when one exists; otherwise ask in prose. Offer at minimum: accept the proposal, take ours, take theirs, or user resolves manually. Only after approval: apply the resolution and `git add <file>`.
 
 ## 4. Continue and loop
 

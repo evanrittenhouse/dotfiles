@@ -1,14 +1,13 @@
 ---
 name: quiz-me
 description: Interactive, adaptive comprehension quiz on a subject you name (a commit/PR/diff, a file or subsystem, a concept, or a mix). Studies the subject read-only, asks questions from easy to hard one round at a time, grades each answer honestly, and ends with a strengths/weaknesses summary plus targeted resources. Use when you want to test or deepen your understanding of something, or mention "quiz me".
-agent: plan
 ---
 
 Test my understanding of the subject I name, then show me where I am weak and
 what to read. This is a Socratic comprehension check - not a lecture, and never a
 code change.
 
-**Subject**: `$ARGUMENTS` - may be a commit/PR/diff ("the HEAD commit", "PR
+**Subject**: the subject the user names - may be a commit/PR/diff ("the HEAD commit", "PR
 1234", "the last 3 commits"), a file/dir/subsystem, a concept/technology ("linux
 namespaces", "how our auth works"), or a combination ("the HEAD commit and linux
 namespaces"). It may also carry a level cue ("I'm new to X", "go hard on me").
@@ -24,7 +23,7 @@ namespaces"). It may also carry a level cue ("I'm new to X", "go hard on me").
 
 ## Step 1 - Pin down the subject
 
-- Read `$ARGUMENTS`. If it is empty or ambiguous, ask one short clarifying
+- Read the subject the user names. If it is empty or ambiguous, ask one short clarifying
   question (offer a sensible default, e.g. the current branch's diff vs its
   base). Do not start quizzing until the subject is clear.
 - Note any difficulty cue. If none, assume intermediate and recalibrate from the

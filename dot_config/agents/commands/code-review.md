@@ -1,5 +1,5 @@
 ---
-description: Review changes with parallel @code-review subagents
+description: Review changes with parallel `code-reviewer` subagents
 agent: plan
 ---
 
@@ -7,10 +7,10 @@ Review the full local changeset against the repository's default branch by defau
 
 Guidance: $ARGUMENTS
 
-Launch THREE (3) @code-review subagents in parallel. Give each a different focus area. If the user guidance specifies areas, use those. Otherwise default to: (1) correctness, (2) security & resilience, (3) complexity & maintainability. Include the focus area in each subagent's prompt.
+Launch THREE (3) `code-reviewer` subagents in parallel. Give each a different focus area. If the user guidance specifies areas, use those. Otherwise default to: (1) correctness, (2) security & resilience, (3) complexity & maintainability. Include the focus area in each subagent's prompt.
 
 After all three complete, deduplicate their findings — keep the version with better evidence, use the higher severity when they disagree, and drop anything without a `file:line` reference. Run the project's lint/test commands to catch anything the reviewers missed.
 
-Then launch ONE (1) final @code-review subagent to validate. Pass it the compiled findings, the user guidance, and this instruction: "For each finding, read the code at the referenced file:line. Classify as **Confirmed** (provably real), **Disputed** (not supported by the code), or **Acknowledged** (real but not worth fixing). Return only Confirmed findings."
+Then launch ONE (1) final `code-reviewer` subagent to validate. Pass it the compiled findings, the user guidance, and this instruction: "For each finding, read the code at the referenced file:line. Classify as **Confirmed** (provably real), **Disputed** (not supported by the code), or **Acknowledged** (real but not worth fixing). Return only Confirmed findings."
 
 Present only Confirmed findings to the user, numbered ranked by severity. If nothing survived validation, say so.

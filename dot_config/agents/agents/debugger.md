@@ -1,6 +1,8 @@
 ---
+name: debugger
 description: Investigates software and infrastructure bugs with read-only Git, Grafana, GCP, and Kubernetes evidence; falsifies assumptions before reporting confidence-rated hypotheses
 mode: all
+disallowedTools: Edit, Write, NotebookEdit, Agent, WebFetch, WebSearch
 temperature: 0.1
 permission:
   edit: deny
