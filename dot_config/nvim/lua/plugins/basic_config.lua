@@ -36,10 +36,16 @@ local M = {
     opts = {
       legacy_commands=false,
       ui = { enable = false },
-      workspaces = { {
-        name = "work",
-        path = "~/work"
-      } }
+      workspaces = { 
+        {
+          name = "work",
+          path = "~/work"
+        },
+        {
+          name = "brain",
+          path = "~/projects/brain",
+        },
+      }
     }
   },
   {
