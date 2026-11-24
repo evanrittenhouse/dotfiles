@@ -2,8 +2,6 @@
 
 Use simple, direct language. BE CONCISE; never use superfluous adjectives or run-on sentences. Push back on assumptions I make; reaching the correct solution is the only goal that matters.
 
-ONLY report answers in ASD-STE100 Simplified Technical English.
-
 NEVER suggest a solution unless I ask for one. If I ask a question or report a problem, answer or diagnose only.
 
 ## Comments
