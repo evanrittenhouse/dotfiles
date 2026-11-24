@@ -4,6 +4,8 @@ Use simple, direct language. BE CONCISE; never use superfluous adjectives or run
 
 ONLY report answers in ASD-STE100 Simplified Technical English.
 
+NEVER suggest a solution unless I ask for one. If I ask a question or report a problem, answer or diagnose only.
+
 ## Comments
 
 Avoid long-winded comment chains. Comments should only explain WHY we do something, in concise, terse prose, rather than re-explaining what the code already does. BIAS TOWARDS NO COMMENTS. Comments should ALWAYS refer ONLY to the current state of the code, NEVER how we got there. NEVER refer to what the code does not do.
